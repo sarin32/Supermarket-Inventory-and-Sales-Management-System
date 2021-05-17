@@ -36,11 +36,9 @@ class UISuperMarket(QMainWindow):
 
 class Purchase(Ui_purchase):
     def __init__(self, widget):
-        super().__init__()
         self.crt = Cart()
         self.inv = Inventory()
         self.setupUi(widget)
-
         # initialize combobox
         self.fieldBrand.addItem('select')
         self.fieldBrand.addItems(self.inv.getAllBrandNames())
@@ -48,12 +46,11 @@ class Purchase(Ui_purchase):
         self.fieldCategory.addItems(self.inv.getAllCategoryNames())
         self.fieldName.addItem('select')
         self.fieldName.addItems(self.inv.getAllProductNames())
-
         # event updates
-        self.buttonClear.clicked.connect(self.clear)
-        self.buttonAdd.clicked.connect(self.AddToCart)
-        self.fieldCategory.currentIndexChanged.connect(self.updateProductNames)
-        self.fieldBrand.currentIndexChanged.connect(self.updateProductNames)
+        self.buttonClear.clicked.connect(lambda: self.clear())
+        self.buttonAdd.clicked.connect(lambda: self.AddToCart())
+        self.fieldCategory.currentIndexChanged.connect(lambda: self.updateProductNames())
+        self.fieldBrand.currentIndexChanged.connect(lambda: self.updateProductNames())
 
     def clear(self):
         self.fieldCode.setValue(0)
