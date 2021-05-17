@@ -1,39 +1,30 @@
-import sys
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import QRect
-from PyQt5.QtWidgets import QApplication, QMenuBar, QMainWindow, QStackedWidget, QWidget
-
-from purchase import Ui_purchase
-
-
-class UISuperMarket(QMainWindow):
+"""
+This is the backend of the application
+"""
+class Cart:
     def __init__(self):
-        super().__init__()
+        self.cart = []
+        self.total_cost = 0
 
-        # self.resize(800, 600)
-        self.setWindowTitle('MASS Supermarket')
-        self.setWindowIcon(QIcon('res/images/icon.png'))
-        self.centralWidget = QStackedWidget(self)
+    def newProduct(self, product_code, units):
+        pass
 
-        purchase = QWidget()
-        ui = Ui_purchase()
-        ui.setupUi(purchase)
-        self.centralWidget.addWidget(purchase)
-        self.centralWidget.setCurrentWidget(purchase)
-
-        self.setupMenuBar()
-        self.show()
-
-    def setupMenuBar(self):
-        menubar = QMenuBar(self)
-        menubar.setGeometry(QRect(0, 0, 5000, 20))
-        purchase = menubar.addMenu('Purchase')
-        newProduct = menubar.addMenu('New Product')
-        updateStock = menubar.addMenu('Update Stock')
-        ViewStock = menubar.addMenu('Stock')
+    def purchase(self):
+        pass
 
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ui = UISuperMarket()
-    sys.exit(app.exec_())
+class Inventory:
+    def __init__(self):
+        self.brandIds = ['25', '36']
+        self.categoryIds = ['36', '45']
+        self.productIds = ['65', '36']
+
+    def getAllBrandNames(self):
+        return self.brandIds
+
+    def getAllCategoryNames(self):
+        return self.categoryIds
+
+    def getAllProductNames(self, brandId=None, categoryId=None):
+        return self.productIds
+
