@@ -1,3 +1,7 @@
+"""
+This is the runner file of the application
+Mainwindow is created and other widgets are added in this file
+"""
 import sys
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import QRect
@@ -75,7 +79,7 @@ class UISuperMarket(QMainWindow):
 
         self.setWidget(self.purchaseWidget)
         self.setupMenuBar()
-        self.setContentsMargins(0,20,0,0)
+        self.setContentsMargins(0, 20, 0, 0)
         self.show()
 
     def setWidget(self, widget):
