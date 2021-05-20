@@ -4,34 +4,14 @@ from PyQt5.QtCore import QRect
 from PyQt5.QtWidgets import QApplication, QMenuBar, QMainWindow, QStackedWidget, QWidget
 
 from superMarket import Cart, Inventory
+
+from ui.addProduct import Ui_newProduct
 from ui.purchase import Ui_purchase
 
 
-class UISuperMarket(QMainWindow):
-    def __init__(self):
-        super().__init__()
-
-        self.resize(800, 600)
-        self.setWindowTitle('MASS Supermarket')
-        self.setWindowIcon(QIcon('res/images/icon.png'))
-        self.centralWidget = QStackedWidget(self)
-        self.setCentralWidget(self.centralWidget)
-
-        self.purchaseWidget = QWidget()
-        Purchase(self.purchaseWidget)
-        self.centralWidget.addWidget(self.purchaseWidget)
-
-        self.centralWidget.setCurrentWidget(self.purchaseWidget)
-        self.setupMenuBar()
-        self.show()
-
-    def setupMenuBar(self):
-        menubar = QMenuBar(self)
-        menubar.setGeometry(QRect(0, 0, 5000, 20))
-        purchase = menubar.addMenu('Purchase')
-        newProduct = menubar.addMenu('New Product')
-        updateStock = menubar.addMenu('Update Stock')
-        ViewStock = menubar.addMenu('Stock')
+class AddProduct(Ui_newProduct):
+    def __init__(self, widget):
+        self.setupUi(widget)
 
 
 class Purchase(Ui_purchase):
@@ -72,6 +52,45 @@ class Purchase(Ui_purchase):
             self.inv.getAllProductNames(brandId=None, categoryId=self.fieldCategory.currentText())
         elif self.fieldCategory.currentText() == 'select':
             self.inv.getAllProductNames(brandId=self.fieldBrand)
+
+
+class UISuperMarket(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        self.resize(800, 600)
+        self.setWindowTitle('MASS Supermarket')
+        self.setWindowIcon(QIcon('res/images/icon.png'))
+        self.centralwidget = QStackedWidget(self)
+        self.setCentralWidget(self.centralwidget)
+
+        # setup contents of stacked widget
+        self.purchaseWidget = QWidget()
+        Purchase(self.purchaseWidget)
+        self.centralwidget.addWidget(self.purchaseWidget)
+
+        self.addWidget = QWidget()
+        AddProduct(self.addWidget)
+        self.centralwidget.addWidget(self.addWidget)
+
+        self.setWidget(self.purchaseWidget)
+        self.setupMenuBar()
+        self.setContentsMargins(0,20,0,0)
+        self.show()
+
+    def setWidget(self, widget):
+        self.centralwidget.setCurrentWidget(widget)
+
+    def setupMenuBar(self):
+        menubar = QMenuBar(self)
+        menubar.setGeometry(QRect(0, 0, 5000, 20))
+        purchase = menubar.addAction('Purchase')
+        newProduct = menubar.addAction('New Product')
+        updateStock = menubar.addAction('Update Stock')
+        ViewStock = menubar.addAction('Stock')
+
+        purchase.triggered.connect(lambda: self.setWidget(self.purchaseWidget))
+        newProduct.triggered.connect(lambda: self.setWidget(self.addWidget))
 
 
 if __name__ == '__main__':

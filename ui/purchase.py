@@ -16,25 +16,25 @@ class Ui_purchase(object):
         purchase.setObjectName("purchase")
         purchase.resize(703, 375)
         purchase.setStyleSheet("QLabel{\n"
-                               "    font: 75 bold 10pt  \"MS Sans Serif\";\n"
-                               "}\n"
-                               "\n"
-                               "QLabel#labelCart , QLabel#labelSearchProduct{\n"
-                               "    font: 75 bold 15pt  \"MS Sans Serif\";\n"
-                               "}\n"
-                               "\n"
-                               "QFrame#frameSearchProduct, QFrame#frameCart{\n"
-                               "    background-color:rgb(202, 202, 202);\n"
-                               "    border-radius:6px;\n"
-                               "}\n"
-                               "\n"
-                               "QComboBox,QSpinBox{\n"
-                               "    background-color:#eee;\n"
-                               "    border: 0.1em solid;\n"
-                               "    color:#000;\n"
-                               "    border-radius:5px;\n"
-                               "}\n"
-                               "")
+"    font: 15px  \"Centular\";\n"
+"}\n"
+"\n"
+"QLabel#labelCart , QLabel#labelSearchProduct{\n"
+"    font: bold 16px  \"Centular\";\n"
+"}\n"
+"\n"
+"QFrame#frameSearchProduct, QFrame#frameCart{\n"
+"    background-color:#ddd;\n"
+"    border-radius:6px;\n"
+"}\n"
+"\n"
+"QComboBox,QSpinBox{\n"
+"    background-color:#eee;\n"
+"    border: 0.1em solid;\n"
+"    color:#000;\n"
+"    border-radius:5px;\n"
+"}\n"
+"")
         self.gridLayout = QtWidgets.QGridLayout(purchase)
         self.gridLayout.setObjectName("gridLayout")
         self.frameSearchProduct = QtWidgets.QFrame(purchase)
@@ -44,44 +44,26 @@ class Ui_purchase(object):
         self.frameSearchProduct.setObjectName("frameSearchProduct")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.frameSearchProduct)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.fieldUnits = QtWidgets.QSpinBox(self.frameSearchProduct)
-        self.fieldUnits.setMinimumSize(QtCore.QSize(125, 25))
-        self.fieldUnits.setStyleSheet("")
-        self.fieldUnits.setButtonSymbols(QtWidgets.QAbstractSpinBox.UpDownArrows)
-        self.fieldUnits.setObjectName("fieldUnits")
-        self.gridLayout_2.addWidget(self.fieldUnits, 17, 4, 1, 1)
         self.labelCategory = QtWidgets.QLabel(self.frameSearchProduct)
         self.labelCategory.setStyleSheet("")
         self.labelCategory.setObjectName("labelCategory")
         self.gridLayout_2.addWidget(self.labelCategory, 6, 2, 1, 1)
-        self.fieldCode = QtWidgets.QSpinBox(self.frameSearchProduct)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.fieldCode.sizePolicy().hasHeightForWidth())
-        self.fieldCode.setSizePolicy(sizePolicy)
-        self.fieldCode.setMinimumSize(QtCore.QSize(125, 25))
-        self.fieldCode.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.fieldCode.setStyleSheet("")
-        self.fieldCode.setButtonSymbols(QtWidgets.QAbstractSpinBox.UpDownArrows)
-        self.fieldCode.setCorrectionMode(QtWidgets.QAbstractSpinBox.CorrectToPreviousValue)
-        self.fieldCode.setStepType(QtWidgets.QAbstractSpinBox.DefaultStepType)
-        self.fieldCode.setObjectName("fieldCode")
-        self.gridLayout_2.addWidget(self.fieldCode, 17, 0, 1, 1)
-        self.fieldName = QtWidgets.QComboBox(self.frameSearchProduct)
-        self.fieldName.setMinimumSize(QtCore.QSize(125, 25))
-        self.fieldName.setStyleSheet("")
-        self.fieldName.setObjectName("fieldName")
-        self.gridLayout_2.addWidget(self.fieldName, 17, 1, 1, 1)
+        self.fieldUnits = QtWidgets.QSpinBox(self.frameSearchProduct)
+        self.fieldUnits.setMinimumSize(QtCore.QSize(100, 25))
+        self.fieldUnits.setMaximumSize(QtCore.QSize(100, 25))
+        self.fieldUnits.setStyleSheet("")
+        self.fieldUnits.setButtonSymbols(QtWidgets.QAbstractSpinBox.UpDownArrows)
+        self.fieldUnits.setObjectName("fieldUnits")
+        self.gridLayout_2.addWidget(self.fieldUnits, 17, 4, 1, 1)
+        self.fieldBrand = QtWidgets.QComboBox(self.frameSearchProduct)
+        self.fieldBrand.setMinimumSize(QtCore.QSize(125, 25))
+        self.fieldBrand.setStyleSheet("")
+        self.fieldBrand.setObjectName("fieldBrand")
+        self.gridLayout_2.addWidget(self.fieldBrand, 17, 3, 1, 1)
         self.labelUnits = QtWidgets.QLabel(self.frameSearchProduct)
         self.labelUnits.setStyleSheet("")
         self.labelUnits.setObjectName("labelUnits")
         self.gridLayout_2.addWidget(self.labelUnits, 6, 4, 1, 1)
-        self.fieldCategory = QtWidgets.QComboBox(self.frameSearchProduct)
-        self.fieldCategory.setMinimumSize(QtCore.QSize(125, 25))
-        self.fieldCategory.setStyleSheet("")
-        self.fieldCategory.setObjectName("fieldCategory")
-        self.gridLayout_2.addWidget(self.fieldCategory, 17, 2, 1, 1)
         self.frameSearchButtons = QtWidgets.QFrame(self.frameSearchProduct)
         self.frameSearchButtons.setMaximumSize(QtCore.QSize(16777215, 50))
         self.frameSearchButtons.setStyleSheet("")
@@ -111,11 +93,15 @@ class Ui_purchase(object):
         self.labelSearchProduct.setStyleSheet("")
         self.labelSearchProduct.setObjectName("labelSearchProduct")
         self.gridLayout_2.addWidget(self.labelSearchProduct, 0, 0, 1, 4)
-        self.fieldBrand = QtWidgets.QComboBox(self.frameSearchProduct)
-        self.fieldBrand.setMinimumSize(QtCore.QSize(125, 25))
-        self.fieldBrand.setStyleSheet("")
-        self.fieldBrand.setObjectName("fieldBrand")
-        self.gridLayout_2.addWidget(self.fieldBrand, 17, 3, 1, 1)
+        self.fieldCode = QtWidgets.QSpinBox(self.frameSearchProduct)
+        self.fieldCode.setMinimumSize(QtCore.QSize(125, 25))
+        self.fieldCode.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.fieldCode.setStyleSheet("")
+        self.fieldCode.setButtonSymbols(QtWidgets.QAbstractSpinBox.UpDownArrows)
+        self.fieldCode.setCorrectionMode(QtWidgets.QAbstractSpinBox.CorrectToPreviousValue)
+        self.fieldCode.setStepType(QtWidgets.QAbstractSpinBox.DefaultStepType)
+        self.fieldCode.setObjectName("fieldCode")
+        self.gridLayout_2.addWidget(self.fieldCode, 17, 0, 1, 1)
         self.labelCode = QtWidgets.QLabel(self.frameSearchProduct)
         self.labelCode.setStyleSheet("")
         self.labelCode.setObjectName("labelCode")
@@ -125,6 +111,16 @@ class Ui_purchase(object):
         self.labelName.setStyleSheet("")
         self.labelName.setObjectName("labelName")
         self.gridLayout_2.addWidget(self.labelName, 6, 1, 1, 1)
+        self.fieldName = QtWidgets.QComboBox(self.frameSearchProduct)
+        self.fieldName.setMinimumSize(QtCore.QSize(125, 25))
+        self.fieldName.setStyleSheet("")
+        self.fieldName.setObjectName("fieldName")
+        self.gridLayout_2.addWidget(self.fieldName, 17, 1, 1, 1)
+        self.fieldCategory = QtWidgets.QComboBox(self.frameSearchProduct)
+        self.fieldCategory.setMinimumSize(QtCore.QSize(125, 25))
+        self.fieldCategory.setStyleSheet("")
+        self.fieldCategory.setObjectName("fieldCategory")
+        self.gridLayout_2.addWidget(self.fieldCategory, 17, 2, 1, 1)
         self.gridLayout.addWidget(self.frameSearchProduct, 0, 0, 1, 1)
         self.frameCart = QtWidgets.QFrame(purchase)
         self.frameCart.setEnabled(True)
@@ -222,6 +218,7 @@ class Ui_purchase(object):
         font.setWeight(75)
         item.setFont(font)
         self.tableCart.setHorizontalHeaderItem(6, item)
+        self.tableCart.verticalHeader().setVisible(False)
         self.gridLayout_4.addWidget(self.tableCart, 2, 0, 1, 2, QtCore.Qt.AlignHCenter)
         self.labelCart = QtWidgets.QLabel(self.frameCart)
         self.labelCart.setMinimumSize(QtCore.QSize(0, 30))

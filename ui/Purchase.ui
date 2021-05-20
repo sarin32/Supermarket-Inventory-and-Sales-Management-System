@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>758</width>
+    <width>703</width>
     <height>375</height>
    </rect>
   </property>
@@ -15,15 +15,15 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QLabel{
-	font: 75 bold 10pt  &quot;MS Sans Serif&quot;;
+	font: 15px  &quot;Centular&quot;;
 }
 
 QLabel#labelCart , QLabel#labelSearchProduct{
-	font: 75 bold 15pt  &quot;MS Sans Serif&quot;;
+	font: bold 16px  &quot;Centular&quot;;
 }
 
 QFrame#frameSearchProduct, QFrame#frameCart{
-	background-color:rgb(202, 202, 202);
+	background-color:#ddd;
 	border-radius:6px;
 }
 
@@ -54,22 +54,6 @@ QComboBox,QSpinBox{
       <string notr="true"/>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="17" column="4">
-       <widget class="QSpinBox" name="fieldUnits">
-        <property name="minimumSize">
-         <size>
-          <width>125</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="buttonSymbols">
-         <enum>QAbstractSpinBox::UpDownArrows</enum>
-        </property>
-       </widget>
-      </item>
       <item row="6" column="2">
        <widget class="QLabel" name="labelCategory">
         <property name="styleSheet">
@@ -80,22 +64,19 @@ QComboBox,QSpinBox{
         </property>
        </widget>
       </item>
-      <item row="17" column="0">
-       <widget class="QSpinBox" name="fieldCode">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
+      <item row="17" column="4">
+       <widget class="QSpinBox" name="fieldUnits">
         <property name="minimumSize">
          <size>
-          <width>125</width>
+          <width>100</width>
           <height>25</height>
          </size>
         </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>25</height>
+         </size>
         </property>
         <property name="styleSheet">
          <string notr="true"/>
@@ -103,16 +84,10 @@ QComboBox,QSpinBox{
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::UpDownArrows</enum>
         </property>
-        <property name="correctionMode">
-         <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
-        </property>
-        <property name="stepType">
-         <enum>QAbstractSpinBox::DefaultStepType</enum>
-        </property>
        </widget>
       </item>
-      <item row="17" column="1">
-       <widget class="QComboBox" name="fieldName">
+      <item row="17" column="3">
+       <widget class="QComboBox" name="fieldBrand">
         <property name="minimumSize">
          <size>
           <width>125</width>
@@ -131,19 +106,6 @@ QComboBox,QSpinBox{
         </property>
         <property name="text">
          <string>Units</string>
-        </property>
-       </widget>
-      </item>
-      <item row="17" column="2">
-       <widget class="QComboBox" name="fieldCategory">
-        <property name="minimumSize">
-         <size>
-          <width>125</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
         </property>
        </widget>
       </item>
@@ -241,16 +203,28 @@ QComboBox,QSpinBox{
         </property>
        </widget>
       </item>
-      <item row="17" column="3">
-       <widget class="QComboBox" name="fieldBrand">
+      <item row="17" column="0">
+       <widget class="QSpinBox" name="fieldCode">
         <property name="minimumSize">
          <size>
           <width>125</width>
           <height>25</height>
          </size>
         </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
         <property name="styleSheet">
          <string notr="true"/>
+        </property>
+        <property name="buttonSymbols">
+         <enum>QAbstractSpinBox::UpDownArrows</enum>
+        </property>
+        <property name="correctionMode">
+         <enum>QAbstractSpinBox::CorrectToPreviousValue</enum>
+        </property>
+        <property name="stepType">
+         <enum>QAbstractSpinBox::DefaultStepType</enum>
         </property>
        </widget>
       </item>
@@ -277,6 +251,32 @@ QComboBox,QSpinBox{
         </property>
         <property name="text">
          <string>Product Name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="1">
+       <widget class="QComboBox" name="fieldName">
+        <property name="minimumSize">
+         <size>
+          <width>125</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="2">
+       <widget class="QComboBox" name="fieldCategory">
+        <property name="minimumSize">
+         <size>
+          <width>125</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
         </property>
        </widget>
       </item>
@@ -429,6 +429,9 @@ QComboBox,QSpinBox{
         <property name="sortingEnabled">
          <bool>false</bool>
         </property>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
         <column>
          <property name="text">
           <string>Product Code</string>
