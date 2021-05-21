@@ -43,16 +43,16 @@ QComboBox,QSpinBox,QLineEdit{
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
-    <number>4</number>
+    <number>7</number>
    </property>
    <property name="topMargin">
-    <number>4</number>
+    <number>7</number>
    </property>
    <property name="rightMargin">
-    <number>4</number>
+    <number>7</number>
    </property>
    <property name="bottomMargin">
-    <number>4</number>
+    <number>7</number>
    </property>
    <property name="spacing">
     <number>3</number>
@@ -156,6 +156,9 @@ QComboBox,QSpinBox,QLineEdit{
              <height>16777215</height>
             </size>
            </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
            <property name="text">
             <string>Clear</string>
            </property>
@@ -180,6 +183,9 @@ QComboBox,QSpinBox,QLineEdit{
              <width>125</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="text">
             <string>Add to cart</string>
@@ -390,6 +396,9 @@ QComboBox,QSpinBox,QLineEdit{
              <height>16777215</height>
             </size>
            </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
            <property name="text">
             <string>Clear All</string>
            </property>
@@ -409,6 +418,9 @@ QComboBox,QSpinBox,QLineEdit{
              <height>16777215</height>
             </size>
            </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
            <property name="text">
             <string>Remove</string>
            </property>
@@ -427,6 +439,9 @@ QComboBox,QSpinBox,QLineEdit{
              <width>125</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="text">
             <string>Purchase</string>
