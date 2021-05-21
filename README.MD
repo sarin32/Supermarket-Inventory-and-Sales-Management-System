@@ -7,4 +7,4 @@ Command used to generate python file from .ui file
 ```pyuic5 filename.ui -o outputfilename.py```
 
 Make sure that you type this command inside the command line with 
-directory where your ui file exist
+cwd is the directory where your ui file exist

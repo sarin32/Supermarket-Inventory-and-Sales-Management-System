@@ -3,22 +3,23 @@ This is the runner file of the application
 Mainwindow is created and other widgets are added in this file
 """
 import sys
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QDoubleValidator
 from PyQt5.QtCore import QRect
 from PyQt5.QtWidgets import QApplication, QMenuBar, QMainWindow, QStackedWidget, QWidget
 
 from superMarket import Cart, Inventory
 
-from ui.addProduct import Ui_newProduct
+from ui.products import Ui_products
 from ui.purchase import Ui_purchase
 
 
-class AddProduct(Ui_newProduct):
+class UIProducts(Ui_products):
     def __init__(self, widget):
         self.setupUi(widget)
+        self.fieldPrize.setValidator(QDoubleValidator(0,10000,2))
 
 
-class Purchase(Ui_purchase):
+class UIPurchase(Ui_purchase):
     def __init__(self, widget):
         self.crt = Cart()
         self.inv = Inventory()
@@ -70,11 +71,11 @@ class UISuperMarket(QMainWindow):
 
         # setup contents of stacked widget
         self.purchaseWidget = QWidget()
-        Purchase(self.purchaseWidget)
+        UIPurchase(self.purchaseWidget)
         self.centralwidget.addWidget(self.purchaseWidget)
 
         self.addWidget = QWidget()
-        AddProduct(self.addWidget)
+        UIProducts(self.addWidget)
         self.centralwidget.addWidget(self.addWidget)
 
         self.setWidget(self.purchaseWidget)
@@ -89,12 +90,12 @@ class UISuperMarket(QMainWindow):
         menubar = QMenuBar(self)
         menubar.setGeometry(QRect(0, 0, 5000, 20))
         purchase = menubar.addAction('Purchase')
-        newProduct = menubar.addAction('New Product')
+        products = menubar.addAction('Products')
         updateStock = menubar.addAction('Update Stock')
         ViewStock = menubar.addAction('Stock')
 
         purchase.triggered.connect(lambda: self.setWidget(self.purchaseWidget))
-        newProduct.triggered.connect(lambda: self.setWidget(self.addWidget))
+        products.triggered.connect(lambda: self.setWidget(self.addWidget))
 
 
 if __name__ == '__main__':

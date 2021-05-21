@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'addProduct.ui'
+# Form implementation generated from reading ui file 'products.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -11,48 +11,55 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_newProduct(object):
-    def setupUi(self, newProduct):
-        newProduct.setObjectName("newProduct")
-        newProduct.resize(693, 406)
-        newProduct.setStyleSheet("\n"
+class Ui_products(object):
+    def setupUi(self, products):
+        products.setObjectName("products")
+        products.resize(693, 406)
+        products.setStyleSheet("QWidget#products{\n"
+"    background-color:rgb(0, 124, 124);\n"
+"}\n"
 "QLabel{\n"
 "    font: 15px  \"Centular\";\n"
 "}\n"
+"QPushButton{\n"
+"    font: 15px  \"Centular\";\n"
+"    background-color:rgb(0, 124, 124);\n"
+"}\n"
 "\n"
-"QLabel#labelNewBrand , QLabel#labelNewProduct, QLabel#labelNewCategory{\n"
+"QLabel#h_1 ,QLabel#h_2, QLabel#h_3{\n"
 "    font: bold 16px  \"Centular\";\n"
 "}\n"
 "\n"
-"QFrame#frameNewProduct, QFrame#frameNewBrand,  QFrame#frameNewCategory{\n"
-"    background-color:#ddd;\n"
+"QFrame#mainframe_1, QFrame#mainframe_2,  QFrame#mainframe_3{\n"
+"    background-color:rgb(51, 152, 152);\n"
 "    border-radius:6px;\n"
 "}\n"
 "\n"
 "QComboBox,QSpinBox,QLineEdit{\n"
-"    background-color:#eee;\n"
-"    border: 0.1em solid rgb(139, 139, 139);\n"
+"    background-color:rgb(255, 255, 255);\n"
 "    color:#000;\n"
-"    border-radius:5px;\n"
+"    border-radius:3px;\n"
 "}\n"
 "")
-        self.gridLayout = QtWidgets.QGridLayout(newProduct)
+        self.gridLayout = QtWidgets.QGridLayout(products)
+        self.gridLayout.setContentsMargins(4, 4, 4, 4)
+        self.gridLayout.setSpacing(3)
         self.gridLayout.setObjectName("gridLayout")
-        self.frameNewProduct = QtWidgets.QFrame(newProduct)
-        self.frameNewProduct.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frameNewProduct.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frameNewProduct.setObjectName("frameNewProduct")
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.frameNewProduct)
+        self.mainframe_1 = QtWidgets.QFrame(products)
+        self.mainframe_1.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.mainframe_1.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.mainframe_1.setObjectName("mainframe_1")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.mainframe_1)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.frame_4 = QtWidgets.QFrame(self.frameNewProduct)
+        self.frame_4 = QtWidgets.QFrame(self.mainframe_1)
         self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_4.setObjectName("frame_4")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.frame_4)
         self.gridLayout_3.setObjectName("gridLayout_3")
-        self.labelNewProduct = QtWidgets.QLabel(self.frame_4)
-        self.labelNewProduct.setObjectName("labelNewProduct")
-        self.gridLayout_3.addWidget(self.labelNewProduct, 0, 0, 1, 3)
+        self.h_1 = QtWidgets.QLabel(self.frame_4)
+        self.h_1.setObjectName("h_1")
+        self.gridLayout_3.addWidget(self.h_1, 0, 0, 1, 3)
         self.label_2 = QtWidgets.QLabel(self.frame_4)
         self.label_2.setObjectName("label_2")
         self.gridLayout_3.addWidget(self.label_2, 1, 0, 1, 1)
@@ -111,34 +118,34 @@ class Ui_newProduct(object):
         self.fieldCategory.setObjectName("fieldCategory")
         self.gridLayout_3.addWidget(self.fieldCategory, 6, 0, 1, 1)
         self.gridLayout_2.addWidget(self.frame_4, 0, 1, 1, 1)
-        self.tableProducts = QtWidgets.QTableWidget(self.frameNewProduct)
+        self.tableProducts = QtWidgets.QTableWidget(self.mainframe_1)
         self.tableProducts.setObjectName("tableProducts")
         self.tableProducts.setColumnCount(0)
         self.tableProducts.setRowCount(0)
         self.tableProducts.verticalHeader().setVisible(False)
         self.gridLayout_2.addWidget(self.tableProducts, 0, 0, 1, 1, QtCore.Qt.AlignLeft)
-        self.gridLayout.addWidget(self.frameNewProduct, 0, 0, 1, 2)
-        self.frameNewBrand = QtWidgets.QFrame(newProduct)
-        self.frameNewBrand.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frameNewBrand.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frameNewBrand.setObjectName("frameNewBrand")
-        self.gridLayout_5 = QtWidgets.QGridLayout(self.frameNewBrand)
+        self.gridLayout.addWidget(self.mainframe_1, 0, 0, 1, 2)
+        self.mainframe_2 = QtWidgets.QFrame(products)
+        self.mainframe_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.mainframe_2.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.mainframe_2.setObjectName("mainframe_2")
+        self.gridLayout_5 = QtWidgets.QGridLayout(self.mainframe_2)
         self.gridLayout_5.setObjectName("gridLayout_5")
-        self.tableBrands = QtWidgets.QTableWidget(self.frameNewBrand)
+        self.tableBrands = QtWidgets.QTableWidget(self.mainframe_2)
         self.tableBrands.setObjectName("tableBrands")
         self.tableBrands.setColumnCount(0)
         self.tableBrands.setRowCount(0)
         self.tableBrands.verticalHeader().setVisible(False)
         self.gridLayout_5.addWidget(self.tableBrands, 0, 0, 1, 1, QtCore.Qt.AlignLeft)
-        self.frame_5 = QtWidgets.QFrame(self.frameNewBrand)
+        self.frame_5 = QtWidgets.QFrame(self.mainframe_2)
         self.frame_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_5.setObjectName("frame_5")
         self.gridLayout_6 = QtWidgets.QGridLayout(self.frame_5)
         self.gridLayout_6.setObjectName("gridLayout_6")
-        self.labelNewBrand = QtWidgets.QLabel(self.frame_5)
-        self.labelNewBrand.setObjectName("labelNewBrand")
-        self.gridLayout_6.addWidget(self.labelNewBrand, 0, 0, 1, 1)
+        self.h_2 = QtWidgets.QLabel(self.frame_5)
+        self.h_2.setObjectName("h_2")
+        self.gridLayout_6.addWidget(self.h_2, 0, 0, 1, 1)
         self.fieldNewBrand = QtWidgets.QLineEdit(self.frame_5)
         self.fieldNewBrand.setMinimumSize(QtCore.QSize(125, 25))
         self.fieldNewBrand.setMaximumSize(QtCore.QSize(300, 25))
@@ -150,28 +157,28 @@ class Ui_newProduct(object):
         self.buttonAddBrand.setObjectName("buttonAddBrand")
         self.gridLayout_6.addWidget(self.buttonAddBrand, 2, 0, 1, 1, QtCore.Qt.AlignRight)
         self.gridLayout_5.addWidget(self.frame_5, 0, 1, 1, 1, QtCore.Qt.AlignTop)
-        self.gridLayout.addWidget(self.frameNewBrand, 1, 0, 1, 1)
-        self.frameNewCategory = QtWidgets.QFrame(newProduct)
-        self.frameNewCategory.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frameNewCategory.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frameNewCategory.setObjectName("frameNewCategory")
-        self.gridLayout_7 = QtWidgets.QGridLayout(self.frameNewCategory)
+        self.gridLayout.addWidget(self.mainframe_2, 1, 0, 1, 1)
+        self.mainframe_3 = QtWidgets.QFrame(products)
+        self.mainframe_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.mainframe_3.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.mainframe_3.setObjectName("mainframe_3")
+        self.gridLayout_7 = QtWidgets.QGridLayout(self.mainframe_3)
         self.gridLayout_7.setObjectName("gridLayout_7")
-        self.tableCategories = QtWidgets.QTableWidget(self.frameNewCategory)
+        self.tableCategories = QtWidgets.QTableWidget(self.mainframe_3)
         self.tableCategories.setObjectName("tableCategories")
         self.tableCategories.setColumnCount(0)
         self.tableCategories.setRowCount(0)
         self.tableCategories.verticalHeader().setVisible(False)
         self.gridLayout_7.addWidget(self.tableCategories, 0, 0, 1, 1, QtCore.Qt.AlignLeft)
-        self.frame_6 = QtWidgets.QFrame(self.frameNewCategory)
+        self.frame_6 = QtWidgets.QFrame(self.mainframe_3)
         self.frame_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_6.setObjectName("frame_6")
         self.gridLayout_8 = QtWidgets.QGridLayout(self.frame_6)
         self.gridLayout_8.setObjectName("gridLayout_8")
-        self.labelNewCategory = QtWidgets.QLabel(self.frame_6)
-        self.labelNewCategory.setObjectName("labelNewCategory")
-        self.gridLayout_8.addWidget(self.labelNewCategory, 0, 0, 1, 1)
+        self.h_3 = QtWidgets.QLabel(self.frame_6)
+        self.h_3.setObjectName("h_3")
+        self.gridLayout_8.addWidget(self.h_3, 0, 0, 1, 1)
         self.fieldNewCategory = QtWidgets.QLineEdit(self.frame_6)
         self.fieldNewCategory.setMinimumSize(QtCore.QSize(125, 25))
         self.fieldNewCategory.setMaximumSize(QtCore.QSize(300, 25))
@@ -183,23 +190,23 @@ class Ui_newProduct(object):
         self.buttonAddCategory.setObjectName("buttonAddCategory")
         self.gridLayout_8.addWidget(self.buttonAddCategory, 2, 0, 1, 1, QtCore.Qt.AlignRight)
         self.gridLayout_7.addWidget(self.frame_6, 0, 1, 1, 1, QtCore.Qt.AlignTop)
-        self.gridLayout.addWidget(self.frameNewCategory, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.mainframe_3, 1, 1, 1, 1)
 
-        self.retranslateUi(newProduct)
-        QtCore.QMetaObject.connectSlotsByName(newProduct)
+        self.retranslateUi(products)
+        QtCore.QMetaObject.connectSlotsByName(products)
 
-    def retranslateUi(self, newProduct):
+    def retranslateUi(self, products):
         _translate = QtCore.QCoreApplication.translate
-        newProduct.setWindowTitle(_translate("newProduct", "Form"))
-        self.labelNewProduct.setText(_translate("newProduct", "New Product"))
-        self.label_2.setText(_translate("newProduct", "Product Name"))
-        self.label_5.setText(_translate("newProduct", "Current Stock"))
-        self.ButtonAddProduct.setText(_translate("newProduct", "Add"))
-        self.buttonClear.setText(_translate("newProduct", "Clear"))
-        self.label_3.setText(_translate("newProduct", "Brand"))
-        self.label_6.setText(_translate("newProduct", "Prize/Unit"))
-        self.label_4.setText(_translate("newProduct", "Category"))
-        self.labelNewBrand.setText(_translate("newProduct", "NewBrand"))
-        self.buttonAddBrand.setText(_translate("newProduct", "Add"))
-        self.labelNewCategory.setText(_translate("newProduct", "New Category"))
-        self.buttonAddCategory.setText(_translate("newProduct", "Add"))
+        products.setWindowTitle(_translate("products", "Form"))
+        self.h_1.setText(_translate("products", "New Product"))
+        self.label_2.setText(_translate("products", "Product Name"))
+        self.label_5.setText(_translate("products", "Current Stock"))
+        self.ButtonAddProduct.setText(_translate("products", "Add"))
+        self.buttonClear.setText(_translate("products", "Clear"))
+        self.label_3.setText(_translate("products", "Brand"))
+        self.label_6.setText(_translate("products", "Prize/Unit"))
+        self.label_4.setText(_translate("products", "Category"))
+        self.h_2.setText(_translate("products", "NewBrand"))
+        self.buttonAddBrand.setText(_translate("products", "Add"))
+        self.h_3.setText(_translate("products", "New Category"))
+        self.buttonAddCategory.setText(_translate("products", "Add"))

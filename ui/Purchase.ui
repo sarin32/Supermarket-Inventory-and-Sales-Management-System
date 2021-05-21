@@ -14,30 +14,51 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QLabel{
+   <string notr="true">QWidget#purchase{
+	background-color:rgb(0, 124, 124);
+}
+QLabel{
 	font: 15px  &quot;Centular&quot;;
 }
+QPushButton{
+	font: 15px  &quot;Centular&quot;;
+	background-color:rgb(0, 124, 124);
+}
 
-QLabel#labelCart , QLabel#labelSearchProduct{
+QLabel#h_1 ,QLabel#h_2, QLabel#h_3{
 	font: bold 16px  &quot;Centular&quot;;
 }
 
-QFrame#frameSearchProduct, QFrame#frameCart{
-	background-color:#ddd;
+QFrame#mainframe_1, QFrame#mainframe_2,  QFrame#mainframe_3{
+	background-color:rgb(51, 152, 152);
 	border-radius:6px;
 }
 
-QComboBox,QSpinBox{
-	background-color:#eee;
-	border: 0.1em solid;
+QComboBox,QSpinBox,QLineEdit{
+	background-color:rgb(255, 255, 255);
 	color:#000;
-	border-radius:5px;
+	border-radius:3px;
 }
 </string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>4</number>
+   </property>
+   <property name="topMargin">
+    <number>4</number>
+   </property>
+   <property name="rightMargin">
+    <number>4</number>
+   </property>
+   <property name="bottomMargin">
+    <number>4</number>
+   </property>
+   <property name="spacing">
+    <number>3</number>
+   </property>
    <item row="0" column="0">
-    <widget class="QFrame" name="frameSearchProduct">
+    <widget class="QFrame" name="mainframe_1">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -178,31 +199,6 @@ QComboBox,QSpinBox{
         </property>
        </widget>
       </item>
-      <item row="0" column="0" colspan="4">
-       <widget class="QLabel" name="labelSearchProduct">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="text">
-         <string>Search Product</string>
-        </property>
-       </widget>
-      </item>
       <item row="17" column="0">
        <widget class="QSpinBox" name="fieldCode">
         <property name="minimumSize">
@@ -280,11 +276,36 @@ QComboBox,QSpinBox{
         </property>
        </widget>
       </item>
+      <item row="0" column="0" colspan="5">
+       <widget class="QLabel" name="h_1">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>Select Product</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QFrame" name="frameCart">
+    <widget class="QFrame" name="mainframe_2">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -429,9 +450,6 @@ QComboBox,QSpinBox{
         <property name="sortingEnabled">
          <bool>false</bool>
         </property>
-        <attribute name="verticalHeaderVisible">
-         <bool>false</bool>
-        </attribute>
         <column>
          <property name="text">
           <string>Product Code</string>
@@ -512,7 +530,7 @@ QComboBox,QSpinBox{
        </widget>
       </item>
       <item row="0" column="0" colspan="2">
-       <widget class="QLabel" name="labelCart">
+       <widget class="QLabel" name="h_2">
         <property name="minimumSize">
          <size>
           <width>0</width>
