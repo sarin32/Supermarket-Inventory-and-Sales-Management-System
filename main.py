@@ -14,10 +14,10 @@ from ui.purchase import Ui_purchase
 
 
 class UIProducts(Ui_products):
-    def __init__(self, widget):
+    def __init__(self, widget,crt,inv):
         self.widget = widget
-        self.crt = Cart()
-        self.inv = Inventory()
+        self.crt = crt
+        self.inv = inv
         self.setupUi(widget)
         self.fieldPrize.setValidator(QDoubleValidator(0, 10000, 2))
         # initialize combobox
@@ -90,10 +90,10 @@ class UIProducts(Ui_products):
 
 
 class UIPurchase(Ui_purchase):
-    def __init__(self, widget):
+    def __init__(self, widget, crt, inv):
         self.widget = widget
-        self.crt = Cart()
-        self.inv = Inventory()
+        self.crt = crt
+        self.inv = inv
         self.setupUi(widget)
         # initialize combobox
         self.fieldBrand.addItem('select')
@@ -153,16 +153,19 @@ class UISuperMarket(QMainWindow):
         self.setCentralWidget(self.centralwidget)
         self.setContentsMargins(0, 20, 0, 0)
 
+        self.crt = Cart()
+        self.inv = Inventory()
+
         # setup contents of stacked widget
         self.purchaseWidget = QWidget()
-        UIPurchase(self.purchaseWidget)
+        UIPurchase(self.purchaseWidget, self.crt, self.inv)
         self.centralwidget.addWidget(self.purchaseWidget)
         self.addWidget = QWidget()
-        UIProducts(self.addWidget)
+        UIProducts(self.addWidget, self.crt, self.inv)
         self.centralwidget.addWidget(self.addWidget)
 
         # set the widget that should be shown at first
-        self.setWidget(self.addWidget)
+        self.setWidget(self.purchaseWidget)
         self.setupMenuBar()
         self.show()
 
