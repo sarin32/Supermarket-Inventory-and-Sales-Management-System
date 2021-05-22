@@ -39,7 +39,9 @@ QComboBox,QSpinBox,QLineEdit{
 	color:#000;
 	border-radius:3px;
 }
-</string>
+QMessageBox{
+	background-color: rgb(51, 152, 152);
+}</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
@@ -106,7 +108,7 @@ QComboBox,QSpinBox,QLineEdit{
            </property>
            <layout class="QGridLayout" name="gridLayout_4">
             <item row="0" column="0">
-             <widget class="QPushButton" name="ButtonAddProduct">
+             <widget class="QPushButton" name="buttonAddProduct">
               <property name="minimumSize">
                <size>
                 <width>125</width>

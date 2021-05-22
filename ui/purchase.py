@@ -40,9 +40,11 @@ class Ui_purchase(object):
 "    color:#000;\n"
 "    border-radius:3px;\n"
 "}\n"
-"")
+"QMessageBox{\n"
+"    background-color: rgb(51, 152, 152);\n"
+"}")
         self.gridLayout = QtWidgets.QGridLayout(purchase)
-        self.gridLayout.setContentsMargins(7, 7, 7, 7)
+        self.gridLayout.setContentsMargins(4, 4, 4, 4)
         self.gridLayout.setSpacing(3)
         self.gridLayout.setObjectName("gridLayout")
         self.mainframe_1 = QtWidgets.QFrame(purchase)

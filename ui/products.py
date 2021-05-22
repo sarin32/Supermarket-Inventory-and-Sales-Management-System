@@ -40,7 +40,9 @@ class Ui_products(object):
 "    color:#000;\n"
 "    border-radius:3px;\n"
 "}\n"
-"")
+"QMessageBox{\n"
+"    background-color: rgb(51, 152, 152);\n"
+"}")
         self.gridLayout = QtWidgets.QGridLayout(products)
         self.gridLayout.setContentsMargins(4, 4, 4, 4)
         self.gridLayout.setSpacing(3)
@@ -72,11 +74,11 @@ class Ui_products(object):
         self.frame_7.setObjectName("frame_7")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.frame_7)
         self.gridLayout_4.setObjectName("gridLayout_4")
-        self.ButtonAddProduct = QtWidgets.QPushButton(self.frame_7)
-        self.ButtonAddProduct.setMinimumSize(QtCore.QSize(125, 0))
-        self.ButtonAddProduct.setMaximumSize(QtCore.QSize(125, 16777215))
-        self.ButtonAddProduct.setObjectName("ButtonAddProduct")
-        self.gridLayout_4.addWidget(self.ButtonAddProduct, 0, 0, 1, 1)
+        self.buttonAddProduct = QtWidgets.QPushButton(self.frame_7)
+        self.buttonAddProduct.setMinimumSize(QtCore.QSize(125, 0))
+        self.buttonAddProduct.setMaximumSize(QtCore.QSize(125, 16777215))
+        self.buttonAddProduct.setObjectName("buttonAddProduct")
+        self.gridLayout_4.addWidget(self.buttonAddProduct, 0, 0, 1, 1)
         self.buttonClear = QtWidgets.QPushButton(self.frame_7)
         self.buttonClear.setMinimumSize(QtCore.QSize(125, 0))
         self.buttonClear.setMaximumSize(QtCore.QSize(125, 16777215))
@@ -201,7 +203,7 @@ class Ui_products(object):
         self.h_1.setText(_translate("products", "New Product"))
         self.label_2.setText(_translate("products", "Product Name"))
         self.label_5.setText(_translate("products", "Current Stock"))
-        self.ButtonAddProduct.setText(_translate("products", "Add"))
+        self.buttonAddProduct.setText(_translate("products", "Add"))
         self.buttonClear.setText(_translate("products", "Clear"))
         self.label_3.setText(_translate("products", "Brand"))
         self.label_6.setText(_translate("products", "Prize/Unit"))

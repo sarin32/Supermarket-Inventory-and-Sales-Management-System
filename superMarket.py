@@ -1,5 +1,6 @@
 """
 This is the backend of the application
+updates the file system as well as retrieves the content from the file system
 """
 class Cart:
     def __init__(self):
@@ -27,4 +28,13 @@ class Inventory:
 
     def getAllProductNames(self, brandId=None, categoryId=None):
         return self.productIds
+
+    def addProduct(self, name, brand, category, stock, prize):
+        pass
+
+    def addBrand(self, brand):
+        pass
+
+    def addCategory(self, category):
+        pass
 
