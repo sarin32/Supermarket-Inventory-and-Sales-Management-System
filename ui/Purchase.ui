@@ -39,20 +39,22 @@ QComboBox,QSpinBox,QLineEdit{
 	color:#000;
 	border-radius:3px;
 }
-</string>
+QMessageBox{
+	background-color: rgb(51, 152, 152);
+}</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
-    <number>7</number>
+    <number>4</number>
    </property>
    <property name="topMargin">
-    <number>7</number>
+    <number>4</number>
    </property>
    <property name="rightMargin">
-    <number>7</number>
+    <number>4</number>
    </property>
    <property name="bottomMargin">
-    <number>7</number>
+    <number>4</number>
    </property>
    <property name="spacing">
     <number>3</number>
