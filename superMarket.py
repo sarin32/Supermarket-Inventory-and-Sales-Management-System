@@ -2,6 +2,8 @@
 This is the backend of the application
 updates the file system as well as retrieves the content from the file system
 """
+
+
 class Cart:
     def __init__(self):
         self.cart = []
@@ -37,4 +39,3 @@ class Inventory:
 
     def addCategory(self, category):
         pass
-
