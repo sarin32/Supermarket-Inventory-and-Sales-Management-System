@@ -11,12 +11,12 @@ from PyQt5.QtWidgets import QApplication, QMenuBar, QMainWindow, QStackedWidget,
 from superMarket import Cart, Inventory
 from ui.products import Ui_products
 from ui.purchase import Ui_purchase
+from ui.stock import Ui_stock
 
 
 class UIProducts(Ui_products):
-    def __init__(self, widget,crt,inv):
+    def __init__(self, widget, inv):
         self.widget = widget
-        self.crt = crt
         self.inv = inv
         self.setupUi(widget)
         self.fieldPrize.setValidator(QDoubleValidator(0, 10000, 2))
@@ -144,6 +144,13 @@ class UIPurchase(Ui_purchase):
         msg.about(self.widget, title, message)
 
 
+class UIStock(Ui_stock):
+    def __init__(self, widget, inv):
+        self.widget = widget
+        self.inv = inv
+        self.setupUi(widget)
+
+
 class UISuperMarket(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -163,8 +170,11 @@ class UISuperMarket(QMainWindow):
         UIPurchase(self.purchaseWidget, self.crt, self.inv)
         self.centralwidget.addWidget(self.purchaseWidget)
         self.addWidget = QWidget()
-        UIProducts(self.addWidget, self.crt, self.inv)
+        UIProducts(self.addWidget, self.inv)
         self.centralwidget.addWidget(self.addWidget)
+        self.stockWidget = QWidget()
+        UIStock(self.stockWidget, self.inv)
+        self.centralwidget.addWidget(self.stockWidget)
 
         # set the widget that should be shown at first
         self.setWidget(self.purchaseWidget)
@@ -181,11 +191,12 @@ class UISuperMarket(QMainWindow):
         menubar.setGeometry(QRect(0, 0, 5000, 20))
         purchase = menubar.addAction('Purchase')
         products = menubar.addAction('Products')
+        viewStock = menubar.addAction('Stock')
         updateStock = menubar.addAction('Update Stock')
-        ViewStock = menubar.addAction('Stock')
 
         purchase.triggered.connect(lambda: self.setWidget(self.purchaseWidget))
         products.triggered.connect(lambda: self.setWidget(self.addWidget))
+        viewStock.triggered.connect(lambda: self.setWidget(self.stockWidget))
 
 
 if __name__ == '__main__':
