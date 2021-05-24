@@ -142,10 +142,32 @@ class Inventory:
                     return details
 
     def addProduct(self, name, brand, category, stock, prize):
-        pass
+        with open('dataFiles/products.txt', 'r') as file:
+            try:
+                id = int(file.readlines()[-1][0])
+            except IndexError:
+                id = 0
+        with open('dataFiles/products.txt', 'a', newline='') as file:
+            writer = csv.writer(file, delimiter='|')
+            writer.writerow([id+1,name,brand,category,stock,prize])
 
     def addBrand(self, brand):
-        pass
+        with open('dataFiles/brands.txt', 'r') as file:
+            try:
+                id = int(file.readlines()[-1][0])
+            except IndexError:
+                id = 0
+        with open('dataFiles/brands.txt', 'a', newline='') as file:
+            writer = csv.writer(file, delimiter='|')
+            writer.writerow([id+1,brand])
+
 
     def addCategory(self, category):
-        pass
+        with open('dataFiles/categories.txt', 'r') as file:
+            try:
+                id = int(file.readlines()[-1][0])
+            except IndexError:
+                id = 0
+        with open('dataFiles/categories.txt', 'a', newline='') as file:
+            writer = csv.writer(file, delimiter='|')
+            writer.writerow([id + 1, category])

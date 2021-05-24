@@ -35,7 +35,13 @@ class UIProducts(Ui_products):
         self.fieldPrize.clear()
         self.fieldStock.setValue(0)
         self.fieldName.clear()
+        self.fieldCategory.clear()
+        self.fieldCategory.addItem('select')
+        self.fieldCategory.addItems(self.inv.getAllCategoryNames())
         self.fieldCategory.setCurrentIndex(0)
+        self.fieldBrand.clear()
+        self.fieldBrand.addItem('select')
+        self.fieldBrand.addItems(self.inv.getAllBrandNames())
         self.fieldBrand.setCurrentIndex(0)
 
     def addProduct(self):
@@ -66,7 +72,11 @@ class UIProducts(Ui_products):
 
         stock = int(stock)
         prize = float(prize)
+        category = self.inv.getCategoryId(category)
+        brand = self.inv.getBrandId(brand)
         self.inv.addProduct(name, brand, category, stock, prize)
+        self.showMessage('Product added', name + ' added to products successfully')
+        self.clear()
 
     def addBrand(self):
         brand = self.fieldNewBrand.text()
@@ -74,15 +84,27 @@ class UIProducts(Ui_products):
         if brand == '':
             self.showMessage('Input Error', 'Please enter valid brand name')
             return
+        if brand in self.inv.getAllBrandNames():
+            self.showMessage('Input Error', 'Brand already exists!')
+            return
         self.inv.addBrand(brand)
+        self.showMessage('Brand added', brand+' added to brands successfully')
+        self.fieldNewBrand.clear()
+        self.clear()
 
     def addCategory(self):
-        category = self.fieldNewBrand.text()
+        category = self.fieldNewCategory.text()
         # some validations for the input
         if category == '':
             self.showMessage('Input Error', 'Please enter valid category name')
             return
+        if category in self.inv.getAllCategoryNames():
+            self.showMessage('Input Error', 'Category already exists!')
+            return
         self.inv.addCategory(category)
+        self.showMessage('Category added', category+' added to categories successfully')
+        self.fieldNewCategory.clear()
+        self.clear()
 
     def showMessage(self, title, message):
         msg = QMessageBox()
@@ -112,7 +134,7 @@ class UIPurchase(Ui_purchase):
 
     def clear(self):
         """method to clears and resets all input fields"""
-        self.fieldCode.setValue(0)
+        self.fieldCode.clear()
         self.fieldUnits.setValue(0)
         self.fieldName.clear()
         self.fieldName.addItem('select')
@@ -170,6 +192,9 @@ class UIPurchase(Ui_purchase):
 
     def productNameChange(self):
         """method to update all other fields when fieldName is changed by user"""
+        if self.fieldName.currentText() == 'select':
+            self.clear()
+            return
         code = self.inv.getProductId(self.fieldName.currentText())
         details = self.inv.getProductDetails(code)
         name = details[1]

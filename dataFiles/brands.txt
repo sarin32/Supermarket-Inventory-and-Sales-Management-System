@@ -1,2 +1,5 @@
-1|lifebuoy
-2|nestle
+1|nestle
+2|Colgate
+3|Close up
+4|double deer
+5|cutee

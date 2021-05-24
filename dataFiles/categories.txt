@@ -1,2 +1,8 @@
 1|rice
-2|atta
+2|toilet soap
+3|washing powder
+4|detergent soap
+5|dish wash
+6|tooth paste
+7|hand wash
+8|face cream
