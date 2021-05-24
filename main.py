@@ -105,10 +105,13 @@ class UIPurchase(Ui_purchase):
         # event updates
         self.buttonClear.clicked.connect(lambda: self.clear())
         self.buttonAdd.clicked.connect(lambda: self.AddToCart())
-        self.fieldCategory.currentIndexChanged.connect(lambda: self.updateProductField())
-        self.fieldBrand.currentIndexChanged.connect(lambda: self.updateProductField())
+        self.fieldCategory.activated.connect(lambda: self.updateProductField())
+        self.fieldBrand.activated.connect(lambda: self.updateProductField())
+        self.fieldCode.returnPressed.connect(lambda: self.productCodeChange())
+        self.fieldName.activated.connect(lambda: self.productNameChange())
 
     def clear(self):
+        """method to clears and resets all input fields"""
         self.fieldCode.setValue(0)
         self.fieldUnits.setValue(0)
         self.fieldName.clear()
@@ -118,6 +121,7 @@ class UIPurchase(Ui_purchase):
         self.fieldBrand.setCurrentIndex(0)
 
     def AddToCart(self):
+        """method to add items to the cart"""
         units = self.fieldUnits.text()
         productCode = self.fieldCode.text()
         if productCode == '' or productCode == '0':
@@ -131,15 +135,56 @@ class UIPurchase(Ui_purchase):
         self.crt.newProduct(productCode, units)
 
     def updateProductField(self):
-        """method to update the items of the fieldname based on the update in other fields"""
+        """method to update the items of the fieldname and fieldCode based on the update in fieldBrand fieldCategory"""
+        self.fieldCode.clear()
+        self.fieldName.clear()
+        self.fieldName.addItem('select')
         if self.fieldBrand.currentText() == 'select' and self.fieldCategory.currentText() == 'select':
-            self.inv.getAllProductNames()
+            self.fieldName.addItems(self.inv.getAllProductNames())
         elif self.fieldBrand.currentText() == 'select':
-            self.inv.getAllProductNames(brandId=None, categoryId=self.fieldCategory.currentText())
+            self.fieldName.addItems(self.inv.getAllProductNames(brand=None, category=self.fieldCategory.currentText()))
         elif self.fieldCategory.currentText() == 'select':
-            self.inv.getAllProductNames(brandId=self.fieldBrand)
+            self.fieldName.addItems(self.inv.getAllProductNames(brand=self.fieldBrand.currentText(), category=None))
+        else:
+            self.fieldName.addItems(self.inv.getAllProductNames(brand=self.fieldBrand.currentText(),
+                                                                category=self.fieldCategory.currentText()))
+
+    def productCodeChange(self):
+        """method to update all other fields when fieldCode is changed by user"""
+        code = self.fieldCode.text()
+        if code != '':
+            details = self.inv.getProductDetails(code)
+            if details is not None:
+                name = details[1]
+                brand = details[2]
+                category = details[3]
+                self.fieldBrand.setCurrentText(brand)
+                self.fieldCategory.setCurrentText(category)
+                self.fieldName.clear()
+                self.fieldName.addItem('select')
+                self.fieldName.addItems(self.inv.getAllProductNames(brand, category))
+                self.fieldName.setCurrentText(name)
+            else:
+                self.fieldCode.clear()
+                self.showMessage('Input Error', 'No product found with product code ' + code)
+
+    def productNameChange(self):
+        """method to update all other fields when fieldName is changed by user"""
+        code = self.inv.getProductId(self.fieldName.currentText())
+        details = self.inv.getProductDetails(code)
+        name = details[1]
+        brand = details[2]
+        category = details[3]
+        self.fieldBrand.setCurrentText(brand)
+        self.fieldCategory.setCurrentText(category)
+        self.fieldCode.setText(code)
+        self.fieldName.clear()
+        self.fieldName.addItem('select')
+        self.fieldName.addItems(self.inv.getAllProductNames(brand, category))
+        self.fieldName.setCurrentText(name)
 
     def showMessage(self, title, message):
+        """method to show any message to the user with a title and description"""
         msg = QMessageBox()
         msg.about(self.widget, title, message)
 
