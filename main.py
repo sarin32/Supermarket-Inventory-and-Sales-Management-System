@@ -6,7 +6,8 @@ import sys
 
 from PyQt5.QtCore import QRect
 from PyQt5.QtGui import QIcon, QDoubleValidator
-from PyQt5.QtWidgets import QApplication, QMenuBar, QMainWindow, QStackedWidget, QWidget, QMessageBox
+from PyQt5.QtWidgets import QApplication, QMenuBar, QMainWindow, QStackedWidget, QWidget, QMessageBox, QTableWidgetItem, \
+    QHeaderView
 
 from superMarket import Cart, Inventory
 from ui.products import Ui_products
@@ -31,18 +32,61 @@ class UIProducts(Ui_products):
         self.buttonAddBrand.clicked.connect(lambda: self.addBrand())
         self.buttonAddCategory.clicked.connect(lambda: self.addCategory())
 
+        # setup tables
+        header = self.tableBrands.horizontalHeader()
+        header.setSectionResizeMode(1, QHeaderView.Stretch)
+        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        self.setBrandTableData()
+
+        header = self.tableCategories.horizontalHeader()
+        header.setSectionResizeMode(1, QHeaderView.Stretch)
+        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        self.setCategoryTableData()
+
+        header = self.tableProducts.horizontalHeader()
+        header.setSectionResizeMode(1, QHeaderView.Stretch)
+        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        self.setProductsTableData()
+
+    def setBrandTableData(self):
+        self.tableBrands.setRowCount(0)
+        data = self.inv.getAllBrandsData()
+        for i, row in enumerate(data):
+            self.tableBrands.insertRow(i)
+            for j, item in enumerate(row):
+                newItem = QTableWidgetItem(item)
+                self.tableBrands.setItem(i, j, newItem)
+
+    def setCategoryTableData(self):
+        self.tableCategories.setRowCount(0)
+        data = self.inv.getAllCategoryData()
+        for i, row in enumerate(data):
+            self.tableCategories.insertRow(i)
+            for j, item in enumerate(row):
+                newItem = QTableWidgetItem(item)
+                self.tableCategories.setItem(i, j, newItem)
+
+    def setProductsTableData(self):
+        self.tableProducts.setRowCount(0)
+        data = self.inv.getIdNameProductsData()
+        for i, row in enumerate(data):
+            self.tableProducts.insertRow(i)
+            for j, item in enumerate(row):
+                newItem = QTableWidgetItem(item)
+                self.tableProducts.setItem(i, j, newItem)
+
     def clear(self):
         self.fieldPrize.clear()
         self.fieldStock.setValue(0)
         self.fieldName.clear()
+
         self.fieldCategory.clear()
         self.fieldCategory.addItem('select')
         self.fieldCategory.addItems(self.inv.getAllCategoryNames())
-        self.fieldCategory.setCurrentIndex(0)
+
         self.fieldBrand.clear()
         self.fieldBrand.addItem('select')
         self.fieldBrand.addItems(self.inv.getAllBrandNames())
-        self.fieldBrand.setCurrentIndex(0)
 
     def addProduct(self):
         name = self.fieldName.text()
@@ -76,6 +120,7 @@ class UIProducts(Ui_products):
         brand = self.inv.getBrandId(brand)
         self.inv.addProduct(name, brand, category, stock, prize)
         self.showMessage('Product added', name + ' added to products successfully')
+        self.setProductsTableData()
         self.clear()
 
     def addBrand(self):
@@ -88,8 +133,9 @@ class UIProducts(Ui_products):
             self.showMessage('Input Error', 'Brand already exists!')
             return
         self.inv.addBrand(brand)
-        self.showMessage('Brand added', brand+' added to brands successfully')
+        self.showMessage('Brand added', brand + ' added to brands successfully')
         self.fieldNewBrand.clear()
+        self.setBrandTableData()
         self.clear()
 
     def addCategory(self):
@@ -102,8 +148,9 @@ class UIProducts(Ui_products):
             self.showMessage('Input Error', 'Category already exists!')
             return
         self.inv.addCategory(category)
-        self.showMessage('Category added', category+' added to categories successfully')
+        self.showMessage('Category added', category + ' added to categories successfully')
         self.fieldNewCategory.clear()
+        self.setCategoryTableData()
         self.clear()
 
     def showMessage(self, title, message):
@@ -136,11 +183,18 @@ class UIPurchase(Ui_purchase):
         """method to clears and resets all input fields"""
         self.fieldCode.clear()
         self.fieldUnits.setValue(0)
+
+        self.fieldBrand.clear()
+        self.fieldBrand.addItem('select')
+        self.fieldBrand.addItems(self.inv.getAllBrandNames())
+
+        self.fieldCategory.clear()
+        self.fieldCategory.addItem('select')
+        self.fieldCategory.addItems(self.inv.getAllCategoryNames())
+
         self.fieldName.clear()
         self.fieldName.addItem('select')
         self.fieldName.addItems(self.inv.getAllProductNames())
-        self.fieldCategory.setCurrentIndex(0)
-        self.fieldBrand.setCurrentIndex(0)
 
     def AddToCart(self):
         """method to add items to the cart"""

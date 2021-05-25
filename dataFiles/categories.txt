@@ -6,3 +6,5 @@
 6|tooth paste
 7|hand wash
 8|face cream
+9|chicken masala
+10|Tea Powder

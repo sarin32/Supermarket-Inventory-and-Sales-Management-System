@@ -141,31 +141,48 @@ class Inventory:
                     details.append(self.getCategoryName(row[3]))
                     return details
 
+    def getAllBrandsData(self):
+        with open('dataFiles/brands.txt', 'r') as file:
+            reader = csv.reader(file, delimiter='|')
+            return [word for word in [row for row in reader]]
+
+    def getIdNameProductsData(self):
+        data = []
+        with open('dataFiles/products.txt', 'r') as file:
+            reader = csv.reader(file, delimiter='|')
+            for row in reader:
+                data.append([row[0],row[1]])
+        return data
+
+    def getAllCategoryData(self):
+        with open('dataFiles/categories.txt', 'r') as file:
+            reader = csv.reader(file, delimiter='|')
+            return [word for word in [row for row in reader]]
+
     def addProduct(self, name, brand, category, stock, prize):
         with open('dataFiles/products.txt', 'r') as file:
             try:
-                id = int(file.readlines()[-1][0])
+                id = int(file.readlines()[-1].split('|')[0])
             except IndexError:
                 id = 0
         with open('dataFiles/products.txt', 'a', newline='') as file:
             writer = csv.writer(file, delimiter='|')
-            writer.writerow([id+1,name,brand,category,stock,prize])
+            writer.writerow([id + 1, name, brand, category, stock, prize])
 
     def addBrand(self, brand):
         with open('dataFiles/brands.txt', 'r') as file:
             try:
-                id = int(file.readlines()[-1][0])
+                id = int(file.readlines()[-1].split('|')[0])
             except IndexError:
                 id = 0
         with open('dataFiles/brands.txt', 'a', newline='') as file:
             writer = csv.writer(file, delimiter='|')
-            writer.writerow([id+1,brand])
-
+            writer.writerow([id + 1, brand])
 
     def addCategory(self, category):
         with open('dataFiles/categories.txt', 'r') as file:
             try:
-                id = int(file.readlines()[-1][0])
+                id = int(file.readlines()[-1].split('|')[0])
             except IndexError:
                 id = 0
         with open('dataFiles/categories.txt', 'a', newline='') as file:

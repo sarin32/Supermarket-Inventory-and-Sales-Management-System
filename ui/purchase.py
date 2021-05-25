@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_purchase(object):
     def setupUi(self, purchase):
         purchase.setObjectName("purchase")
-        purchase.resize(669, 375)
+        purchase.resize(693, 375)
         purchase.setStyleSheet("QWidget#purchase{\n"
 "    background-color:rgb(0, 124, 124);\n"
 "}\n"
@@ -42,7 +42,38 @@ class Ui_purchase(object):
 "}\n"
 "QMessageBox{\n"
 "    background-color: rgb(51, 152, 152);\n"
-"}")
+"}\n"
+"\n"
+"QTableWidget\n"
+"{\n"
+"    gridline-color: #ffffff;\n"
+"    background-color: transparent;\n"
+"    border:1px solid rgb(255, 255, 255);\n"
+"    font: 13px  \"Centular\";\n"
+"}\n"
+"QHeaderView {\n"
+"    background-color: transparent;\n"
+"}\n"
+"QHeaderView::section {\n"
+"    background-color: rgb(0, 124, 124);\n"
+"    font: bold 13px  \"Centular\" ;\n"
+"    border-bottom: 1px solid #fff;\n"
+"    border-right: 1px solid #fff;\n"
+"}\n"
+"QHeaderView::section:horizontal\n"
+"{\n"
+"    border-top: 1px solid #fff;\n"
+"}\n"
+"QHeaderView::section:vertical\n"
+"{\n"
+"    border-left: 1px solid #fff;\n"
+"}\n"
+"QTableWidget::item::selected \n"
+"{\n"
+" Color:#000; \n"
+" Background: #fff;\n"
+"}\n"
+" ")
         self.gridLayout = QtWidgets.QGridLayout(purchase)
         self.gridLayout.setContentsMargins(4, 4, 4, 4)
         self.gridLayout.setSpacing(3)
@@ -126,7 +157,7 @@ class Ui_purchase(object):
         self.gridLayout_2.addWidget(self.labelCode, 6, 0, 1, 1)
         self.fieldCode = QtWidgets.QLineEdit(self.mainframe_1)
         self.fieldCode.setMinimumSize(QtCore.QSize(125, 25))
-        self.fieldCode.setMaximumSize(QtCore.QSize(300, 25))
+        self.fieldCode.setMaximumSize(QtCore.QSize(125, 25))
         self.fieldCode.setObjectName("fieldCode")
         self.gridLayout_2.addWidget(self.fieldCode, 17, 0, 1, 1)
         self.gridLayout.addWidget(self.mainframe_1, 0, 0, 1, 1)
@@ -182,52 +213,27 @@ class Ui_purchase(object):
         self.gridLayout_4.addWidget(self.frameCartButtons, 3, 1, 1, 1, QtCore.Qt.AlignRight)
         self.tableCart = QtWidgets.QTableWidget(self.mainframe_2)
         self.tableCart.setEnabled(True)
+        self.tableCart.setMaximumSize(QtCore.QSize(702, 16777215))
         self.tableCart.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContentsOnFirstShow)
+        self.tableCart.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.tableCart.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.tableCart.setGridStyle(QtCore.Qt.DashLine)
         self.tableCart.setObjectName("tableCart")
         self.tableCart.setColumnCount(7)
         self.tableCart.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        item.setFont(font)
         self.tableCart.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        item.setFont(font)
         self.tableCart.setHorizontalHeaderItem(1, item)
         item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        item.setFont(font)
         self.tableCart.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        item.setFont(font)
         self.tableCart.setHorizontalHeaderItem(3, item)
         item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        item.setFont(font)
         self.tableCart.setHorizontalHeaderItem(4, item)
         item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        item.setFont(font)
         self.tableCart.setHorizontalHeaderItem(5, item)
         item = QtWidgets.QTableWidgetItem()
-        font = QtGui.QFont()
-        font.setBold(True)
-        font.setWeight(75)
-        item.setFont(font)
         self.tableCart.setHorizontalHeaderItem(6, item)
         self.gridLayout_4.addWidget(self.tableCart, 2, 0, 1, 2, QtCore.Qt.AlignHCenter)
         self.h_2 = QtWidgets.QLabel(self.mainframe_2)
@@ -270,7 +276,7 @@ class Ui_purchase(object):
         item = self.tableCart.horizontalHeaderItem(4)
         item.setText(_translate("purchase", "Units"))
         item = self.tableCart.horizontalHeaderItem(5)
-        item.setText(_translate("purchase", "Cost/Unit"))
+        item.setText(_translate("purchase", "Prize/Unit"))
         item = self.tableCart.horizontalHeaderItem(6)
         item.setText(_translate("purchase", "Cost"))
         self.h_2.setText(_translate("purchase", "Cart"))
