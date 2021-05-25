@@ -17,6 +17,7 @@ class Cart:
         pass
 
 
+# noinspection PyMethodMayBeStatic
 class Inventory:
     def getAllBrandNames(self):
         """:returns a list containing all brand names"""
@@ -157,29 +158,29 @@ class Inventory:
     def addProduct(self, name, brand, category, stock, prize):
         with open('dataFiles/products.txt', 'r') as file:
             try:
-                id = int(file.readlines()[-1].split('|')[0])
+                code = int(file.readlines()[-1].split('|')[0])
             except IndexError:
-                id = 0
+                code = 0
         with open('dataFiles/products.txt', 'a', newline='') as file:
             writer = csv.writer(file, delimiter='|')
-            writer.writerow([id + 1, name, brand, category, stock, prize])
+            writer.writerow([code + 1, name, brand, category, stock, prize])
 
     def addBrand(self, brand):
         with open('dataFiles/brands.txt', 'r') as file:
             try:
-                id = int(file.readlines()[-1].split('|')[0])
+                code = int(file.readlines()[-1].split('|')[0])
             except IndexError:
-                id = 0
+                code = 0
         with open('dataFiles/brands.txt', 'a', newline='') as file:
             writer = csv.writer(file, delimiter='|')
-            writer.writerow([id + 1, brand])
+            writer.writerow([code + 1, brand])
 
     def addCategory(self, category):
         with open('dataFiles/categories.txt', 'r') as file:
             try:
-                id = int(file.readlines()[-1].split('|')[0])
+                code = int(file.readlines()[-1].split('|')[0])
             except IndexError:
-                id = 0
+                code = 0
         with open('dataFiles/categories.txt', 'a', newline='') as file:
             writer = csv.writer(file, delimiter='|')
-            writer.writerow([id + 1, category])
+            writer.writerow([code + 1, category])
