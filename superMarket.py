@@ -18,11 +18,6 @@ class Cart:
 
 
 class Inventory:
-    def __init__(self):
-        self.brandIds = ['25', '36']
-        self.categoryIds = ['36', '45']
-        self.productIds = ['65', '36']
-
     def getAllBrandNames(self):
         """:returns a list containing all brand names"""
         brands = []
@@ -151,7 +146,7 @@ class Inventory:
         with open('dataFiles/products.txt', 'r') as file:
             reader = csv.reader(file, delimiter='|')
             for row in reader:
-                data.append([row[0],row[1]])
+                data.append([row[0], row[1]])
         return data
 
     def getAllCategoryData(self):

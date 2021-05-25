@@ -6,12 +6,12 @@ import sys
 
 from PyQt5.QtCore import QRect
 from PyQt5.QtGui import QIcon, QDoubleValidator
-from PyQt5.QtWidgets import QApplication, QMenuBar, QMainWindow, QStackedWidget, QWidget, QMessageBox, QTableWidgetItem, \
-    QHeaderView
+from PyQt5.QtWidgets import *
 
 from superMarket import Cart, Inventory
 from ui.products import Ui_products
 from ui.purchase import Ui_purchase
+from ui.sales import Ui_sales
 from ui.stock import Ui_stock
 
 
@@ -119,9 +119,9 @@ class UIProducts(Ui_products):
         category = self.inv.getCategoryId(category)
         brand = self.inv.getBrandId(brand)
         self.inv.addProduct(name, brand, category, stock, prize)
-        self.showMessage('Product added', name + ' added to products successfully')
         self.setProductsTableData()
         self.clear()
+        self.showMessage('Product added', name + ' added to products successfully')
 
     def addBrand(self):
         brand = self.fieldNewBrand.text()
@@ -133,10 +133,10 @@ class UIProducts(Ui_products):
             self.showMessage('Input Error', 'Brand already exists!')
             return
         self.inv.addBrand(brand)
-        self.showMessage('Brand added', brand + ' added to brands successfully')
         self.fieldNewBrand.clear()
         self.setBrandTableData()
         self.clear()
+        self.showMessage('Brand added', brand + ' added to brands successfully')
 
     def addCategory(self):
         category = self.fieldNewCategory.text()
@@ -148,10 +148,10 @@ class UIProducts(Ui_products):
             self.showMessage('Input Error', 'Category already exists!')
             return
         self.inv.addCategory(category)
-        self.showMessage('Category added', category + ' added to categories successfully')
         self.fieldNewCategory.clear()
         self.setCategoryTableData()
         self.clear()
+        self.showMessage('Category added', category + ' added to categories successfully')
 
     def showMessage(self, title, message):
         msg = QMessageBox()
@@ -275,6 +275,13 @@ class UIStock(Ui_stock):
         self.setupUi(widget)
 
 
+class UISales(Ui_sales):
+    def __init__(self, widget, inv):
+        self.widget = widget
+        self.inv = inv
+        self.setupUi(widget)
+
+
 class UISuperMarket(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -293,12 +300,18 @@ class UISuperMarket(QMainWindow):
         self.purchaseWidget = QWidget()
         UIPurchase(self.purchaseWidget, self.crt, self.inv)
         self.centralwidget.addWidget(self.purchaseWidget)
-        self.addWidget = QWidget()
-        UIProducts(self.addWidget, self.inv)
-        self.centralwidget.addWidget(self.addWidget)
+
+        self.productsWidget = QWidget()
+        UIProducts(self.productsWidget, self.inv)
+        self.centralwidget.addWidget(self.productsWidget)
+
         self.stockWidget = QWidget()
         UIStock(self.stockWidget, self.inv)
         self.centralwidget.addWidget(self.stockWidget)
+
+        self.salesWidget = QWidget()
+        UISales(self.stockWidget, self.inv)
+        self.centralwidget.addWidget(self.salesWidget)
 
         # set the widget that should be shown at first
         self.setWidget(self.purchaseWidget)
@@ -315,12 +328,13 @@ class UISuperMarket(QMainWindow):
         menubar.setGeometry(QRect(0, 0, 5000, 20))
         purchase = menubar.addAction('Purchase')
         products = menubar.addAction('Products')
-        viewStock = menubar.addAction('Stock')
-        updateStock = menubar.addAction('Update Stock')
+        stock = menubar.addAction('Stock')
+        sales = menubar.addAction('Sales')
 
         purchase.triggered.connect(lambda: self.setWidget(self.purchaseWidget))
-        products.triggered.connect(lambda: self.setWidget(self.addWidget))
-        viewStock.triggered.connect(lambda: self.setWidget(self.stockWidget))
+        products.triggered.connect(lambda: self.setWidget(self.productsWidget))
+        stock.triggered.connect(lambda: self.setWidget(self.stockWidget))
+        sales.triggered.connect(lambda: self.setWidget(self.salesWidget))
 
 
 if __name__ == '__main__':

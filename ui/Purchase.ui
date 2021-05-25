@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>669</width>
+    <width>693</width>
     <height>375</height>
    </rect>
   </property>
@@ -41,7 +41,38 @@ QComboBox,QSpinBox,QLineEdit{
 }
 QMessageBox{
 	background-color: rgb(51, 152, 152);
-}</string>
+}
+
+QTableWidget
+{
+	gridline-color: #ffffff;
+	background-color: transparent;
+	border:1px solid rgb(255, 255, 255);
+	font: 13px  &quot;Centular&quot;;
+}
+QHeaderView {
+	background-color: transparent;
+}
+QHeaderView::section {
+	background-color: rgb(0, 124, 124);
+	font: bold 13px  &quot;Centular&quot; ;
+	border-bottom: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+QHeaderView::section:horizontal
+{
+    border-top: 1px solid #fff;
+}
+QHeaderView::section:vertical
+{
+    border-left: 1px solid #fff;
+}
+QTableWidget::item::selected 
+{
+ Color:#000; 
+ Background: #fff;
+}
+ </string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
@@ -294,7 +325,7 @@ QMessageBox{
         </property>
         <property name="maximumSize">
          <size>
-          <width>300</width>
+          <width>125</width>
           <height>25</height>
          </size>
         </property>
@@ -446,93 +477,51 @@ QMessageBox{
       </item>
       <item row="2" column="0" colspan="2" alignment="Qt::AlignHCenter">
        <widget class="QTableWidget" name="tableCart">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
         <property name="sizeAdjustPolicy">
          <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
         </property>
-        <property name="gridStyle">
-         <enum>Qt::DashLine</enum>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
         </property>
-        <property name="sortingEnabled">
-         <bool>false</bool>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
         </property>
         <column>
          <property name="text">
           <string>Product Code</string>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
          </property>
         </column>
         <column>
          <property name="text">
           <string>Product Name</string>
          </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
         </column>
         <column>
          <property name="text">
           <string>Brand</string>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
          </property>
         </column>
         <column>
          <property name="text">
           <string>category</string>
          </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
         </column>
         <column>
          <property name="text">
           <string>Units</string>
          </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
         </column>
         <column>
          <property name="text">
-          <string>Cost/Unit</string>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
+          <string>Prize/Unit</string>
          </property>
         </column>
         <column>
          <property name="text">
           <string>Cost</string>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
          </property>
         </column>
        </widget>
