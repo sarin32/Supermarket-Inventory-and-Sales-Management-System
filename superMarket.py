@@ -19,33 +19,44 @@ class Cart:
 
 # noinspection PyMethodMayBeStatic
 class Inventory:
-    def getAllBrandNames(self):
-        """:returns a list containing all brand names"""
-        brands = []
+    def getBrandsData(self, b_id=False, name=False):
+        """:returns a list containing all brand data based on parameters"""
+        data = []
         with open('dataFiles/brands.txt', 'r') as file:
             reader = csv.reader(file, delimiter='|')
             for row in reader:
-                brands.append(row[1])
-        return brands
+                subData = []
+                if b_id:
+                    subData.append(row[0])
+                if name:
+                    subData.append(row[1])
+                data.append(subData)
+        if [b_id, name].count(True) == 1:
+            data = [item for sublist in data for item in sublist]
+        return data
 
-    def getAllCategoryNames(self):
-        """:returns a list containing all category names"""
-        categories = []
+    def getCategoriesData(self, c_id=False, name=False):
+        """:returns a list containing all brand data based on parameters"""
+        data = []
         with open('dataFiles/categories.txt', 'r') as file:
             reader = csv.reader(file, delimiter='|')
             for row in reader:
-                categories.append(row[1])
-        return categories
+                subData = []
+                if c_id:
+                    subData.append(row[0])
+                if name:
+                    subData.append(row[1])
+                data.append(subData)
+        if [c_id, name].count(True) == 1:
+            data = [item for sublist in data for item in sublist]
+        return data
 
-    def getAllProductNames(self, brand=None, category=None):
-        """
-        :returns a list containing all brand names based on the brand and category set
-        :type category: str
-        :type brand: str
-        """
-        products = []
-        brandId = self.getBrandId(brand)
-        categoryId = self.getCategoryId(category)
+    def getProductsData(self, p_id=False, name=False, brand=False, category=False, stock=False, prize=False,
+                        filterBrand=None, filterCategory=None):
+        """:returns a list containing all brand data based on parameters"""
+        data = []
+        brandId = self.getBrandId(filterBrand)
+        categoryId = self.getCategoryId(filterCategory)
         with open('dataFiles/products.txt', 'r') as file:
             reader = csv.reader(file, delimiter='|')
             for row in reader:
@@ -53,8 +64,23 @@ class Inventory:
                     continue
                 if categoryId is not None and categoryId != row[3]:
                     continue
-                products.append(row[1])
-        return products
+                subData = []
+                if p_id:
+                    subData.append(row[0])
+                if name:
+                    subData.append(row[1])
+                if brand:
+                    subData.append(self.getBrandName(row[2]))
+                if category:
+                    subData.append(self.getCategoryName(row[3]))
+                if stock:
+                    subData.append(row[4])
+                if prize:
+                    subData.append(row[5])
+                data.append(subData)
+        if [p_id, name, brand, category, stock, prize].count(True) == 1:
+            data = [item for sublist in data for item in sublist]
+        return data
 
     def getBrandId(self, brand):
         """
@@ -136,24 +162,6 @@ class Inventory:
                     details.append(self.getBrandName(row[2]))
                     details.append(self.getCategoryName(row[3]))
                     return details
-
-    def getAllBrandsData(self):
-        with open('dataFiles/brands.txt', 'r') as file:
-            reader = csv.reader(file, delimiter='|')
-            return [word for word in [row for row in reader]]
-
-    def getIdNameProductsData(self):
-        data = []
-        with open('dataFiles/products.txt', 'r') as file:
-            reader = csv.reader(file, delimiter='|')
-            for row in reader:
-                data.append([row[0], row[1]])
-        return data
-
-    def getAllCategoryData(self):
-        with open('dataFiles/categories.txt', 'r') as file:
-            reader = csv.reader(file, delimiter='|')
-            return [word for word in [row for row in reader]]
 
     def addProduct(self, name, brand, category, stock, prize):
         with open('dataFiles/products.txt', 'r') as file:

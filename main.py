@@ -23,9 +23,9 @@ class UIProducts(Ui_products):
         self.fieldPrize.setValidator(QDoubleValidator(0, 10000, 2))
         # initialize combobox
         self.fieldBrand.addItem('select')
-        self.fieldBrand.addItems(self.inv.getAllBrandNames())
+        self.fieldBrand.addItems(self.inv.getBrandsData(b_id=False, name=True))
         self.fieldCategory.addItem('select')
-        self.fieldCategory.addItems(self.inv.getAllCategoryNames())
+        self.fieldCategory.addItems(self.inv.getCategoriesData(c_id=False, name=True))
         # event updates
         self.buttonClear.clicked.connect(lambda: self.clear())
         self.buttonAddProduct.clicked.connect(lambda: self.addProduct())
@@ -50,7 +50,7 @@ class UIProducts(Ui_products):
 
     def setBrandTableData(self):
         self.tableBrands.setRowCount(0)
-        data = self.inv.getAllBrandsData()
+        data = self.inv.getBrandsData(b_id=True, name=True)
         for i, row in enumerate(data):
             self.tableBrands.insertRow(i)
             for j, item in enumerate(row):
@@ -59,7 +59,7 @@ class UIProducts(Ui_products):
 
     def setCategoryTableData(self):
         self.tableCategories.setRowCount(0)
-        data = self.inv.getAllCategoryData()
+        data = self.inv.getCategoriesData(c_id=True, name=True)
         for i, row in enumerate(data):
             self.tableCategories.insertRow(i)
             for j, item in enumerate(row):
@@ -68,7 +68,7 @@ class UIProducts(Ui_products):
 
     def setProductsTableData(self):
         self.tableProducts.setRowCount(0)
-        data = self.inv.getIdNameProductsData()
+        data = self.inv.getProductsData(True, True)
         for i, row in enumerate(data):
             self.tableProducts.insertRow(i)
             for j, item in enumerate(row):
@@ -82,11 +82,11 @@ class UIProducts(Ui_products):
 
         self.fieldCategory.clear()
         self.fieldCategory.addItem('select')
-        self.fieldCategory.addItems(self.inv.getAllCategoryNames())
+        self.fieldCategory.addItems(self.inv.getCategoriesData(c_id=False, name=True))
 
         self.fieldBrand.clear()
         self.fieldBrand.addItem('select')
-        self.fieldBrand.addItems(self.inv.getAllBrandNames())
+        self.fieldBrand.addItems(self.inv.getBrandsData(b_id=False, name=True))
 
     def addProduct(self):
         name = self.fieldName.text()
@@ -98,7 +98,7 @@ class UIProducts(Ui_products):
         if name == '' or len(name) <= 5:
             self.showMessage('Input Error', 'Please enter valid name')
             return
-        if name in self.inv.getAllProductNames():
+        if name in self.inv.getProductsData(name=True):
             self.showMessage('Input Error', 'Product already exists!')
             return
         if brand == 'select':
@@ -129,7 +129,7 @@ class UIProducts(Ui_products):
         if brand == '':
             self.showMessage('Input Error', 'Please enter valid brand name')
             return
-        if brand in self.inv.getAllBrandNames():
+        if brand in self.inv.getBrandsData(b_id=False, name=True):
             self.showMessage('Input Error', 'Brand already exists!')
             return
         self.inv.addBrand(brand)
@@ -144,7 +144,7 @@ class UIProducts(Ui_products):
         if category == '':
             self.showMessage('Input Error', 'Please enter valid category name')
             return
-        if category in self.inv.getAllCategoryNames():
+        if category in self.inv.getCategoriesData(c_id=False, name=True):
             self.showMessage('Input Error', 'Category already exists!')
             return
         self.inv.addCategory(category)
@@ -166,11 +166,11 @@ class UIPurchase(Ui_purchase):
         self.setupUi(widget)
         # initialize combobox
         self.fieldBrand.addItem('select')
-        self.fieldBrand.addItems(self.inv.getAllBrandNames())
+        self.fieldBrand.addItems(self.inv.getBrandsData(b_id=False, name=True))
         self.fieldCategory.addItem('select')
-        self.fieldCategory.addItems(self.inv.getAllCategoryNames())
+        self.fieldCategory.addItems(self.inv.getCategoriesData(c_id=False, name=True))
         self.fieldName.addItem('select')
-        self.fieldName.addItems(self.inv.getAllProductNames())
+        self.fieldName.addItems(self.inv.getProductsData(name=True))
         # event updates
         self.buttonClear.clicked.connect(lambda: self.clear())
         self.buttonAdd.clicked.connect(lambda: self.AddToCart())
@@ -186,15 +186,15 @@ class UIPurchase(Ui_purchase):
 
         self.fieldBrand.clear()
         self.fieldBrand.addItem('select')
-        self.fieldBrand.addItems(self.inv.getAllBrandNames())
+        self.fieldBrand.addItems(self.inv.getBrandsData(b_id=False, name=True))
 
         self.fieldCategory.clear()
         self.fieldCategory.addItem('select')
-        self.fieldCategory.addItems(self.inv.getAllCategoryNames())
+        self.fieldCategory.addItems(self.inv.getCategoriesData(c_id=False, name=True))
 
         self.fieldName.clear()
         self.fieldName.addItem('select')
-        self.fieldName.addItems(self.inv.getAllProductNames())
+        self.fieldName.addItems(self.inv.getProductsData(name=True))
 
     def AddToCart(self):
         """method to add items to the cart"""
@@ -216,14 +216,16 @@ class UIPurchase(Ui_purchase):
         self.fieldName.clear()
         self.fieldName.addItem('select')
         if self.fieldBrand.currentText() == 'select' and self.fieldCategory.currentText() == 'select':
-            self.fieldName.addItems(self.inv.getAllProductNames())
+            self.fieldName.addItems(self.inv.getProductsData(name=True))
         elif self.fieldBrand.currentText() == 'select':
-            self.fieldName.addItems(self.inv.getAllProductNames(brand=None, category=self.fieldCategory.currentText()))
+            self.fieldName.addItems(
+                self.inv.getProductsData(name=True, filterBrand=None, filterCategory=self.fieldCategory.currentText()))
         elif self.fieldCategory.currentText() == 'select':
-            self.fieldName.addItems(self.inv.getAllProductNames(brand=self.fieldBrand.currentText(), category=None))
+            self.fieldName.addItems(
+                self.inv.getProductsData(name=True, filterBrand=self.fieldBrand.currentText(), filterCategory=None))
         else:
-            self.fieldName.addItems(self.inv.getAllProductNames(brand=self.fieldBrand.currentText(),
-                                                                category=self.fieldCategory.currentText()))
+            self.fieldName.addItems(self.inv.getProductsData(name=True, filterBrand=self.fieldBrand.currentText(),
+                                                             filterCategory=self.fieldCategory.currentText()))
 
     def productCodeChange(self):
         """method to update all other fields when fieldCode is changed by user"""
@@ -238,7 +240,7 @@ class UIPurchase(Ui_purchase):
                 self.fieldCategory.setCurrentText(category)
                 self.fieldName.clear()
                 self.fieldName.addItem('select')
-                self.fieldName.addItems(self.inv.getAllProductNames(brand, category))
+                self.fieldName.addItems(self.inv.getProductsData(name=True, filterBrand=brand, filterCategory=category))
                 self.fieldName.setCurrentText(name)
             else:
                 self.fieldCode.clear()
@@ -259,7 +261,7 @@ class UIPurchase(Ui_purchase):
         self.fieldCode.setText(code)
         self.fieldName.clear()
         self.fieldName.addItem('select')
-        self.fieldName.addItems(self.inv.getAllProductNames(brand, category))
+        self.fieldName.addItems(self.inv.getProductsData(name=True, filterBrand=brand, filterCategory=category))
         self.fieldName.setCurrentText(name)
 
     def showMessage(self, title, message):
