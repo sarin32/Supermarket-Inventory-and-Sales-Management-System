@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>717</width>
-    <height>419</height>
+    <width>733</width>
+    <height>451</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -39,7 +39,7 @@ QComboBox,QSpinBox,QLineEdit{
 	color:#000;
 	border-radius:3px;
 }
-QMessageBox{
+QMessageBox,QInputDialog{
 	background-color: rgb(51, 152, 152);
 }
 
@@ -571,7 +571,7 @@ font: bold 12px  &quot;Centular&quot;;
        <widget class="QFrame" name="horizontalFrame">
         <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
-          <widget class="QPushButton" name="buttoDeleteProduct">
+          <widget class="QPushButton" name="buttonDeleteProduct">
            <property name="minimumSize">
             <size>
              <width>125</width>

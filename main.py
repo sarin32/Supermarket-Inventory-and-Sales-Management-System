@@ -31,6 +31,12 @@ class UIProducts(Ui_products):
         self.buttonAddProduct.clicked.connect(lambda: self.addProduct())
         self.buttonAddBrand.clicked.connect(lambda: self.addBrand())
         self.buttonAddCategory.clicked.connect(lambda: self.addCategory())
+        self.buttonDeleteProduct.clicked.connect(lambda: self.deleteProduct())
+        self.buttonDeleteBrand.clicked.connect(lambda: self.deleteBrand())
+        self.buttonDeleteCategory.clicked.connect(lambda: self.deleteCategory())
+        self.buttonUpdateProduct.clicked.connect(lambda: self.updateProduct())
+        self.buttonUpdateBrand.clicked.connect(lambda: self.updateBrand())
+        self.buttonUpdateCategory.clicked.connect(lambda: self.updateCategory())
 
         # setup tables
         header = self.tableBrands.horizontalHeader()
@@ -153,9 +159,94 @@ class UIProducts(Ui_products):
         self.clear()
         self.showMessage('Category added', category + ' added to categories successfully')
 
+    def deleteProduct(self):
+        if not self.tableProducts.selectedItems():
+            self.showMessage('Error', 'Please select a product')
+        else:
+            p_id = self.tableProducts.selectedItems()[0].text()
+            p_name = self.tableProducts.selectedItems()[1].text()
+            x = self.askQuestion('Deletion Warning', 'Do you really want to delete the product ' + p_name + '?')
+            if x:
+                self.inv.deleteProduct(p_id)
+                self.setProductsTableData()
+
+    def deleteBrand(self):
+        if not self.tableBrands.selectedItems():
+            self.showMessage('Error', 'Please select a brand')
+        else:
+            b_id = self.tableBrands.selectedItems()[0].text()
+            b_name = self.tableBrands.selectedItems()[1].text()
+            x = self.askQuestion('Deletion Warning', 'Do you really want to delete the brand ' + b_name + '?')
+            if x:
+                if self.inv.isDeletableBrand(b_id):
+                    self.inv.deleteBrand(b_id)
+                    self.setBrandTableData()
+                else:
+                    self.showMessage('Deletion Error',
+                                     'Some products exists with this brand!. You can only update the brand name until '
+                                     'the products exist.')
+
+    def deleteCategory(self):
+        if not self.tableCategories.selectedItems():
+            self.showMessage('Error', 'Please select a category')
+        else:
+            c_id = self.tableCategories.selectedItems()[0].text()
+            c_name = self.tableCategories.selectedItems()[1].text()
+            x = self.askQuestion('Deletion Warning', 'Do you really want to delete the category ' + c_name + '?')
+            if x:
+                if self.inv.isDeletableCategory(c_id):
+                    self.inv.deleteCategory(c_id)
+                    self.setCategoryTableData()
+                else:
+                    self.showMessage('Deletion Error',
+                                     'Some products exists with this category!. You can only update the category name '
+                                     'until the products exist.')
+
+    def updateProduct(self):
+        if not self.tableProducts.selectedItems():
+            self.showMessage('Error', 'Please select a product')
+        else:
+            p_id = self.tableProducts.selectedItems()[0].text()
+            name = self.showDialog('Update Product Name', 'Enter modified product name')
+            if name:
+                self.inv.updateProduct(p_id, name)
+                self.setProductsTableData()
+
+    def updateBrand(self):
+        if not self.tableBrands.selectedItems():
+            self.showMessage('Error', 'Please select a brand')
+        else:
+            b_id = self.tableBrands.selectedItems()[0].text()
+            name = self.showDialog('Update Brand Name', 'Enter modified brand name')
+            if name:
+                self.inv.updateBrand(b_id, name)
+                self.setBrandTableData()
+
+    def updateCategory(self):
+        if not self.tableCategories.selectedItems():
+            self.showMessage('Error', 'Please select a category')
+        else:
+            p_id = self.tableCategories.selectedItems()[0].text()
+            name = self.showDialog('Update category Name', 'Enter modified category name')
+            if name:
+                self.inv.updateCategory(p_id, name)
+                self.setCategoryTableData()
+
     def showMessage(self, title, message):
         msg = QMessageBox()
         msg.about(self.widget, title, message)
+
+    def askQuestion(self, title, message):
+        buttonReply = QMessageBox.question(self.widget, title, message, QMessageBox.Yes | QMessageBox.No,
+                                           QMessageBox.No)
+        if buttonReply == QMessageBox.Yes:
+            return True
+        return False
+
+    def showDialog(self, title, message):
+        text, ok = QInputDialog.getText(self.widget, title, message)
+        if ok:
+            return text
 
 
 class UIPurchase(Ui_purchase):
@@ -312,7 +403,7 @@ class UISuperMarket(QMainWindow):
         self.centralwidget.addWidget(self.stockWidget)
 
         self.salesWidget = QWidget()
-        UISales(self.stockWidget, self.inv)
+        UISales(self.salesWidget, self.inv)
         self.centralwidget.addWidget(self.salesWidget)
 
         # set the widget that should be shown at first

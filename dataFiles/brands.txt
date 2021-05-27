@@ -1,5 +1,4 @@
 1|nestle
-2|Colgate
 3|Close up
 4|double deer
 5|cutee
@@ -7,3 +6,11 @@
 7|kitex
 8|eastern
 9|Eastea
+10|Exo
+11|Sunlight
+12|Detol
+13|lux
+14|lifebouy
+15|rexona
+16|pears
+17|fiama

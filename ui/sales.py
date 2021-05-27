@@ -14,7 +14,178 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_sales(object):
     def setupUi(self, sales):
         sales.setObjectName("sales")
-        sales.resize(400, 300)
+        sales.resize(712, 482)
+        sales.setStyleSheet("QWidget#sales{\n"
+                            "    background-color:rgb(0, 124, 124);\n"
+                            "}\n"
+                            "QLabel{\n"
+                            "    font: 15px  \"Centular\";\n"
+                            "}\n"
+                            "QPushButton{\n"
+                            "    font: 15px  \"Centular\";\n"
+                            "    background-color:rgb(0, 124, 124);\n"
+                            "}\n"
+                            "\n"
+                            "QLabel#h_1 ,QLabel#h_2, QLabel#h_3{\n"
+                            "    font: bold 16px  \"Centular\";\n"
+                            "}\n"
+                            "\n"
+                            "QFrame#mainframe_1, QFrame#mainframe_2,  QFrame#mainframe_3{\n"
+                            "    background-color:rgb(51, 152, 152);\n"
+                            "    border-radius:6px;\n"
+                            "}\n"
+                            "\n"
+                            "QComboBox,QSpinBox,QLineEdit{\n"
+                            "    background-color:rgb(255, 255, 255);\n"
+                            "    color:#000;\n"
+                            "    border-radius:3px;\n"
+                            "}\n"
+                            "QMessageBox,QInputDialog{\n"
+                            "    background-color: rgb(51, 152, 152);\n"
+                            "}\n"
+                            "\n"
+                            "QTableWidget\n"
+                            "{\n"
+                            "    gridline-color: #ffffff;\n"
+                            "    background-color: transparent;\n"
+                            "    border:1px solid rgb(255, 255, 255);\n"
+                            "    font: 13px  \"Centular\";\n"
+                            "}\n"
+                            "QHeaderView {\n"
+                            "    background-color: transparent;\n"
+                            "}\n"
+                            "QHeaderView::section {\n"
+                            "    background-color: rgb(0, 124, 124);\n"
+                            "    font: bold 13px  \"Centular\" ;\n"
+                            "    border-bottom: 1px solid #fff;\n"
+                            "    border-right: 1px solid #fff;\n"
+                            "}\n"
+                            "QHeaderView::section:horizontal\n"
+                            "{\n"
+                            "    border-top: 1px solid #fff;\n"
+                            "}\n"
+                            "QHeaderView::section:vertical\n"
+                            "{\n"
+                            "    border-left: 1px solid #fff;\n"
+                            "}\n"
+                            "QTableWidget::item::selected \n"
+                            "{\n"
+                            " Color:#000; \n"
+                            " Background: #fff;\n"
+                            "}\n"
+                            "QGroupBox {\n"
+                            "     border: 1px solid #fff;\n"
+                            "     border-radius: 5px;\n"
+                            "     margin-top:12px; \n"
+                            "font: bold 12px  \"Centular\";\n"
+                            " }\n"
+                            "\n"
+                            " QGroupBox::title {\n"
+                            "     subcontrol-origin: margin;\n"
+                            "     \n"
+                            "    font: 8pt \"MS Sans Serif\";\n"
+                            " }")
+        self.verticalLayout = QtWidgets.QVBoxLayout(sales)
+        self.verticalLayout.setContentsMargins(4, 4, 4, 4)
+        self.verticalLayout.setSpacing(3)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.mainframe_1 = QtWidgets.QFrame(sales)
+        self.mainframe_1.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.mainframe_1.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.mainframe_1.setObjectName("mainframe_1")
+        self.gridLayout = QtWidgets.QGridLayout(self.mainframe_1)
+        self.gridLayout.setObjectName("gridLayout")
+        self.tableWidget = QtWidgets.QTableWidget(self.mainframe_1)
+        self.tableWidget.setMaximumSize(QtCore.QSize(800, 16777215))
+        self.tableWidget.setObjectName("tableWidget")
+        self.tableWidget.setColumnCount(4)
+        self.tableWidget.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(3, item)
+        self.gridLayout.addWidget(self.tableWidget, 3, 0, 1, 2)
+        self.groupBox_2 = QtWidgets.QGroupBox(self.mainframe_1)
+        self.groupBox_2.setObjectName("groupBox_2")
+        self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.groupBox_2)
+        self.verticalLayout_4.setObjectName("verticalLayout_4")
+        self.label_3 = QtWidgets.QLabel(self.groupBox_2)
+        self.label_3.setObjectName("label_3")
+        self.verticalLayout_4.addWidget(self.label_3)
+        self.comboBox_2 = QtWidgets.QComboBox(self.groupBox_2)
+        self.comboBox_2.setMinimumSize(QtCore.QSize(125, 25))
+        self.comboBox_2.setMaximumSize(QtCore.QSize(300, 25))
+        self.comboBox_2.setObjectName("comboBox_2")
+        self.comboBox_2.addItem("")
+        self.comboBox_2.addItem("")
+        self.comboBox_2.addItem("")
+        self.comboBox_2.addItem("")
+        self.comboBox_2.addItem("")
+        self.comboBox_2.addItem("")
+        self.comboBox_2.addItem("")
+        self.comboBox_2.addItem("")
+        self.comboBox_2.addItem("")
+        self.comboBox_2.addItem("")
+        self.comboBox_2.addItem("")
+        self.comboBox_2.addItem("")
+        self.verticalLayout_4.addWidget(self.comboBox_2)
+        self.label_4 = QtWidgets.QLabel(self.groupBox_2)
+        font = QtGui.QFont()
+        font.setFamily("Centular")
+        font.setPointSize(-1)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        self.label_4.setFont(font)
+        self.label_4.setObjectName("label_4")
+        self.verticalLayout_4.addWidget(self.label_4)
+        self.comboBox = QtWidgets.QComboBox(self.groupBox_2)
+        self.comboBox.setMinimumSize(QtCore.QSize(125, 25))
+        self.comboBox.setMaximumSize(QtCore.QSize(300, 25))
+        self.comboBox.setObjectName("comboBox")
+        self.verticalLayout_4.addWidget(self.comboBox)
+        self.label_6 = QtWidgets.QLabel(self.groupBox_2)
+        self.label_6.setObjectName("label_6")
+        self.verticalLayout_4.addWidget(self.label_6)
+        self.pushButton_2 = QtWidgets.QPushButton(self.groupBox_2)
+        self.pushButton_2.setMaximumSize(QtCore.QSize(100, 25))
+        font = QtGui.QFont()
+        font.setFamily("Centular")
+        font.setPointSize(-1)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        self.pushButton_2.setFont(font)
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.verticalLayout_4.addWidget(self.pushButton_2)
+        self.gridLayout.addWidget(self.groupBox_2, 0, 1, 1, 1)
+        self.label = QtWidgets.QLabel(self.mainframe_1)
+        self.label.setObjectName("label")
+        self.gridLayout.addWidget(self.label, 2, 0, 1, 2)
+        self.frame = QtWidgets.QFrame(self.mainframe_1)
+        self.frame.setMaximumSize(QtCore.QSize(340, 5000))
+        self.frame.setObjectName("frame")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.frame)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.label_5 = QtWidgets.QLabel(self.frame)
+        self.label_5.setObjectName("label_5")
+        self.verticalLayout_2.addWidget(self.label_5)
+        self.calendarWidget = QtWidgets.QCalendarWidget(self.frame)
+        self.calendarWidget.setMaximumSize(QtCore.QSize(320, 5000))
+        self.calendarWidget.setObjectName("calendarWidget")
+        self.verticalLayout_2.addWidget(self.calendarWidget)
+        self.pushButton = QtWidgets.QPushButton(self.frame)
+        self.pushButton.setObjectName("pushButton")
+        self.verticalLayout_2.addWidget(self.pushButton, 0, QtCore.Qt.AlignRight)
+        self.gridLayout.addWidget(self.frame, 0, 0, 1, 1)
+        self.label_2 = QtWidgets.QLabel(self.mainframe_1)
+        self.label_2.setObjectName("label_2")
+        self.gridLayout.addWidget(self.label_2, 4, 0, 1, 2)
+        self.verticalLayout.addWidget(self.mainframe_1)
 
         self.retranslateUi(sales)
         QtCore.QMetaObject.connectSlotsByName(sales)
@@ -22,3 +193,32 @@ class Ui_sales(object):
     def retranslateUi(self, sales):
         _translate = QtCore.QCoreApplication.translate
         sales.setWindowTitle(_translate("sales", "Form"))
+        item = self.tableWidget.horizontalHeaderItem(0)
+        item.setText(_translate("sales", "Serial No"))
+        item = self.tableWidget.horizontalHeaderItem(1)
+        item.setText(_translate("sales", "Date"))
+        item = self.tableWidget.horizontalHeaderItem(2)
+        item.setText(_translate("sales", "Time"))
+        item = self.tableWidget.horizontalHeaderItem(3)
+        item.setText(_translate("sales", "Price"))
+        self.groupBox_2.setTitle(_translate("sales", "Monthly sale"))
+        self.label_3.setText(_translate("sales", "Month"))
+        self.comboBox_2.setItemText(0, _translate("sales", "January"))
+        self.comboBox_2.setItemText(1, _translate("sales", "February"))
+        self.comboBox_2.setItemText(2, _translate("sales", "March"))
+        self.comboBox_2.setItemText(3, _translate("sales", "April"))
+        self.comboBox_2.setItemText(4, _translate("sales", "May"))
+        self.comboBox_2.setItemText(5, _translate("sales", "June"))
+        self.comboBox_2.setItemText(6, _translate("sales", "July"))
+        self.comboBox_2.setItemText(7, _translate("sales", "August"))
+        self.comboBox_2.setItemText(8, _translate("sales", "September"))
+        self.comboBox_2.setItemText(9, _translate("sales", "October"))
+        self.comboBox_2.setItemText(10, _translate("sales", "November"))
+        self.comboBox_2.setItemText(11, _translate("sales", "December"))
+        self.label_4.setText(_translate("sales", "Year"))
+        self.label_6.setText(_translate("sales", "Sale Amount: 0.0 Rs"))
+        self.pushButton_2.setText(_translate("sales", "Check"))
+        self.label.setText(_translate("sales", "Sales"))
+        self.label_5.setText(_translate("sales", "View Sales"))
+        self.pushButton.setText(_translate("sales", "Load"))
+        self.label_2.setText(_translate("sales", "Total Amount:0.0 Rs"))

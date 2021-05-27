@@ -1,10 +1,11 @@
-1|rice
+1|Rice
 2|toilet soap
 3|washing powder
 4|detergent soap
-5|dish wash
+5|Dish Wash
 6|tooth paste
 7|hand wash
 8|face cream
 9|chicken masala
 10|Tea Powder
+12|disinfectant

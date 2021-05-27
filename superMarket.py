@@ -192,3 +192,91 @@ class Inventory:
         with open('dataFiles/categories.txt', 'a', newline='') as file:
             writer = csv.writer(file, delimiter='|')
             writer.writerow([code + 1, category])
+
+    def deleteProduct(self, p_id):
+        lines = []
+        with open('dataFiles/products.txt', 'r') as readFile:
+            reader = csv.reader(readFile, delimiter='|')
+            for row in reader:
+                lines.append(row)
+                if row[0] == p_id:
+                    lines.remove(row)
+        with open('dataFiles/products.txt', 'w', newline='') as writeFile:
+            writer = csv.writer(writeFile, delimiter='|')
+            writer.writerows(lines)
+
+    def isDeletableBrand(self, b_id):
+        with open('dataFiles/products.txt', 'r') as readFile:
+            reader = csv.reader(readFile, delimiter='|')
+            for row in reader:
+                if row[2] == b_id:
+                    return False
+        return True
+
+    def deleteBrand(self, b_id):
+        lines = []
+        with open('dataFiles/brands.txt', 'r') as readFile:
+            reader = csv.reader(readFile, delimiter='|')
+            for row in reader:
+                lines.append(row)
+                if row[0] == b_id:
+                    lines.remove(row)
+        with open('dataFiles/brands.txt', 'w', newline='') as writeFile:
+            writer = csv.writer(writeFile, delimiter='|')
+            writer.writerows(lines)
+
+    def isDeletableCategory(self, c_id):
+        with open('dataFiles/products.txt', 'r') as readFile:
+            reader = csv.reader(readFile, delimiter='|')
+            for row in reader:
+                if row[3] == c_id:
+                    return False
+        return True
+
+    def deleteCategory(self, c_id):
+        lines = []
+        with open('dataFiles/categories.txt', 'r') as readFile:
+            reader = csv.reader(readFile, delimiter='|')
+            for row in reader:
+                lines.append(row)
+                if row[0] == c_id:
+                    lines.remove(row)
+        with open('dataFiles/categories.txt', 'w', newline='') as writeFile:
+            writer = csv.writer(writeFile, delimiter='|')
+            writer.writerows(lines)
+
+    def updateProduct(self, p_id, new_name):
+        lines = []
+        with open('dataFiles/products.txt', 'r') as readFile:
+            reader = csv.reader(readFile, delimiter='|')
+            for row in reader:
+                lines.append(row)
+                if row[0] == p_id:
+                    lines[-1][1] = new_name
+        with open('dataFiles/products.txt', 'w', newline='') as writeFile:
+            writer = csv.writer(writeFile, delimiter='|')
+            writer.writerows(lines)
+
+    def updateBrand(self, b_id, new_name):
+        lines = []
+        with open('dataFiles/brands.txt', 'r') as readFile:
+            reader = csv.reader(readFile, delimiter='|')
+            for row in reader:
+                lines.append(row)
+                if row[0] == b_id:
+                    lines[-1][1] = new_name
+        with open('dataFiles/brands.txt', 'w', newline='') as writeFile:
+            writer = csv.writer(writeFile, delimiter='|')
+            writer.writerows(lines)
+
+    def updateCategory(self, c_id, new_name):
+        lines = []
+        with open('dataFiles/categories.txt', 'r') as readFile:
+            reader = csv.reader(readFile, delimiter='|')
+            for row in reader:
+                lines.append(row)
+                if row[0] == c_id:
+                    lines[-1][1] = new_name
+        with open('dataFiles/categories.txt', 'w', newline='') as writeFile:
+            writer = csv.writer(writeFile, delimiter='|')
+            writer.writerows(lines)

@@ -6,13 +6,347 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>694</width>
-    <height>300</height>
+    <width>712</width>
+    <height>482</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#sales{
+	background-color:rgb(0, 124, 124);
+}
+QLabel{
+	font: 15px  &quot;Centular&quot;;
+}
+QPushButton{
+	font: 15px  &quot;Centular&quot;;
+	background-color:rgb(0, 124, 124);
+}
+
+QLabel#h_1 ,QLabel#h_2, QLabel#h_3{
+	font: bold 16px  &quot;Centular&quot;;
+}
+
+QFrame#mainframe_1, QFrame#mainframe_2,  QFrame#mainframe_3{
+	background-color:rgb(51, 152, 152);
+	border-radius:6px;
+}
+
+QComboBox,QSpinBox,QLineEdit{
+	background-color:rgb(255, 255, 255);
+	color:#000;
+	border-radius:3px;
+}
+QMessageBox,QInputDialog{
+	background-color: rgb(51, 152, 152);
+}
+
+QTableWidget
+{
+	gridline-color: #ffffff;
+	background-color: transparent;
+	border:1px solid rgb(255, 255, 255);
+	font: 13px  &quot;Centular&quot;;
+}
+QHeaderView {
+	background-color: transparent;
+}
+QHeaderView::section {
+	background-color: rgb(0, 124, 124);
+	font: bold 13px  &quot;Centular&quot; ;
+	border-bottom: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+QHeaderView::section:horizontal
+{
+    border-top: 1px solid #fff;
+}
+QHeaderView::section:vertical
+{
+    border-left: 1px solid #fff;
+}
+QTableWidget::item::selected 
+{
+ Color:#000; 
+ Background: #fff;
+}
+QGroupBox {
+     border: 1px solid #fff;
+     border-radius: 5px;
+     margin-top:12px; 
+font: bold 12px  &quot;Centular&quot;;
+ }
+
+ QGroupBox::title {
+     subcontrol-origin: margin;
+     
+	font: 8pt &quot;MS Sans Serif&quot;;
+ }</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>3</number>
+   </property>
+   <property name="leftMargin">
+    <number>4</number>
+   </property>
+   <property name="topMargin">
+    <number>4</number>
+   </property>
+   <property name="rightMargin">
+    <number>4</number>
+   </property>
+   <property name="bottomMargin">
+    <number>4</number>
+   </property>
+   <item>
+    <widget class="QFrame" name="mainframe_1">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="3" column="0" colspan="2">
+       <widget class="QTableWidget" name="tableWidget">
+        <property name="maximumSize">
+         <size>
+          <width>800</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <column>
+         <property name="text">
+          <string>Serial No</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Date</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Time</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Price</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QGroupBox" name="groupBox_2">
+        <property name="title">
+         <string>Monthly sale</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Month</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_2">
+           <property name="minimumSize">
+            <size>
+             <width>125</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>300</width>
+             <height>25</height>
+            </size>
+           </property>
+           <item>
+            <property name="text">
+             <string>January</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>February</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>March</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>April</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>May</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>June</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>July</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>August</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>September</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>October</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>November</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>December</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_4">
+           <property name="font">
+            <font>
+             <family>Centular</family>
+             <pointsize>-1</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Year</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox">
+           <property name="minimumSize">
+            <size>
+             <width>125</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>300</width>
+             <height>25</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>Sale Amount: 0.0 Rs</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_2">
+           <property name="maximumSize">
+            <size>
+             <width>100</width>
+             <height>25</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Centular</family>
+             <pointsize>-1</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Check</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="2">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Sales</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QFrame" name="frame">
+        <property name="maximumSize">
+         <size>
+          <width>340</width>
+          <height>5000</height>
+         </size>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>View Sales</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCalendarWidget" name="calendarWidget">
+           <property name="maximumSize">
+            <size>
+             <width>320</width>
+             <height>5000</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item alignment="Qt::AlignRight">
+          <widget class="QPushButton" name="pushButton">
+           <property name="text">
+            <string>Load</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="4" column="0" colspan="2">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Total Amount:0.0 Rs</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

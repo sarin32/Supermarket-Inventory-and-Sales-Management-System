@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_products(object):
     def setupUi(self, products):
         products.setObjectName("products")
-        products.resize(717, 419)
+        products.resize(733, 451)
         products.setStyleSheet("QWidget#products{\n"
 "    background-color:rgb(0, 124, 124);\n"
 "}\n"
@@ -40,7 +40,7 @@ class Ui_products(object):
 "    color:#000;\n"
 "    border-radius:3px;\n"
 "}\n"
-"QMessageBox{\n"
+"QMessageBox,QInputDialog{\n"
 "    background-color: rgb(51, 152, 152);\n"
 "}\n"
 "\n"
@@ -281,11 +281,11 @@ class Ui_products(object):
         self.horizontalFrame2.setObjectName("horizontalFrame2")
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.horizontalFrame2)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.buttoDeleteProduct = QtWidgets.QPushButton(self.horizontalFrame2)
-        self.buttoDeleteProduct.setMinimumSize(QtCore.QSize(125, 0))
-        self.buttoDeleteProduct.setMaximumSize(QtCore.QSize(125, 16777215))
-        self.buttoDeleteProduct.setObjectName("buttoDeleteProduct")
-        self.horizontalLayout_4.addWidget(self.buttoDeleteProduct)
+        self.buttonDeleteProduct = QtWidgets.QPushButton(self.horizontalFrame2)
+        self.buttonDeleteProduct.setMinimumSize(QtCore.QSize(125, 0))
+        self.buttonDeleteProduct.setMaximumSize(QtCore.QSize(125, 16777215))
+        self.buttonDeleteProduct.setObjectName("buttonDeleteProduct")
+        self.horizontalLayout_4.addWidget(self.buttonDeleteProduct)
         self.buttonUpdateProduct = QtWidgets.QPushButton(self.horizontalFrame2)
         self.buttonUpdateProduct.setMinimumSize(QtCore.QSize(125, 0))
         self.buttonUpdateProduct.setMaximumSize(QtCore.QSize(125, 16777215))
@@ -313,7 +313,7 @@ class Ui_products(object):
         self.label_7.setText(_translate("products", "Category Name"))
         self.buttonAddCategory.setText(_translate("products", "Add"))
         item = self.tableCategories.horizontalHeaderItem(0)
-        item.setText(_translate("products", "New Column"))
+        item.setText(_translate("products", "Category Id"))
         item = self.tableCategories.horizontalHeaderItem(1)
         item.setText(_translate("products", "Category Name"))
         self.buttonDeleteCategory.setText(_translate("products", "Delete"))
@@ -330,5 +330,5 @@ class Ui_products(object):
         item.setText(_translate("products", "Product Id"))
         item = self.tableProducts.horizontalHeaderItem(1)
         item.setText(_translate("products", "Product Name"))
-        self.buttoDeleteProduct.setText(_translate("products", "Delete"))
+        self.buttonDeleteProduct.setText(_translate("products", "Delete"))
         self.buttonUpdateProduct.setText(_translate("products", "Update"))
