@@ -9,14 +9,63 @@ class Cart:
     def __init__(self):
         self.cart = []
         self.total_cost = 0
+        self.inv = Inventory()
 
     def newProduct(self, product_code, units):
-        pass
+        self.cart.append([product_code, units])
 
-    def purchase(self):
-        pass
+    def getTotalCost(self):
+        return self.total_cost
 
+    def isExistingProduct(self, code):
+        for item in self.cart:
+            if code == item[0]:
+                return True
+        return False
 
+    def getCartTable(self):
+        data = []
+        self.total_cost = 0
+        for item in self.cart:
+            details = self.inv.getProductDetails(str(item[0]))
+            details[4] = str(item[1])
+            details.append(str(item[1] * float(details[5])))
+            self.total_cost += float(details[6])
+            data.append(details)
+        return data
+
+    def removeProduct(self, code):
+        for item in self.cart:
+            if item[0] == code:
+                self.cart.remove(item)
+                return
+
+    def getCartItemsCode(self):
+        codes = []
+        for item in self.cart:
+            codes.append(item[0])
+        return codes
+
+    def makePurchase(self):
+        lines = []
+        with open('dataFiles/products.txt', 'r') as readFile:
+            reader = csv.reader(readFile, delimiter='|')
+            for row in reader:
+                lines.append(row)
+                if int(row[0]) in self.getCartItemsCode():
+                    lines[-1][4] = str(int(lines[-1][4]) - int(self.getUnit(int(lines[-1][0]))))
+        with open('dataFiles/products.txt', 'w', newline='') as writeFile:
+            writer = csv.writer(writeFile, delimiter='|')
+            writer.writerows(lines)
+        # TODO: add purchase data in file
+
+    def getUnit(self, code):
+        for item in self.cart:
+            if item[0] == code:
+                return item[1]
+
+    def clearCart(self):
+        self.cart.clear()
 # noinspection PyMethodMayBeStatic
 class Inventory:
     def __init__(self):
@@ -171,6 +220,8 @@ class Inventory:
                     details.append(row[1])
                     details.append(self.getBrandName(row[2]))
                     details.append(self.getCategoryName(row[3]))
+                    details.append(row[4])
+                    details.append(row[5])
                     return details
 
     def addProduct(self, name, brand, category, stock, prize):

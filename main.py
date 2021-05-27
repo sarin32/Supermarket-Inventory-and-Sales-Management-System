@@ -265,10 +265,24 @@ class UIPurchase(Ui_purchase):
         # event updates
         self.buttonClear.clicked.connect(lambda: self.clear())
         self.buttonAdd.clicked.connect(lambda: self.AddToCart())
+        self.buttonRemove.clicked.connect(lambda: self.removeProduct())
+        self.buttonClearAll.clicked.connect(lambda: self.clearCart())
+        self.buttonPurchase.clicked.connect(lambda: self.purchase())
         self.fieldCategory.activated.connect(lambda: self.updateProductField())
         self.fieldBrand.activated.connect(lambda: self.updateProductField())
         self.fieldCode.returnPressed.connect(lambda: self.productCodeChange())
         self.fieldName.activated.connect(lambda: self.productNameChange())
+
+        # setup tables
+        header = self.tableCart.horizontalHeader()
+        header.setSectionResizeMode(1, QHeaderView.Stretch)
+        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(3, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(4, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(5, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(6, QHeaderView.ResizeToContents)
+        self.setupCartTable()
 
     def clear(self):
         """method to clears and resets all input fields"""
@@ -297,9 +311,18 @@ class UIPurchase(Ui_purchase):
         if units == '0':
             self.showMessage('Input Error', 'Please set the units required')
             return
+        if self.crt.isExistingProduct(int(productCode)):
+            self.showMessage('Input Error', 'Product already Exist in cart!')
+            return
+        if int(self.inv.getProductDetails(productCode)[4]) < int(units):
+            self.showMessage('Input Error', units+' units of product is not available!')
+            return
         units = int(units)
         productCode = int(productCode)
         self.crt.newProduct(productCode, units)
+        self.clear()
+        self.setupCartTable()
+        self.updateTotalCost()
 
     def updateProductField(self):
         """method to update the items of the fieldname and fieldCode based on the update in fieldBrand fieldCategory"""
@@ -356,6 +379,47 @@ class UIPurchase(Ui_purchase):
         msg = QMessageBox()
         msg.about(self.widget, title, message)
 
+    def setupCartTable(self):
+        data = self.crt.getCartTable()
+        self.tableCart.setRowCount(0)
+        for i, row in enumerate(data):
+            self.tableCart.insertRow(i)
+            for j, item in enumerate(row):
+                newItem = QTableWidgetItem(item)
+                self.tableCart.setItem(i, j, newItem)
+
+    def updateTotalCost(self):
+        total = self.crt.getTotalCost()
+        self.labelCost.setText(str(total))
+
+    def clearCart(self):
+        self.crt.clearCart()
+        self.setupCartTable()
+
+    def removeProduct(self):
+        if not self.tableCart.selectedItems():
+            self.showMessage('Error', 'Please select a brand')
+        else:
+            p_id = int(self.tableCart.selectedItems()[0].text())
+            self.crt.removeProduct(p_id)
+            self.setupCartTable()
+
+    def purchase(self):
+        if self.tableCart.rowCount() == 0:
+            self.showMessage('Error', 'No item in cart')
+            return
+        x = self.askQuestion('Purchase Warning', 'Confirm Purchase?')
+        if x:
+            self.crt.makePurchase()
+            self.clearCart()
+
+    def askQuestion(self, title, message):
+        buttonReply = QMessageBox.question(self.widget, title, message, QMessageBox.Yes | QMessageBox.No,
+                                           QMessageBox.No)
+        if buttonReply == QMessageBox.Yes:
+            return True
+        return False
+
 
 class UIStock(Ui_stock):
     def __init__(self, widget, inv):
@@ -383,7 +447,7 @@ class UIStock(Ui_stock):
         header.setSectionResizeMode(3, QHeaderView.ResizeToContents)
         header.setSectionResizeMode(4, QHeaderView.ResizeToContents)
         header.setSectionResizeMode(5, QHeaderView.ResizeToContents)
-        self.loadStock()
+        # self.loadStock()
 
     def clear(self):
         self.fieldBrand.clear()
