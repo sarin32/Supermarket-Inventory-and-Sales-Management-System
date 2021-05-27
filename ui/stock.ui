@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>686</width>
+    <width>681</width>
     <height>446</height>
    </rect>
   </property>
@@ -39,9 +39,40 @@ QComboBox,QSpinBox,QLineEdit{
 	color:#000;
 	border-radius:3px;
 }
-QMessageBox{
+QMessageBox,QInputDialog{
 	background-color: rgb(51, 152, 152);
-}</string>
+}
+
+QTableWidget
+{
+	gridline-color: #ffffff;
+	background-color: transparent;
+	border:1px solid rgb(255, 255, 255);
+	font: 13px  &quot;Centular&quot;;
+}
+QHeaderView {
+	background-color: transparent;
+}
+QHeaderView::section {
+	background-color: rgb(0, 124, 124);
+	font: bold 13px  &quot;Centular&quot; ;
+	border-bottom: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+QHeaderView::section:horizontal
+{
+    border-top: 1px solid #fff;
+}
+QHeaderView::section:vertical
+{
+    border-left: 1px solid #fff;
+}
+QTableWidget::item::selected 
+{
+ Color:#000; 
+ Background: #fff;
+}
+</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
@@ -59,6 +90,130 @@ QMessageBox{
    <property name="spacing">
     <number>3</number>
    </property>
+   <item row="5" column="0">
+    <widget class="QFrame" name="mainframe_2">
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="1" column="0">
+       <widget class="QTableWidget" name="tableStock">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>800</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>Product Code</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Product Name</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Brand</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>category</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Stock (Units)</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Prize/Unit (Rs.)</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="h_2">
+        <property name="text">
+         <string>Stock</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" alignment="Qt::AlignRight">
+       <widget class="QFrame" name="horizontalFrame">
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QPushButton" name="buttonUpdateStock">
+           <property name="minimumSize">
+            <size>
+             <width>125</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>125</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="text">
+            <string>Update Stock</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="buttonUpdatePrize">
+           <property name="minimumSize">
+            <size>
+             <width>125</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>125</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="text">
+            <string>Update Prize</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
    <item row="0" column="0">
     <widget class="QFrame" name="mainframe_1">
      <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -124,7 +279,7 @@ QMessageBox{
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="buttonAdd">
+             <widget class="QPushButton" name="buttonLoad">
               <property name="minimumSize">
                <size>
                 <width>125</width>
@@ -307,115 +462,6 @@ QMessageBox{
       </item>
       <item>
        <widget class="QFrame" name="gridFrame"/>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="4" column="0">
-    <widget class="QFrame" name="mainframe_2">
-     <layout class="QGridLayout" name="gridLayout_3">
-      <item row="2" column="1">
-       <widget class="QPushButton" name="pushButton">
-        <property name="text">
-         <string>PushButton</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="2">
-       <widget class="QPushButton" name="pushButton_2">
-        <property name="text">
-         <string>PushButton</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1" colspan="2">
-       <widget class="QLabel" name="h_2">
-        <property name="text">
-         <string>Stock</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1" colspan="2">
-       <widget class="QTableWidget" name="tableCart">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
-        </property>
-        <property name="gridStyle">
-         <enum>Qt::DashLine</enum>
-        </property>
-        <property name="sortingEnabled">
-         <bool>false</bool>
-        </property>
-        <column>
-         <property name="text">
-          <string>Product Code</string>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Product Name</string>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Brand</string>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>category</string>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Stock</string>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Prize/Unit</string>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-        </column>
-       </widget>
       </item>
      </layout>
     </widget>

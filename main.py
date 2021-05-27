@@ -367,6 +367,100 @@ class UIStock(Ui_stock):
         self.inv = inv
         self.setupUi(widget)
 
+        # initialize combobox
+        self.fieldBrand.addItem('select')
+        self.fieldBrand.addItems(self.inv.getBrandsData(b_id=False, name=True))
+        self.fieldCategory.addItem('select')
+        self.fieldCategory.addItems(self.inv.getCategoriesData(c_id=False, name=True))
+
+        # event updates
+        self.buttonClear.clicked.connect(lambda: self.clear())
+        self.buttonLoad.clicked.connect(lambda: self.loadStock())
+        self.buttonUpdateStock.clicked.connect(lambda: self.updateStock())
+        self.buttonUpdatePrize.clicked.connect(lambda: self.updatePrize())
+
+        # setup tables
+        header = self.tableStock.horizontalHeader()
+        header.setSectionResizeMode(1, QHeaderView.Stretch)
+        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(3, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(4, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(5, QHeaderView.ResizeToContents)
+        self.loadStock()
+
+    def clear(self):
+        self.fieldBrand.clear()
+        self.fieldBrand.addItem('select')
+        self.fieldBrand.addItems(self.inv.getBrandsData(b_id=False, name=True))
+
+        self.fieldCategory.clear()
+        self.fieldCategory.addItem('select')
+        self.fieldCategory.addItems(self.inv.getCategoriesData(c_id=False, name=True))
+
+        self.fieldType.setCurrentIndex(0)
+
+    def loadStock(self):
+        filterBrand = None
+        filterCategory = None
+        filterType = None
+        if self.fieldBrand.currentIndex() != 0:
+            filterBrand = self.fieldBrand.currentText()
+        if self.fieldCategory.currentIndex() != 0:
+            filterCategory = self.fieldCategory.currentText()
+        x = self.fieldType.currentIndex()
+        if x == 1:
+            filterType = self.inv.INSTOCK
+        if x == 2:
+            filterType = self.inv.OUTSTOCK
+        self.tableStock.setRowCount(0)
+        data = self.inv.getProductsData(True, True, True, True, True, True, filterBrand, filterCategory, filterType)
+        for i, row in enumerate(data):
+            self.tableStock.insertRow(i)
+            for j, item in enumerate(row):
+                newItem = QTableWidgetItem(item)
+                self.tableStock.setItem(i, j, newItem)
+
+    def updateStock(self):
+        if not self.tableStock.selectedItems():
+            self.showMessage('Error', 'Please select a product')
+        else:
+            p_id = self.tableStock.selectedItems()[0].text()
+            try:
+                stock = int(self.showDialog('Update Stock', 'Enter number of new stock units'))
+            except ValueError:
+                self.showMessage('Input Error', 'invalid number of units')
+                return
+            if stock:
+                self.inv.updateStock(p_id, stock)
+                self.loadStock()
+
+    def updatePrize(self):
+        if not self.tableStock.selectedItems():
+            self.showMessage('Error', 'Please select a product')
+        else:
+            p_id = self.tableStock.selectedItems()[0].text()
+            try:
+                prize = float(self.showDialog('Update Prize', 'Enter new prize in rupees'))
+            except ValueError:
+                self.showMessage('Input Error', 'invalid prize')
+                return
+            except TypeError:
+                return
+            if prize:
+                self.inv.updatePrize(p_id, prize)
+                self.loadStock()
+
+    def showMessage(self, title, message):
+        msg = QMessageBox()
+        msg.about(self.widget, title, message)
+
+    def showDialog(self, title, message):
+        text, ok = QInputDialog.getText(self.widget, title, message)
+        if ok:
+            return text
+        return None
+
 
 class UISales(Ui_sales):
     def __init__(self, widget, inv):

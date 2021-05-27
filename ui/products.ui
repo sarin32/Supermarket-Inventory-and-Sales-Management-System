@@ -201,6 +201,9 @@ font: bold 12px  &quot;Centular&quot;;
              <height>16777215</height>
             </size>
            </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
            <property name="text">
             <string>Delete</string>
            </property>
@@ -213,6 +216,9 @@ font: bold 12px  &quot;Centular&quot;;
              <width>125</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="text">
             <string>Update</string>
@@ -325,6 +331,9 @@ font: bold 12px  &quot;Centular&quot;;
              <height>16777215</height>
             </size>
            </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
            <property name="text">
             <string>Delete</string>
            </property>
@@ -337,6 +346,9 @@ font: bold 12px  &quot;Centular&quot;;
              <width>125</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="text">
             <string>Update</string>
@@ -584,6 +596,9 @@ font: bold 12px  &quot;Centular&quot;;
              <height>16777215</height>
             </size>
            </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
            <property name="text">
             <string>Delete</string>
            </property>
@@ -602,6 +617,9 @@ font: bold 12px  &quot;Centular&quot;;
              <width>125</width>
              <height>16777215</height>
             </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="text">
             <string>Update</string>

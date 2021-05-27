@@ -19,6 +19,10 @@ class Cart:
 
 # noinspection PyMethodMayBeStatic
 class Inventory:
+    def __init__(self):
+        self.OUTSTOCK = 'out of stock'
+        self.INSTOCK = 'instock'
+
     def getBrandsData(self, b_id=False, name=False):
         """:returns a list containing all brand data based on parameters"""
         data = []
@@ -52,7 +56,7 @@ class Inventory:
         return data
 
     def getProductsData(self, p_id=False, name=False, brand=False, category=False, stock=False, prize=False,
-                        filterBrand=None, filterCategory=None):
+                        filterBrand=None, filterCategory=None, filterType=None):
         """:returns a list containing all brand data based on parameters"""
         data = []
         brandId = self.getBrandId(filterBrand)
@@ -64,6 +68,12 @@ class Inventory:
                     continue
                 if categoryId is not None and categoryId != row[3]:
                     continue
+                if filterType is not None:
+                    if filterType == self.INSTOCK and int(row[4]) ==0:
+                        continue
+                    if filterType == self.OUTSTOCK and int(row[4]) !=0:
+                        continue
+
                 subData = []
                 if p_id:
                     subData.append(row[0])
@@ -278,5 +288,28 @@ class Inventory:
                 if row[0] == c_id:
                     lines[-1][1] = new_name
         with open('dataFiles/categories.txt', 'w', newline='') as writeFile:
+            writer = csv.writer(writeFile, delimiter='|')
+            writer.writerows(lines)
+
+    def updateStock(self,p_id, newStock):
+        lines = []
+        with open('dataFiles/products.txt', 'r') as readFile:
+            reader = csv.reader(readFile, delimiter='|')
+            for row in reader:
+                lines.append(row)
+                if row[0] == p_id:
+                    lines[-1][4] = str(int(lines[-1][4]) + int(newStock))
+        with open('dataFiles/products.txt', 'w', newline='') as writeFile:
+            writer = csv.writer(writeFile, delimiter='|')
+            writer.writerows(lines)
+    def updatePrize(self, p_id, newPrize):
+        lines = []
+        with open('dataFiles/products.txt', 'r') as readFile:
+            reader = csv.reader(readFile, delimiter='|')
+            for row in reader:
+                lines.append(row)
+                if row[0] == p_id:
+                    lines[-1][5] = str(float(newPrize))
+        with open('dataFiles/products.txt', 'w', newline='') as writeFile:
             writer = csv.writer(writeFile, delimiter='|')
             writer.writerows(lines)
