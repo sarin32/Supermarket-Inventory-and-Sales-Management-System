@@ -69,9 +69,9 @@ class Inventory:
                 if categoryId is not None and categoryId != row[3]:
                     continue
                 if filterType is not None:
-                    if filterType == self.INSTOCK and int(row[4]) ==0:
+                    if filterType == self.INSTOCK and int(row[4]) == 0:
                         continue
-                    if filterType == self.OUTSTOCK and int(row[4]) !=0:
+                    if filterType == self.OUTSTOCK and int(row[4]) != 0:
                         continue
 
                 subData = []
@@ -291,7 +291,7 @@ class Inventory:
             writer = csv.writer(writeFile, delimiter='|')
             writer.writerows(lines)
 
-    def updateStock(self,p_id, newStock):
+    def updateStock(self, p_id, newStock):
         lines = []
         with open('dataFiles/products.txt', 'r') as readFile:
             reader = csv.reader(readFile, delimiter='|')
@@ -302,6 +302,7 @@ class Inventory:
         with open('dataFiles/products.txt', 'w', newline='') as writeFile:
             writer = csv.writer(writeFile, delimiter='|')
             writer.writerows(lines)
+
     def updatePrize(self, p_id, newPrize):
         lines = []
         with open('dataFiles/products.txt', 'r') as readFile:

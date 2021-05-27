@@ -306,17 +306,13 @@ class UIPurchase(Ui_purchase):
         self.fieldCode.clear()
         self.fieldName.clear()
         self.fieldName.addItem('select')
-        if self.fieldBrand.currentText() == 'select' and self.fieldCategory.currentText() == 'select':
-            self.fieldName.addItems(self.inv.getProductsData(name=True))
-        elif self.fieldBrand.currentText() == 'select':
-            self.fieldName.addItems(
-                self.inv.getProductsData(name=True, filterBrand=None, filterCategory=self.fieldCategory.currentText()))
-        elif self.fieldCategory.currentText() == 'select':
-            self.fieldName.addItems(
-                self.inv.getProductsData(name=True, filterBrand=self.fieldBrand.currentText(), filterCategory=None))
-        else:
-            self.fieldName.addItems(self.inv.getProductsData(name=True, filterBrand=self.fieldBrand.currentText(),
-                                                             filterCategory=self.fieldCategory.currentText()))
+        brand = None
+        category = None
+        if self.fieldBrand.currentIndex() != 0:
+            brand = self.fieldBrand.currentText()
+        if self.fieldCategory.currentIndex() != 0:
+            category = self.fieldCategory.currentText()
+        self.fieldName.addItems(self.inv.getProductsData(name=True, filterBrand=brand, filterCategory=category))
 
     def productCodeChange(self):
         """method to update all other fields when fieldCode is changed by user"""
