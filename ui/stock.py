@@ -15,74 +15,15 @@ class Ui_stock(object):
     def setupUi(self, stock):
         stock.setObjectName("stock")
         stock.resize(681, 446)
-        stock.setStyleSheet("QWidget#stock{\n"
-"    background-color:rgb(0, 124, 124);\n"
-"}\n"
-"QLabel{\n"
-"    font: 15px  \"Centular\";\n"
-"}\n"
-"QPushButton{\n"
-"    font: 15px  \"Centular\";\n"
-"    background-color:rgb(0, 124, 124);\n"
-"}\n"
-"\n"
-"QLabel#h_1 ,QLabel#h_2, QLabel#h_3{\n"
-"    font: bold 16px  \"Centular\";\n"
-"}\n"
-"\n"
-"QFrame#mainframe_1, QFrame#mainframe_2,  QFrame#mainframe_3{\n"
-"    background-color:rgb(51, 152, 152);\n"
-"    border-radius:6px;\n"
-"}\n"
-"\n"
-"QComboBox,QSpinBox,QLineEdit{\n"
-"    background-color:rgb(255, 255, 255);\n"
-"    color:#000;\n"
-"    border-radius:3px;\n"
-"}\n"
-"QMessageBox,QInputDialog{\n"
-"    background-color: rgb(51, 152, 152);\n"
-"}\n"
-"\n"
-"QTableWidget\n"
-"{\n"
-"    gridline-color: #ffffff;\n"
-"    background-color: transparent;\n"
-"    border:1px solid rgb(255, 255, 255);\n"
-"    font: 13px  \"Centular\";\n"
-"}\n"
-"QHeaderView {\n"
-"    background-color: transparent;\n"
-"}\n"
-"QHeaderView::section {\n"
-"    background-color: rgb(0, 124, 124);\n"
-"    font: bold 13px  \"Centular\" ;\n"
-"    border-bottom: 1px solid #fff;\n"
-"    border-right: 1px solid #fff;\n"
-"}\n"
-"QHeaderView::section:horizontal\n"
-"{\n"
-"    border-top: 1px solid #fff;\n"
-"}\n"
-"QHeaderView::section:vertical\n"
-"{\n"
-"    border-left: 1px solid #fff;\n"
-"}\n"
-"QTableWidget::item::selected \n"
-"{\n"
-" Color:#000; \n"
-" Background: #fff;\n"
-"}\n"
-"")
         self.gridLayout = QtWidgets.QGridLayout(stock)
         self.gridLayout.setContentsMargins(4, 4, 4, 4)
         self.gridLayout.setSpacing(3)
         self.gridLayout.setObjectName("gridLayout")
-        self.mainframe_2 = QtWidgets.QFrame(stock)
-        self.mainframe_2.setObjectName("mainframe_2")
-        self.gridLayout_4 = QtWidgets.QGridLayout(self.mainframe_2)
+        self.frame_5 = QtWidgets.QFrame(stock)
+        self.frame_5.setObjectName("frame_5")
+        self.gridLayout_4 = QtWidgets.QGridLayout(self.frame_5)
         self.gridLayout_4.setObjectName("gridLayout_4")
-        self.tableStock = QtWidgets.QTableWidget(self.mainframe_2)
+        self.tableStock = QtWidgets.QTableWidget(self.frame_5)
         self.tableStock.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -90,7 +31,6 @@ class Ui_stock(object):
         sizePolicy.setHeightForWidth(self.tableStock.sizePolicy().hasHeightForWidth())
         self.tableStock.setSizePolicy(sizePolicy)
         self.tableStock.setMaximumSize(QtCore.QSize(800, 16777215))
-        self.tableStock.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContentsOnFirstShow)
         self.tableStock.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
         self.tableStock.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.tableStock.setObjectName("tableStock")
@@ -110,39 +50,38 @@ class Ui_stock(object):
         self.tableStock.setHorizontalHeaderItem(5, item)
         self.tableStock.verticalHeader().setVisible(False)
         self.gridLayout_4.addWidget(self.tableStock, 1, 0, 1, 1)
-        self.h_2 = QtWidgets.QLabel(self.mainframe_2)
-        self.h_2.setObjectName("h_2")
-        self.gridLayout_4.addWidget(self.h_2, 0, 0, 1, 1)
-        self.horizontalFrame = QtWidgets.QFrame(self.mainframe_2)
-        self.horizontalFrame.setObjectName("horizontalFrame")
-        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.horizontalFrame)
+        self.label_5 = QtWidgets.QLabel(self.frame_5)
+        self.label_5.setObjectName("label_5")
+        self.gridLayout_4.addWidget(self.label_5, 0, 0, 1, 1)
+        self.frame_6 = QtWidgets.QFrame(self.frame_5)
+        self.frame_6.setObjectName("frame_6")
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.frame_6)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.buttonUpdateStock = QtWidgets.QPushButton(self.horizontalFrame)
+        self.buttonUpdateStock = QtWidgets.QPushButton(self.frame_6)
         self.buttonUpdateStock.setMinimumSize(QtCore.QSize(125, 0))
         self.buttonUpdateStock.setMaximumSize(QtCore.QSize(125, 16777215))
         self.buttonUpdateStock.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.buttonUpdateStock.setObjectName("buttonUpdateStock")
         self.horizontalLayout_4.addWidget(self.buttonUpdateStock)
-        self.buttonUpdatePrize = QtWidgets.QPushButton(self.horizontalFrame)
+        self.buttonUpdatePrize = QtWidgets.QPushButton(self.frame_6)
         self.buttonUpdatePrize.setMinimumSize(QtCore.QSize(125, 0))
         self.buttonUpdatePrize.setMaximumSize(QtCore.QSize(125, 16777215))
         self.buttonUpdatePrize.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.buttonUpdatePrize.setObjectName("buttonUpdatePrize")
         self.horizontalLayout_4.addWidget(self.buttonUpdatePrize)
-        self.gridLayout_4.addWidget(self.horizontalFrame, 2, 0, 1, 1, QtCore.Qt.AlignRight)
-        self.gridLayout.addWidget(self.mainframe_2, 5, 0, 1, 1)
-        self.mainframe_1 = QtWidgets.QFrame(stock)
-        self.mainframe_1.setObjectName("mainframe_1")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.mainframe_1)
+        self.gridLayout_4.addWidget(self.frame_6, 2, 0, 1, 1, QtCore.Qt.AlignRight)
+        self.gridLayout.addWidget(self.frame_5, 5, 0, 1, 1)
+        self.frame_3 = QtWidgets.QFrame(stock)
+        self.frame_3.setObjectName("frame_3")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.frame_3)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.frame = QtWidgets.QFrame(self.mainframe_1)
+        self.frame = QtWidgets.QFrame(self.frame_3)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
         self.frame.setSizePolicy(sizePolicy)
         self.frame.setMaximumSize(QtCore.QSize(925, 16777215))
-        self.frame.setStyleSheet("")
         self.frame.setObjectName("frame")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.frame)
         self.gridLayout_2.setObjectName("gridLayout_2")
@@ -156,7 +95,6 @@ class Ui_stock(object):
         self.buttonClear.setMaximumSize(QtCore.QSize(125, 16777215))
         font = QtGui.QFont()
         font.setFamily("Centular")
-        font.setPointSize(-1)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
@@ -170,7 +108,6 @@ class Ui_stock(object):
         self.buttonLoad.setMaximumSize(QtCore.QSize(125, 16777215))
         font = QtGui.QFont()
         font.setFamily("Centular")
-        font.setPointSize(-1)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
@@ -184,9 +121,9 @@ class Ui_stock(object):
         self.fieldCategory.setMaximumSize(QtCore.QSize(300, 25))
         self.fieldCategory.setObjectName("fieldCategory")
         self.gridLayout_2.addWidget(self.fieldCategory, 2, 1, 1, 1)
-        self.h_1 = QtWidgets.QLabel(self.frame)
-        self.h_1.setObjectName("h_1")
-        self.gridLayout_2.addWidget(self.h_1, 0, 0, 1, 3)
+        self.label = QtWidgets.QLabel(self.frame)
+        self.label.setObjectName("label")
+        self.gridLayout_2.addWidget(self.label, 0, 0, 1, 3)
         self.fieldType = QtWidgets.QComboBox(self.frame)
         self.fieldType.setMinimumSize(QtCore.QSize(125, 25))
         self.fieldType.setMaximumSize(QtCore.QSize(300, 25))
@@ -200,12 +137,10 @@ class Ui_stock(object):
         self.label_4.setMaximumSize(QtCore.QSize(16777215, 25))
         font = QtGui.QFont()
         font.setFamily("Centular")
-        font.setPointSize(-1)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
         self.label_4.setFont(font)
-        self.label_4.setStyleSheet("")
         self.label_4.setObjectName("label_4")
         self.gridLayout_2.addWidget(self.label_4, 1, 1, 1, 1)
         self.fieldBrand = QtWidgets.QComboBox(self.frame)
@@ -218,30 +153,26 @@ class Ui_stock(object):
         self.label_3 = QtWidgets.QLabel(self.frame)
         font = QtGui.QFont()
         font.setFamily("Centular")
-        font.setPointSize(-1)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
         self.label_3.setFont(font)
-        self.label_3.setStyleSheet("")
         self.label_3.setObjectName("label_3")
         self.gridLayout_2.addWidget(self.label_3, 1, 0, 1, 1)
         self.label_2 = QtWidgets.QLabel(self.frame)
         font = QtGui.QFont()
         font.setFamily("Centular")
-        font.setPointSize(-1)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
         self.label_2.setFont(font)
-        self.label_2.setStyleSheet("")
         self.label_2.setObjectName("label_2")
         self.gridLayout_2.addWidget(self.label_2, 1, 2, 1, 1)
         self.horizontalLayout_2.addWidget(self.frame)
-        self.gridFrame = QtWidgets.QFrame(self.mainframe_1)
-        self.gridFrame.setObjectName("gridFrame")
-        self.horizontalLayout_2.addWidget(self.gridFrame)
-        self.gridLayout.addWidget(self.mainframe_1, 0, 0, 1, 1)
+        self.frame_4 = QtWidgets.QFrame(self.frame_3)
+        self.frame_4.setObjectName("frame_4")
+        self.horizontalLayout_2.addWidget(self.frame_4)
+        self.gridLayout.addWidget(self.frame_3, 0, 0, 1, 1)
 
         self.retranslateUi(stock)
         QtCore.QMetaObject.connectSlotsByName(stock)
@@ -249,6 +180,8 @@ class Ui_stock(object):
     def retranslateUi(self, stock):
         _translate = QtCore.QCoreApplication.translate
         stock.setWindowTitle(_translate("stock", "Form"))
+        stock.setProperty("type", _translate("stock", "main"))
+        self.frame_5.setProperty("type", _translate("stock", "mainframe"))
         item = self.tableStock.horizontalHeaderItem(0)
         item.setText(_translate("stock", "Product Code"))
         item = self.tableStock.horizontalHeaderItem(1)
@@ -261,12 +194,15 @@ class Ui_stock(object):
         item.setText(_translate("stock", "Stock (Units)"))
         item = self.tableStock.horizontalHeaderItem(5)
         item.setText(_translate("stock", "Prize/Unit (Rs.)"))
-        self.h_2.setText(_translate("stock", "Stock"))
+        self.label_5.setText(_translate("stock", "Stock"))
+        self.label_5.setProperty("type", _translate("stock", "heading"))
         self.buttonUpdateStock.setText(_translate("stock", "Update Stock"))
         self.buttonUpdatePrize.setText(_translate("stock", "Update Prize"))
+        self.frame_3.setProperty("type", _translate("stock", "mainframe"))
         self.buttonClear.setText(_translate("stock", "Clear"))
         self.buttonLoad.setText(_translate("stock", "Load"))
-        self.h_1.setText(_translate("stock", "Filter stock"))
+        self.label.setText(_translate("stock", "Filter stock"))
+        self.label.setProperty("type", _translate("stock", "heading"))
         self.fieldType.setItemText(0, _translate("stock", "All"))
         self.fieldType.setItemText(1, _translate("stock", "In Stock"))
         self.fieldType.setItemText(2, _translate("stock", "Out Of Stock"))

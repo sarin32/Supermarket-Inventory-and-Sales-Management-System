@@ -14,77 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_sales(object):
     def setupUi(self, sales):
         sales.setObjectName("sales")
-        sales.resize(712, 482)
-        sales.setStyleSheet("QWidget#sales{\n"
-                            "    background-color:rgb(0, 124, 124);\n"
-                            "}\n"
-                            "QLabel{\n"
-                            "    font: 15px  \"Centular\";\n"
-                            "}\n"
-                            "QPushButton{\n"
-                            "    font: 15px  \"Centular\";\n"
-                            "    background-color:rgb(0, 124, 124);\n"
-                            "}\n"
-                            "\n"
-                            "QLabel#h_1 ,QLabel#h_2, QLabel#h_3{\n"
-                            "    font: bold 16px  \"Centular\";\n"
-                            "}\n"
-                            "\n"
-                            "QFrame#mainframe_1, QFrame#mainframe_2,  QFrame#mainframe_3{\n"
-                            "    background-color:rgb(51, 152, 152);\n"
-                            "    border-radius:6px;\n"
-                            "}\n"
-                            "\n"
-                            "QComboBox,QSpinBox,QLineEdit{\n"
-                            "    background-color:rgb(255, 255, 255);\n"
-                            "    color:#000;\n"
-                            "    border-radius:3px;\n"
-                            "}\n"
-                            "QMessageBox,QInputDialog{\n"
-                            "    background-color: rgb(51, 152, 152);\n"
-                            "}\n"
-                            "\n"
-                            "QTableWidget\n"
-                            "{\n"
-                            "    gridline-color: #ffffff;\n"
-                            "    background-color: transparent;\n"
-                            "    border:1px solid rgb(255, 255, 255);\n"
-                            "    font: 13px  \"Centular\";\n"
-                            "}\n"
-                            "QHeaderView {\n"
-                            "    background-color: transparent;\n"
-                            "}\n"
-                            "QHeaderView::section {\n"
-                            "    background-color: rgb(0, 124, 124);\n"
-                            "    font: bold 13px  \"Centular\" ;\n"
-                            "    border-bottom: 1px solid #fff;\n"
-                            "    border-right: 1px solid #fff;\n"
-                            "}\n"
-                            "QHeaderView::section:horizontal\n"
-                            "{\n"
-                            "    border-top: 1px solid #fff;\n"
-                            "}\n"
-                            "QHeaderView::section:vertical\n"
-                            "{\n"
-                            "    border-left: 1px solid #fff;\n"
-                            "}\n"
-                            "QTableWidget::item::selected \n"
-                            "{\n"
-                            " Color:#000; \n"
-                            " Background: #fff;\n"
-                            "}\n"
-                            "QGroupBox {\n"
-                            "     border: 1px solid #fff;\n"
-                            "     border-radius: 5px;\n"
-                            "     margin-top:12px; \n"
-                            "font: bold 12px  \"Centular\";\n"
-                            " }\n"
-                            "\n"
-                            " QGroupBox::title {\n"
-                            "     subcontrol-origin: margin;\n"
-                            "     \n"
-                            "    font: 8pt \"MS Sans Serif\";\n"
-                            " }")
+        sales.resize(847, 565)
         self.verticalLayout = QtWidgets.QVBoxLayout(sales)
         self.verticalLayout.setContentsMargins(4, 4, 4, 4)
         self.verticalLayout.setSpacing(3)
@@ -95,21 +25,8 @@ class Ui_sales(object):
         self.mainframe_1.setObjectName("mainframe_1")
         self.gridLayout = QtWidgets.QGridLayout(self.mainframe_1)
         self.gridLayout.setObjectName("gridLayout")
-        self.tableWidget = QtWidgets.QTableWidget(self.mainframe_1)
-        self.tableWidget.setMaximumSize(QtCore.QSize(800, 16777215))
-        self.tableWidget.setObjectName("tableWidget")
-        self.tableWidget.setColumnCount(4)
-        self.tableWidget.setRowCount(0)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(0, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(1, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(2, item)
-        item = QtWidgets.QTableWidgetItem()
-        self.tableWidget.setHorizontalHeaderItem(3, item)
-        self.gridLayout.addWidget(self.tableWidget, 3, 0, 1, 2)
         self.groupBox_2 = QtWidgets.QGroupBox(self.mainframe_1)
+        self.groupBox_2.setMaximumSize(QtCore.QSize(16777215, 300))
         self.groupBox_2.setObjectName("groupBox_2")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.groupBox_2)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
@@ -136,7 +53,6 @@ class Ui_sales(object):
         self.label_4 = QtWidgets.QLabel(self.groupBox_2)
         font = QtGui.QFont()
         font.setFamily("Centular")
-        font.setPointSize(-1)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
@@ -155,7 +71,6 @@ class Ui_sales(object):
         self.pushButton_2.setMaximumSize(QtCore.QSize(100, 25))
         font = QtGui.QFont()
         font.setFamily("Centular")
-        font.setPointSize(-1)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
@@ -163,11 +78,61 @@ class Ui_sales(object):
         self.pushButton_2.setObjectName("pushButton_2")
         self.verticalLayout_4.addWidget(self.pushButton_2)
         self.gridLayout.addWidget(self.groupBox_2, 0, 1, 1, 1)
-        self.label = QtWidgets.QLabel(self.mainframe_1)
+        self.frame_2 = QtWidgets.QFrame(self.mainframe_1)
+        self.frame_2.setMinimumSize(QtCore.QSize(0, 60))
+        self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_2.setObjectName("frame_2")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.frame_2)
+        self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.label = QtWidgets.QLabel(self.frame_2)
         self.label.setObjectName("label")
-        self.gridLayout.addWidget(self.label, 2, 0, 1, 2)
+        self.gridLayout_2.addWidget(self.label, 0, 0, 1, 1)
+        self.tableWidget = QtWidgets.QTableWidget(self.frame_2)
+        self.tableWidget.setMaximumSize(QtCore.QSize(800, 16777215))
+        self.tableWidget.setObjectName("tableWidget")
+        self.tableWidget.setColumnCount(4)
+        self.tableWidget.setRowCount(0)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(0, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(2, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tableWidget.setHorizontalHeaderItem(3, item)
+        self.gridLayout_2.addWidget(self.tableWidget, 1, 0, 1, 1)
+        self.frame_3 = QtWidgets.QFrame(self.frame_2)
+        self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_3.setObjectName("frame_3")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.frame_3)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setSpacing(0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.frame_5 = QtWidgets.QFrame(self.frame_3)
+        self.frame_5.setMinimumSize(QtCore.QSize(0, 30))
+        self.frame_5.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.frame_5.setObjectName("frame_5")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.frame_5)
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_2.setSpacing(0)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.labelTotal = QtWidgets.QLabel(self.frame_5)
+        self.labelTotal.setObjectName("labelTotal")
+        self.horizontalLayout_2.addWidget(self.labelTotal)
+        self.labelCost = QtWidgets.QLabel(self.frame_5)
+        self.labelCost.setObjectName("labelCost")
+        self.horizontalLayout_2.addWidget(self.labelCost)
+        self.labelRs = QtWidgets.QLabel(self.frame_5)
+        self.labelRs.setObjectName("labelRs")
+        self.horizontalLayout_2.addWidget(self.labelRs)
+        self.horizontalLayout.addWidget(self.frame_5, 0, QtCore.Qt.AlignLeft)
+        self.gridLayout_2.addWidget(self.frame_3, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.frame_2, 2, 0, 2, 2)
         self.frame = QtWidgets.QFrame(self.mainframe_1)
-        self.frame.setMaximumSize(QtCore.QSize(340, 5000))
+        self.frame.setMaximumSize(QtCore.QSize(340, 250))
         self.frame.setObjectName("frame")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.frame)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
@@ -182,9 +147,6 @@ class Ui_sales(object):
         self.pushButton.setObjectName("pushButton")
         self.verticalLayout_2.addWidget(self.pushButton, 0, QtCore.Qt.AlignRight)
         self.gridLayout.addWidget(self.frame, 0, 0, 1, 1)
-        self.label_2 = QtWidgets.QLabel(self.mainframe_1)
-        self.label_2.setObjectName("label_2")
-        self.gridLayout.addWidget(self.label_2, 4, 0, 1, 2)
         self.verticalLayout.addWidget(self.mainframe_1)
 
         self.retranslateUi(sales)
@@ -193,14 +155,8 @@ class Ui_sales(object):
     def retranslateUi(self, sales):
         _translate = QtCore.QCoreApplication.translate
         sales.setWindowTitle(_translate("sales", "Form"))
-        item = self.tableWidget.horizontalHeaderItem(0)
-        item.setText(_translate("sales", "Serial No"))
-        item = self.tableWidget.horizontalHeaderItem(1)
-        item.setText(_translate("sales", "Date"))
-        item = self.tableWidget.horizontalHeaderItem(2)
-        item.setText(_translate("sales", "Time"))
-        item = self.tableWidget.horizontalHeaderItem(3)
-        item.setText(_translate("sales", "Price"))
+        sales.setProperty("type", _translate("sales", "main"))
+        self.mainframe_1.setProperty("type", _translate("sales", "mainframe"))
         self.groupBox_2.setTitle(_translate("sales", "Monthly sale"))
         self.label_3.setText(_translate("sales", "Month"))
         self.comboBox_2.setItemText(0, _translate("sales", "January"))
@@ -219,6 +175,19 @@ class Ui_sales(object):
         self.label_6.setText(_translate("sales", "Sale Amount: 0.0 Rs"))
         self.pushButton_2.setText(_translate("sales", "Check"))
         self.label.setText(_translate("sales", "Sales"))
+        self.label.setProperty("type", _translate("sales", "heading"))
+        item = self.tableWidget.horizontalHeaderItem(0)
+        item.setText(_translate("sales", "Sl. No."))
+        item = self.tableWidget.horizontalHeaderItem(1)
+        item.setText(_translate("sales", "Date"))
+        item = self.tableWidget.horizontalHeaderItem(2)
+        item.setText(_translate("sales", "Time"))
+        item = self.tableWidget.horizontalHeaderItem(3)
+        item.setText(_translate("sales", "Amount"))
+        self.labelTotal.setText(_translate("sales", "Total Amount :"))
+        self.labelCost.setText(_translate("sales", "0.0"))
+        self.labelCost.setProperty("type", _translate("sales", "bold"))
+        self.labelRs.setText(_translate("sales", "Rs."))
         self.label_5.setText(_translate("sales", "View Sales"))
+        self.label_5.setProperty("type", _translate("sales", "heading"))
         self.pushButton.setText(_translate("sales", "Load"))
-        self.label_2.setText(_translate("sales", "Total Amount:0.0 Rs"))

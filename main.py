@@ -4,7 +4,7 @@ Mainwindow is created and other widgets are added in this file
 """
 import sys
 
-from PyQt5.QtCore import QRect
+from PyQt5.QtCore import QRect, QFile, QTextStream
 from PyQt5.QtGui import QIcon, QDoubleValidator
 from PyQt5.QtWidgets import *
 
@@ -315,7 +315,7 @@ class UIPurchase(Ui_purchase):
             self.showMessage('Input Error', 'Product already Exist in cart!')
             return
         if int(self.inv.getProductDetails(productCode)[4]) < int(units):
-            self.showMessage('Input Error', units+' units of product is not available!')
+            self.showMessage('Input Error', units + ' units of product is not available!')
             return
         units = int(units)
         productCode = int(productCode)
@@ -540,6 +540,12 @@ class UISuperMarket(QMainWindow):
         self.setCentralWidget(self.centralwidget)
         self.setContentsMargins(0, 20, 0, 0)
 
+        file = QFile('main.qss')
+        if not file.open(QFile.ReadOnly | QFile.Text):
+            raise Exception("FileNotFound")
+        qss = QTextStream(file)
+        self.setStyleSheet(qss.readAll())
+
         self.crt = Cart()
         self.inv = Inventory()
 
@@ -588,3 +594,6 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     ui = UISuperMarket()
     sys.exit(app.exec_())
+
+    # setup stylesheet
+

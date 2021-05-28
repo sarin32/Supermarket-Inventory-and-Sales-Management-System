@@ -2,77 +2,11 @@
 <ui version="4.0">
  <class>purchase</class>
  <widget class="QWidget" name="purchase">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>693</width>
-    <height>370</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>Form</string>
-  </property>
   <property name="styleSheet">
-   <string notr="true">QWidget#purchase{
-	background-color:rgb(0, 124, 124);
-}
-QLabel{
-	font: 15px  &quot;Centular&quot;;
-}
-QPushButton{
-	font: 15px  &quot;Centular&quot;;
-	background-color:rgb(0, 124, 124);
-}
-
-QLabel#h_1 ,QLabel#h_2, QLabel#h_3{
-	font: bold 16px  &quot;Centular&quot;;
-}
-
-QFrame#mainframe_1, QFrame#mainframe_2,  QFrame#mainframe_3{
-	background-color:rgb(51, 152, 152);
-	border-radius:6px;
-}
-
-QComboBox,QSpinBox,QLineEdit{
-	background-color:rgb(255, 255, 255);
-	color:#000;
-	border-radius:3px;
-}
-QMessageBox{
-	background-color: rgb(51, 152, 152);
-}
-
-QTableWidget
-{
-	gridline-color: #ffffff;
-	background-color: transparent;
-	border:1px solid rgb(255, 255, 255);
-	font: 13px  &quot;Centular&quot;;
-}
-QHeaderView {
-	background-color: transparent;
-}
-QHeaderView::section {
-	background-color: rgb(0, 124, 124);
-	font: bold 13px  &quot;Centular&quot; ;
-	border-bottom: 1px solid #fff;
-    border-right: 1px solid #fff;
-}
-QHeaderView::section:horizontal
-{
-    border-top: 1px solid #fff;
-}
-QHeaderView::section:vertical
-{
-    border-left: 1px solid #fff;
-}
-QTableWidget::item::selected 
-{
- Color:#000; 
- Background: #fff;
-}
- </string>
+   <string notr="true"/>
+  </property>
+  <property name="type" stdset="0">
+   <string>main</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
@@ -90,8 +24,237 @@ QTableWidget::item::selected
    <property name="spacing">
     <number>3</number>
    </property>
-   <item row="0" column="0">
-    <widget class="QFrame" name="mainframe_1">
+   <item row="2" column="0">
+    <widget class="QFrame" name="frame_3">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="type" stdset="0">
+      <string>mainframe</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="2" column="0">
+       <widget class="QFrame" name="frame_2">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item alignment="Qt::AlignLeft">
+          <widget class="QFrame" name="frame_5">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>30</height>
+            </size>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QLabel" name="labelTotal">
+              <property name="text">
+               <string>Total Cost :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="labelCost">
+              <property name="text">
+               <string>0.0</string>
+              </property>
+              <property name="type" stdset="0">
+               <string>bold</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="labelRs">
+              <property name="text">
+               <string>Rs.</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item alignment="Qt::AlignRight">
+          <widget class="QFrame" name="frame_4">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QPushButton" name="buttonClearAll">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>125</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="text">
+               <string>Clear All</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="buttonRemove">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>125</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="text">
+               <string>Remove</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="buttonPurchase">
+              <property name="minimumSize">
+               <size>
+                <width>125</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>125</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="text">
+               <string>Purchase</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QTableWidget" name="tableCart">
+        <property name="maximumSize">
+         <size>
+          <width>800</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>Product Code</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Product Name</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Brand</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>category</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Units</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Prize/Unit</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Cost</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Cart</string>
+        </property>
+        <property name="type" stdset="0">
+         <string>heading</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QFrame" name="frame">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -104,15 +267,12 @@ QTableWidget::item::selected
        <height>170</height>
       </size>
      </property>
-     <property name="styleSheet">
-      <string notr="true"/>
+     <property name="type" stdset="0">
+      <string>mainframe</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="6" column="4">
-       <widget class="QLabel" name="labelUnits">
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
+       <widget class="QLabel" name="label_6">
         <property name="text">
          <string>Units</string>
         </property>
@@ -141,17 +301,14 @@ QTableWidget::item::selected
        </widget>
       </item>
       <item row="6" column="3">
-       <widget class="QLabel" name="labelBrand">
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
+       <widget class="QLabel" name="label_2">
         <property name="text">
          <string>Brand</string>
         </property>
        </widget>
       </item>
       <item row="0" column="0" colspan="5">
-       <widget class="QLabel" name="h_1">
+       <widget class="QLabel" name="label">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -167,11 +324,11 @@ QTableWidget::item::selected
           <height>30</height>
          </size>
         </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
         <property name="text">
          <string>Select Product</string>
+        </property>
+        <property name="type" stdset="0">
+         <string>heading</string>
         </property>
        </widget>
       </item>
@@ -195,9 +352,6 @@ QTableWidget::item::selected
           <width>16777215</width>
           <height>50</height>
          </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
@@ -267,10 +421,7 @@ QTableWidget::item::selected
        </widget>
       </item>
       <item row="6" column="2">
-       <widget class="QLabel" name="labelCategory">
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
+       <widget class="QLabel" name="label_3">
         <property name="text">
          <string>Category</string>
         </property>
@@ -290,15 +441,12 @@ QTableWidget::item::selected
        </widget>
       </item>
       <item row="6" column="1">
-       <widget class="QLabel" name="labelName">
+       <widget class="QLabel" name="label_4">
         <property name="maximumSize">
          <size>
           <width>16777215</width>
           <height>25</height>
          </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
         </property>
         <property name="text">
          <string>Product Name</string>
@@ -306,10 +454,7 @@ QTableWidget::item::selected
        </widget>
       </item>
       <item row="6" column="0">
-       <widget class="QLabel" name="labelCode">
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
+       <widget class="QLabel" name="label_5">
         <property name="text">
          <string>Product Code</string>
         </property>
@@ -328,223 +473,6 @@ QTableWidget::item::selected
           <width>125</width>
           <height>25</height>
          </size>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QFrame" name="mainframe_2">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_4">
-      <item row="3" column="0" alignment="Qt::AlignLeft">
-       <widget class="QFrame" name="frameCost">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QLabel" name="labelTotal">
-           <property name="styleSheet">
-            <string notr="true"/>
-           </property>
-           <property name="text">
-            <string>Total Cost :</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="labelCost">
-           <property name="styleSheet">
-            <string notr="true"/>
-           </property>
-           <property name="text">
-            <string>0.0</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="labelRs">
-           <property name="styleSheet">
-            <string notr="true"/>
-           </property>
-           <property name="text">
-            <string>Rs.</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="3" column="1" alignment="Qt::AlignRight">
-       <widget class="QFrame" name="frameCartButtons">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>50</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>50</height>
-         </size>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <item>
-          <widget class="QPushButton" name="buttonClearAll">
-           <property name="minimumSize">
-            <size>
-             <width>125</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>125</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="cursor">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <property name="text">
-            <string>Clear All</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="buttonRemove">
-           <property name="minimumSize">
-            <size>
-             <width>125</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>125</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="cursor">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <property name="text">
-            <string>Remove</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="buttonPurchase">
-           <property name="minimumSize">
-            <size>
-             <width>125</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>125</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="cursor">
-            <cursorShape>PointingHandCursor</cursorShape>
-           </property>
-           <property name="text">
-            <string>Purchase</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="2" column="0" colspan="2" alignment="Qt::AlignHCenter">
-       <widget class="QTableWidget" name="tableCart">
-        <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
-        </property>
-        <property name="editTriggers">
-         <set>QAbstractItemView::NoEditTriggers</set>
-        </property>
-        <property name="selectionMode">
-         <enum>QAbstractItemView::SingleSelection</enum>
-        </property>
-        <property name="selectionBehavior">
-         <enum>QAbstractItemView::SelectRows</enum>
-        </property>
-        <column>
-         <property name="text">
-          <string>Product Code</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Product Name</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Brand</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>category</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Units</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Prize/Unit</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Cost</string>
-         </property>
-        </column>
-       </widget>
-      </item>
-      <item row="0" column="0" colspan="2">
-       <widget class="QLabel" name="h_2">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="text">
-         <string>Cart</string>
         </property>
        </widget>
       </item>

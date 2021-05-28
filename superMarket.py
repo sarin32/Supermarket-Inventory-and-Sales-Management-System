@@ -66,6 +66,8 @@ class Cart:
 
     def clearCart(self):
         self.cart.clear()
+
+
 # noinspection PyMethodMayBeStatic
 class Inventory:
     def __init__(self):
