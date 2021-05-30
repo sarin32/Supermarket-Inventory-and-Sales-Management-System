@@ -1,8 +1,4 @@
 
-<p align="center">
-  <img src="assets/images/contribution_cover.png" width="700" align="center"/>
-</p><br>
-
 # Contributing to the Project
 
 > First of all, thanks for considering or taking the time to contribute!
@@ -15,7 +11,7 @@ The following is a simple guide on contributing to this Project. These are mostl
 
 ### Do you intend to add a new feature or change an existing one?
 
-- Suggest your idea to [my email](mailto:saad01.1999@gmail.com) and start development on your idea.
+- Suggest your idea to [my email](mailto: sarinalexander02@gmail.com) and start development on your idea.
 - Do not open an issue on GitHub until you have collected positive feedback about the change. GitHub issues are primarily intended for bug reports and fixes.
 - If you want to add to this project, I have a list of features to add in the future [here](README.md#future-improvements). It would be best if you pick a feature from this list to develop on.
 - Once development is complete, make a pull request to this project's master branch. Ensure the Pull Request's description clearly (and in detail) defines the goal, functionality and purpose of the new feature as well as details on the changes in original Project files.
@@ -32,7 +28,7 @@ The following is a simple guide on contributing to this Project. These are mostl
 
 ### Do you have questions about the source code?
 
-- Ask any questions related to the Project to [my email](mailto:saad01.1999@gmail.com).
+- Ask any questions related to the Project to [my email](mailto: sarinalexander02@gmail.com).
 
 
 > Any contribution from you guys would be greatly appreciated and welcomed.
