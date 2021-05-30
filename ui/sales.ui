@@ -13,6 +13,117 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">/*======================= QWidget=======================*/
+QWidget[type=&quot;main&quot;]{
+    background-color:rgb(0, 124, 124);
+}
+/*=======================================================*/
+
+/*======================= QLabel=========================*/
+QLabel{
+    font: 15px  &quot;Centular&quot;;
+}
+QLabel[type=&quot;bold&quot;]{
+    font-weight:bold;
+}
+QLabel[type=&quot;heading&quot;]{
+    font-weight:bold;
+    font-size:16px;
+}
+/*=======================================================*/
+
+/*======================= QPushButton=========================*/
+QPushButton{
+    font: 15px  &quot;Centular&quot;;
+    background-color:rgb(0, 124, 124);
+}
+/*=======================================================*/
+
+/*======================= QFrame=========================*/
+QFrame[type = &quot;mainframe&quot;]{
+    background-color:rgb(51, 152, 152);
+	border-radius:6px;
+}
+/*=======================================================*/
+
+/*======================= QGroupBox=========================*/
+QGroupBox {
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin-top:12px;
+    font: bold 12px  &quot;Centular&quot;;
+ }
+ QGroupBox::title {
+    subcontrol-origin: margin;
+    font: 8pt &quot;MS Sans Serif&quot;;
+ }
+/*=======================================================*/
+
+/*======================= inputs=========================*/
+QComboBox,QSpinBox,QLineEdit{
+	background-color:rgb(255, 255, 255);
+	color:#000;
+	border-radius:3px;
+}
+QMessageBox,QInputDialog{
+	background-color: rgb(51, 152, 152);
+}
+/*=======================================================*/
+
+/*======================= tables=========================*/
+QTableWidget{
+	gridline-color: #ffffff;
+	background-color: transparent;
+	border:1px solid rgb(255, 255, 255);
+	font: 13px  &quot;Centular&quot;;
+}
+QHeaderView {
+	background-color: transparent;
+}
+QHeaderView::section {
+	background-color: rgb(0, 124, 124);
+	font: bold 13px  &quot;Centular&quot; ;
+	border-bottom: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+QHeaderView::section:horizontal{
+    border-top: 1px solid #fff;
+}
+QHeaderView::section:vertical{
+    border-left: 1px solid #fff;
+}
+QTableWidget::item::selected{
+    Color:#000;
+    Background: #fff;
+}
+/*=======================================================*/
+
+/*======================= menubar=========================*/
+QMenuBar{
+    background-color: #333399;
+    color: #999;
+}
+QMenuBar::item{
+    background-color: #333399;
+    color: #999;
+}
+QMenuBar::item::selected{
+    background-color: #3399cc;
+    color: #fff;
+}
+QMenu{
+    background-color: #3399cc;
+    color: #fff;
+}
+QMenu::item::selected{
+    background-color: #333399;
+    color: #999;
+}
+/*=======================================================*/
+
+</string>
+  </property>
   <property name="type" stdset="0">
    <string>main</string>
   </property>
@@ -34,6 +145,9 @@
    </property>
    <item>
     <widget class="QFrame" name="mainframe_1">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -64,7 +178,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="comboBox_2">
+          <widget class="QComboBox" name="fieldMonth">
            <property name="minimumSize">
             <size>
              <width>125</width>
@@ -144,6 +258,7 @@
            <property name="font">
             <font>
              <family>Centular</family>
+             <pointsize>-1</pointsize>
              <weight>50</weight>
              <italic>false</italic>
              <bold>false</bold>
@@ -155,7 +270,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="comboBox">
+          <widget class="QComboBox" name="fieldYear">
            <property name="minimumSize">
             <size>
              <width>125</width>
@@ -170,15 +285,50 @@
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLabel" name="label_6">
-           <property name="text">
-            <string>Sale Amount: 0.0 Rs</string>
+         <item alignment="Qt::AlignLeft">
+          <widget class="QFrame" name="frame_6">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>30</height>
+            </size>
            </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>30</height>
+            </size>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QLabel" name="labelTotal_2">
+              <property name="text">
+               <string>Sale Amount</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="labelMonthlyAmount">
+              <property name="text">
+               <string>0.0</string>
+              </property>
+              <property name="type" stdset="0">
+               <string>bold</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="labelRs_2">
+              <property name="text">
+               <string>Rs.</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="buttonCheck">
            <property name="maximumSize">
             <size>
              <width>100</width>
@@ -188,6 +338,7 @@
            <property name="font">
             <font>
              <family>Centular</family>
+             <pointsize>-1</pointsize>
              <weight>50</weight>
              <italic>false</italic>
              <bold>false</bold>
@@ -239,16 +390,19 @@
           </widget>
          </item>
          <item row="1" column="0">
-          <widget class="QTableWidget" name="tableWidget">
+          <widget class="QTableWidget" name="tableSales">
            <property name="maximumSize">
             <size>
-             <width>800</width>
+             <width>500</width>
              <height>16777215</height>
             </size>
            </property>
+           <attribute name="verticalHeaderVisible">
+            <bool>false</bool>
+           </attribute>
            <column>
             <property name="text">
-             <string>Sl. No.</string>
+             <string>Sale Id</string>
             </property>
            </column>
            <column>
@@ -330,7 +484,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="labelCost">
+                <widget class="QLabel" name="labeldailyAmount">
                  <property name="text">
                   <string>0.0</string>
                  </property>
@@ -360,7 +514,7 @@
         <property name="maximumSize">
          <size>
           <width>340</width>
-          <height>250</height>
+          <height>280</height>
          </size>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -375,17 +529,10 @@
           </widget>
          </item>
          <item>
-          <widget class="QCalendarWidget" name="calendarWidget">
-           <property name="maximumSize">
-            <size>
-             <width>320</width>
-             <height>5000</height>
-            </size>
-           </property>
-          </widget>
+          <widget class="QCalendarWidget" name="calendar"/>
          </item>
          <item alignment="Qt::AlignRight">
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="buttonLoad">
            <property name="text">
             <string>Load</string>
            </property>

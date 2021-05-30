@@ -1,0 +1,114 @@
+/*======================= QWidget=======================*/
+QWidget[type="main"]{
+    background-color:#ddd;
+}
+/*=======================================================*/
+
+/*======================= QLabel=========================*/
+QLabel{
+    font: 15px  "Centular" ;
+    color:#333;
+}
+QLabel[type="bold"]{
+    font-weight:bold;
+}
+QLabel[type="heading"]{
+    color:#222;
+    font-weight:bold;
+    font-size:16px;
+}
+/*=======================================================*/
+
+/*=======================QPushButton=========================*/
+QPushButton{
+    font: 15px  "Centular";
+    background-color:#339898;
+}
+QPushButton:hover{
+    color: #fff;
+}
+/*=======================================================*/
+
+/*=======================Containers=========================*/
+QFrame[type = "mainframe"]{
+    background-color:#ffffff;
+    border: 1px solid #edf2f7;
+	border-radius:6px;
+}
+QGroupBox {
+    background-color:#ffffff;
+    border: 1px solid #edf2f7;
+    border-radius: 5px;
+    margin-top:12px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    font: 8pt "MS Sans Serif";
+ }
+/*=======================================================*/
+
+/*======================= inputs=========================*/
+QComboBox,QSpinBox,QLineEdit{
+	background-color:#eee;
+	border: 1px solid #ddd;
+	color:#000;
+	border-radius:2px;
+}
+QMessageBox,QInputDialog{
+	background-color: rgb(51, 152, 152);
+}
+/*=======================================================*/
+
+/*======================= tables=========================*/
+QTableWidget{
+	gridline-color: #666;
+	background-color: #fff;
+	border:1px solid #666;
+	font: 13px  "Centular";
+}
+QHeaderView {
+	background-color: transparent;
+}
+QHeaderView::section {
+	background-color: #339898;
+	font: bold 13px  "Centular" ;
+	border-bottom: 1px solid #666;
+    border-right: 1px solid #666;
+}
+QHeaderView::section:horizontal{
+    border-top: 1px solid #666;
+}
+QHeaderView::section:vertical{
+    border-left: 1px solid #666;
+}
+QTableWidget::item::selected{
+    Color:#000;
+    Background: #666;
+}
+/*=======================================================*/
+
+/*======================= menubar=========================*/
+QMenuBar{
+    background-color: #fff;
+    color: #333;
+}
+QMenuBar::item{
+    background-color: #fff;
+    color: #333;
+}
+QMenuBar::item::selected{
+    background-color: #339898;
+    color: #fff;
+}
+QMenu{
+    background-color: #3399cc;
+    color: #fff;
+}
+QMenu::item::selected{
+    background-color: #339898;
+    color: #fff;
+}
+/*=======================================================*/
+QMessageBox{
+background-color:#fff;
+}

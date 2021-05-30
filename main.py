@@ -3,6 +3,7 @@ This is the runner file of the application
 Mainwindow is created and other widgets are added in this file
 """
 import sys
+from datetime import datetime
 
 from PyQt5.QtCore import QRect, QFile, QTextStream
 from PyQt5.QtGui import QIcon, QDoubleValidator
@@ -528,6 +529,48 @@ class UISales(Ui_sales):
         self.inv = inv
         self.setupUi(widget)
 
+        self.buttonCheck.clicked.connect(lambda: self.check())
+        self.buttonLoad.clicked.connect(lambda: self.setupSalesTableData())
+
+        # setup tables
+        header = self.tableSales.horizontalHeader()
+        header.setSectionResizeMode(1, QHeaderView.Stretch)
+        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(3, QHeaderView.ResizeToContents)
+        self.setupSalesTableData()
+
+        #setup year field
+        start = 2018
+        end = datetime.now().year
+        for year in range(end,start,-1):
+            self.fieldYear.addItem(str(year))
+
+    def check(self):
+        month = self.fieldMonth.currentIndex() + 1
+        year = int(self.fieldYear.currentText())
+        amount=self.inv.getMonthlySaleAmount(month, year)
+        self.labelMonthlyAmount.setText(str(float(amount)))
+
+    def showMessage(self, title, message):
+        """method to show any message to the user with a title and description"""
+        msg = QMessageBox()
+        msg.about(self.widget, title, message)
+
+    def setupSalesTableData(self):
+        self.tableSales.setRowCount(0)
+        date = self.calendar.selectedDate()
+        pydate = str(date.toPyDate())
+        data = self.inv.getSalesDetails(pydate)
+        total = self.inv.getTotalSaleAmount()
+        if not data:
+            self.showMessage('Information', 'No sales at specified date')
+        for i, row in enumerate(data):
+            self.tableSales.insertRow(i)
+            for j, item in enumerate(row):
+                newItem = QTableWidgetItem(item)
+                self.tableSales.setItem(i, j, newItem)
+        self.labeldailyAmount.setText(str(total))
 
 class UISuperMarket(QMainWindow):
     def __init__(self):
@@ -540,7 +583,7 @@ class UISuperMarket(QMainWindow):
         self.setCentralWidget(self.centralwidget)
         self.setContentsMargins(0, 20, 0, 0)
 
-        file = QFile('main.qss')
+        file = QFile('stylesheets/main.qss')
         if not file.open(QFile.ReadOnly | QFile.Text):
             raise Exception("FileNotFound")
         qss = QTextStream(file)
@@ -590,10 +633,10 @@ class UISuperMarket(QMainWindow):
         sales.triggered.connect(lambda: self.setWidget(self.salesWidget))
 
 
+# runner
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ui = UISuperMarket()
     sys.exit(app.exec_())
 
     # setup stylesheet
-
