@@ -9,7 +9,10 @@ from PyQt5.QtCore import QRect, QFile, QTextStream
 from PyQt5.QtGui import QIcon, QDoubleValidator
 from PyQt5.QtWidgets import *
 
-from superMarket import Cart, Inventory
+from cart import Cart
+from products import Products
+from sales import Sales
+
 from ui.products import Ui_products
 from ui.purchase import Ui_purchase
 from ui.sales import Ui_sales
@@ -17,16 +20,16 @@ from ui.stock import Ui_stock
 
 
 class UIProducts(Ui_products):
-    def __init__(self, widget, inv):
+    def __init__(self, widget):
         self.widget = widget
-        self.inv = inv
+        self.products = Products()
         self.setupUi(widget)
         self.fieldPrize.setValidator(QDoubleValidator(0, 10000, 2))
         # initialize combobox
         self.fieldBrand.addItem('select')
-        self.fieldBrand.addItems(self.inv.getBrandsData(b_id=False, name=True))
+        self.fieldBrand.addItems(self.products.getBrandsData(b_id=False, name=True))
         self.fieldCategory.addItem('select')
-        self.fieldCategory.addItems(self.inv.getCategoriesData(c_id=False, name=True))
+        self.fieldCategory.addItems(self.products.getCategoriesData(c_id=False, name=True))
         # event updates
         self.buttonClear.clicked.connect(lambda: self.clear())
         self.buttonAddProduct.clicked.connect(lambda: self.addProduct())
@@ -57,7 +60,7 @@ class UIProducts(Ui_products):
 
     def setBrandTableData(self):
         self.tableBrands.setRowCount(0)
-        data = self.inv.getBrandsData(b_id=True, name=True)
+        data = self.products.getBrandsData(b_id=True, name=True)
         for i, row in enumerate(data):
             self.tableBrands.insertRow(i)
             for j, item in enumerate(row):
@@ -66,7 +69,7 @@ class UIProducts(Ui_products):
 
     def setCategoryTableData(self):
         self.tableCategories.setRowCount(0)
-        data = self.inv.getCategoriesData(c_id=True, name=True)
+        data = self.products.getCategoriesData(c_id=True, name=True)
         for i, row in enumerate(data):
             self.tableCategories.insertRow(i)
             for j, item in enumerate(row):
@@ -75,7 +78,7 @@ class UIProducts(Ui_products):
 
     def setProductsTableData(self):
         self.tableProducts.setRowCount(0)
-        data = self.inv.getProductsData(True, True)
+        data = self.products.getProductsData(True, True)
         for i, row in enumerate(data):
             self.tableProducts.insertRow(i)
             for j, item in enumerate(row):
@@ -89,11 +92,11 @@ class UIProducts(Ui_products):
 
         self.fieldCategory.clear()
         self.fieldCategory.addItem('select')
-        self.fieldCategory.addItems(self.inv.getCategoriesData(c_id=False, name=True))
+        self.fieldCategory.addItems(self.products.getCategoriesData(c_id=False, name=True))
 
         self.fieldBrand.clear()
         self.fieldBrand.addItem('select')
-        self.fieldBrand.addItems(self.inv.getBrandsData(b_id=False, name=True))
+        self.fieldBrand.addItems(self.products.getBrandsData(b_id=False, name=True))
 
     def addProduct(self):
         name = self.fieldName.text()
@@ -105,7 +108,7 @@ class UIProducts(Ui_products):
         if name == '' or len(name) <= 5:
             self.showMessage('Input Error', 'Please enter valid name')
             return
-        if name in self.inv.getProductsData(name=True):
+        if name in self.products.getProductsData(name=True):
             self.showMessage('Input Error', 'Product already exists!')
             return
         if brand == 'select':
@@ -123,9 +126,9 @@ class UIProducts(Ui_products):
 
         stock = int(stock)
         prize = float(prize)
-        category = self.inv.getCategoryId(category)
-        brand = self.inv.getBrandId(brand)
-        self.inv.addProduct(name, brand, category, stock, prize)
+        category = self.products.getCategoryId(category)
+        brand = self.products.getBrandId(brand)
+        self.products.addProduct(name, brand, category, stock, prize)
         self.setProductsTableData()
         self.clear()
         self.showMessage('Product added', name + ' added to products successfully')
@@ -136,10 +139,10 @@ class UIProducts(Ui_products):
         if brand == '':
             self.showMessage('Input Error', 'Please enter valid brand name')
             return
-        if brand in self.inv.getBrandsData(b_id=False, name=True):
+        if brand in self.products.getBrandsData(b_id=False, name=True):
             self.showMessage('Input Error', 'Brand already exists!')
             return
-        self.inv.addBrand(brand)
+        self.products.addBrand(brand)
         self.fieldNewBrand.clear()
         self.setBrandTableData()
         self.clear()
@@ -151,10 +154,10 @@ class UIProducts(Ui_products):
         if category == '':
             self.showMessage('Input Error', 'Please enter valid category name')
             return
-        if category in self.inv.getCategoriesData(c_id=False, name=True):
+        if category in self.products.getCategoriesData(c_id=False, name=True):
             self.showMessage('Input Error', 'Category already exists!')
             return
-        self.inv.addCategory(category)
+        self.products.addCategory(category)
         self.fieldNewCategory.clear()
         self.setCategoryTableData()
         self.clear()
@@ -168,7 +171,7 @@ class UIProducts(Ui_products):
             p_name = self.tableProducts.selectedItems()[1].text()
             x = self.askQuestion('Deletion Warning', 'Do you really want to delete the product ' + p_name + '?')
             if x:
-                self.inv.deleteProduct(p_id)
+                self.products.deleteProduct(p_id)
                 self.setProductsTableData()
 
     def deleteBrand(self):
@@ -179,8 +182,8 @@ class UIProducts(Ui_products):
             b_name = self.tableBrands.selectedItems()[1].text()
             x = self.askQuestion('Deletion Warning', 'Do you really want to delete the brand ' + b_name + '?')
             if x:
-                if self.inv.isDeletableBrand(b_id):
-                    self.inv.deleteBrand(b_id)
+                if self.products.isDeletableBrand(b_id):
+                    self.products.deleteBrand(b_id)
                     self.setBrandTableData()
                 else:
                     self.showMessage('Deletion Error',
@@ -195,8 +198,8 @@ class UIProducts(Ui_products):
             c_name = self.tableCategories.selectedItems()[1].text()
             x = self.askQuestion('Deletion Warning', 'Do you really want to delete the category ' + c_name + '?')
             if x:
-                if self.inv.isDeletableCategory(c_id):
-                    self.inv.deleteCategory(c_id)
+                if self.products.isDeletableCategory(c_id):
+                    self.products.deleteCategory(c_id)
                     self.setCategoryTableData()
                 else:
                     self.showMessage('Deletion Error',
@@ -210,7 +213,7 @@ class UIProducts(Ui_products):
             p_id = self.tableProducts.selectedItems()[0].text()
             name = self.showDialog('Update Product Name', 'Enter modified product name')
             if name:
-                self.inv.updateProduct(p_id, name)
+                self.products.updateProduct(p_id, name)
                 self.setProductsTableData()
 
     def updateBrand(self):
@@ -220,7 +223,7 @@ class UIProducts(Ui_products):
             b_id = self.tableBrands.selectedItems()[0].text()
             name = self.showDialog('Update Brand Name', 'Enter modified brand name')
             if name:
-                self.inv.updateBrand(b_id, name)
+                self.products.updateBrand(b_id, name)
                 self.setBrandTableData()
 
     def updateCategory(self):
@@ -230,7 +233,7 @@ class UIProducts(Ui_products):
             p_id = self.tableCategories.selectedItems()[0].text()
             name = self.showDialog('Update category Name', 'Enter modified category name')
             if name:
-                self.inv.updateCategory(p_id, name)
+                self.products.updateCategory(p_id, name)
                 self.setCategoryTableData()
 
     def showMessage(self, title, message):
@@ -251,18 +254,17 @@ class UIProducts(Ui_products):
 
 
 class UIPurchase(Ui_purchase):
-    def __init__(self, widget, crt, inv):
+    def __init__(self, widget):
         self.widget = widget
-        self.crt = crt
-        self.inv = inv
+        self.crt = Cart()
         self.setupUi(widget)
         # initialize combobox
         self.fieldBrand.addItem('select')
-        self.fieldBrand.addItems(self.inv.getBrandsData(b_id=False, name=True))
+        self.fieldBrand.addItems(self.crt.getBrandsData(b_id=False, name=True))
         self.fieldCategory.addItem('select')
-        self.fieldCategory.addItems(self.inv.getCategoriesData(c_id=False, name=True))
+        self.fieldCategory.addItems(self.crt.getCategoriesData(c_id=False, name=True))
         self.fieldName.addItem('select')
-        self.fieldName.addItems(self.inv.getProductsData(name=True))
+        self.fieldName.addItems(self.crt.getProductsData(name=True))
         # event updates
         self.buttonClear.clicked.connect(lambda: self.clear())
         self.buttonAdd.clicked.connect(lambda: self.AddToCart())
@@ -292,15 +294,15 @@ class UIPurchase(Ui_purchase):
 
         self.fieldBrand.clear()
         self.fieldBrand.addItem('select')
-        self.fieldBrand.addItems(self.inv.getBrandsData(b_id=False, name=True))
+        self.fieldBrand.addItems(self.crt.getBrandsData(b_id=False, name=True))
 
         self.fieldCategory.clear()
         self.fieldCategory.addItem('select')
-        self.fieldCategory.addItems(self.inv.getCategoriesData(c_id=False, name=True))
+        self.fieldCategory.addItems(self.crt.getCategoriesData(c_id=False, name=True))
 
         self.fieldName.clear()
         self.fieldName.addItem('select')
-        self.fieldName.addItems(self.inv.getProductsData(name=True))
+        self.fieldName.addItems(self.crt.getProductsData(name=True))
 
     def AddToCart(self):
         """method to add items to the cart"""
@@ -315,7 +317,7 @@ class UIPurchase(Ui_purchase):
         if self.crt.isExistingProduct(int(productCode)):
             self.showMessage('Input Error', 'Product already Exist in cart!')
             return
-        if int(self.inv.getProductDetails(productCode)[4]) < int(units):
+        if int(self.crt.getProductDetails(productCode)[4]) < int(units):
             self.showMessage('Input Error', units + ' units of product is not available!')
             return
         units = int(units)
@@ -336,13 +338,13 @@ class UIPurchase(Ui_purchase):
             brand = self.fieldBrand.currentText()
         if self.fieldCategory.currentIndex() != 0:
             category = self.fieldCategory.currentText()
-        self.fieldName.addItems(self.inv.getProductsData(name=True, filterBrand=brand, filterCategory=category))
+        self.fieldName.addItems(self.crt.getProductsData(name=True, filterBrand=brand, filterCategory=category))
 
     def productCodeChange(self):
         """method to update all other fields when fieldCode is changed by user"""
         code = self.fieldCode.text()
         if code != '':
-            details = self.inv.getProductDetails(code)
+            details = self.crt.getProductDetails(code)
             if details is not None:
                 name = details[1]
                 brand = details[2]
@@ -351,7 +353,7 @@ class UIPurchase(Ui_purchase):
                 self.fieldCategory.setCurrentText(category)
                 self.fieldName.clear()
                 self.fieldName.addItem('select')
-                self.fieldName.addItems(self.inv.getProductsData(name=True, filterBrand=brand, filterCategory=category))
+                self.fieldName.addItems(self.crt.getProductsData(name=True, filterBrand=brand, filterCategory=category))
                 self.fieldName.setCurrentText(name)
             else:
                 self.fieldCode.clear()
@@ -362,8 +364,8 @@ class UIPurchase(Ui_purchase):
         if self.fieldName.currentText() == 'select':
             self.clear()
             return
-        code = self.inv.getProductId(self.fieldName.currentText())
-        details = self.inv.getProductDetails(code)
+        code = self.crt.getProductId(self.fieldName.currentText())
+        details = self.crt.getProductDetails(code)
         name = details[1]
         brand = details[2]
         category = details[3]
@@ -372,7 +374,7 @@ class UIPurchase(Ui_purchase):
         self.fieldCode.setText(code)
         self.fieldName.clear()
         self.fieldName.addItem('select')
-        self.fieldName.addItems(self.inv.getProductsData(name=True, filterBrand=brand, filterCategory=category))
+        self.fieldName.addItems(self.crt.getProductsData(name=True, filterBrand=brand, filterCategory=category))
         self.fieldName.setCurrentText(name)
 
     def showMessage(self, title, message):
@@ -423,16 +425,16 @@ class UIPurchase(Ui_purchase):
 
 
 class UIStock(Ui_stock):
-    def __init__(self, widget, inv):
+    def __init__(self, widget):
         self.widget = widget
-        self.inv = inv
+        self.products = Products()
         self.setupUi(widget)
 
         # initialize combobox
         self.fieldBrand.addItem('select')
-        self.fieldBrand.addItems(self.inv.getBrandsData(b_id=False, name=True))
+        self.fieldBrand.addItems(self.products.getBrandsData(b_id=False, name=True))
         self.fieldCategory.addItem('select')
-        self.fieldCategory.addItems(self.inv.getCategoriesData(c_id=False, name=True))
+        self.fieldCategory.addItems(self.products.getCategoriesData(c_id=False, name=True))
 
         # event updates
         self.buttonClear.clicked.connect(lambda: self.clear())
@@ -453,11 +455,11 @@ class UIStock(Ui_stock):
     def clear(self):
         self.fieldBrand.clear()
         self.fieldBrand.addItem('select')
-        self.fieldBrand.addItems(self.inv.getBrandsData(b_id=False, name=True))
+        self.fieldBrand.addItems(self.products.getBrandsData(b_id=False, name=True))
 
         self.fieldCategory.clear()
         self.fieldCategory.addItem('select')
-        self.fieldCategory.addItems(self.inv.getCategoriesData(c_id=False, name=True))
+        self.fieldCategory.addItems(self.products.getCategoriesData(c_id=False, name=True))
 
         self.fieldType.setCurrentIndex(0)
 
@@ -471,11 +473,11 @@ class UIStock(Ui_stock):
             filterCategory = self.fieldCategory.currentText()
         x = self.fieldType.currentIndex()
         if x == 1:
-            filterType = self.inv.INSTOCK
+            filterType = self.products.INSTOCK
         if x == 2:
-            filterType = self.inv.OUTSTOCK
+            filterType = self.products.OUTSTOCK
         self.tableStock.setRowCount(0)
-        data = self.inv.getProductsData(True, True, True, True, True, True, filterBrand, filterCategory, filterType)
+        data = self.products.getProductsData(True, True, True, True, True, True, filterBrand, filterCategory, filterType)
         for i, row in enumerate(data):
             self.tableStock.insertRow(i)
             for j, item in enumerate(row):
@@ -493,7 +495,7 @@ class UIStock(Ui_stock):
                 self.showMessage('Input Error', 'invalid number of units')
                 return
             if stock:
-                self.inv.updateStock(p_id, stock)
+                self.products.updateStock(p_id, stock)
                 self.loadStock()
 
     def updatePrize(self):
@@ -509,7 +511,7 @@ class UIStock(Ui_stock):
             except TypeError:
                 return
             if prize:
-                self.inv.updatePrize(p_id, prize)
+                self.products.updatePrize(p_id, prize)
                 self.loadStock()
 
     def showMessage(self, title, message):
@@ -524,9 +526,9 @@ class UIStock(Ui_stock):
 
 
 class UISales(Ui_sales):
-    def __init__(self, widget, inv):
+    def __init__(self, widget):
         self.widget = widget
-        self.inv = inv
+        self.sale = Sales()
         self.setupUi(widget)
 
         self.buttonCheck.clicked.connect(lambda: self.check())
@@ -540,16 +542,16 @@ class UISales(Ui_sales):
         header.setSectionResizeMode(3, QHeaderView.ResizeToContents)
         self.setupSalesTableData()
 
-        #setup year field
+        # setup year field
         start = 2018
         end = datetime.now().year
-        for year in range(end,start,-1):
+        for year in range(end, start, -1):
             self.fieldYear.addItem(str(year))
 
     def check(self):
         month = self.fieldMonth.currentIndex() + 1
         year = int(self.fieldYear.currentText())
-        amount=self.inv.getMonthlySaleAmount(month, year)
+        amount = self.sale.getMonthlySaleAmount(month, year)
         self.labelMonthlyAmount.setText(str(float(amount)))
 
     def showMessage(self, title, message):
@@ -561,8 +563,8 @@ class UISales(Ui_sales):
         self.tableSales.setRowCount(0)
         date = self.calendar.selectedDate()
         pydate = str(date.toPyDate())
-        data = self.inv.getSalesDetails(pydate)
-        total = self.inv.getTotalSaleAmount()
+        data = self.sale.getSalesDetails(pydate)
+        total = self.sale.getTotalSaleAmount()
         if not data:
             self.showMessage('Information', 'No sales at specified date')
         for i, row in enumerate(data):
@@ -571,6 +573,7 @@ class UISales(Ui_sales):
                 newItem = QTableWidgetItem(item)
                 self.tableSales.setItem(i, j, newItem)
         self.labeldailyAmount.setText(str(total))
+
 
 class UISuperMarket(QMainWindow):
     def __init__(self):
@@ -589,24 +592,21 @@ class UISuperMarket(QMainWindow):
         qss = QTextStream(file)
         self.setStyleSheet(qss.readAll())
 
-        self.crt = Cart()
-        self.inv = Inventory()
-
         # setup contents of stacked widget
         self.purchaseWidget = QWidget()
-        UIPurchase(self.purchaseWidget, self.crt, self.inv)
+        UIPurchase(self.purchaseWidget)
         self.centralwidget.addWidget(self.purchaseWidget)
 
         self.productsWidget = QWidget()
-        UIProducts(self.productsWidget, self.inv)
+        UIProducts(self.productsWidget)
         self.centralwidget.addWidget(self.productsWidget)
 
         self.stockWidget = QWidget()
-        UIStock(self.stockWidget, self.inv)
+        UIStock(self.stockWidget)
         self.centralwidget.addWidget(self.stockWidget)
 
         self.salesWidget = QWidget()
-        UISales(self.salesWidget, self.inv)
+        UISales(self.salesWidget)
         self.centralwidget.addWidget(self.salesWidget)
 
         # set the widget that should be shown at first
