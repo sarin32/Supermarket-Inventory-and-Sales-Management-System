@@ -1,5 +1,5 @@
-1|closeup everfresh+ 350g|3|6|2|50.0
-2|double deer rice 10kg|4|1|15|450.0
+1|closeup everfresh+ 350g|3|6|0|50.0
+2|double deer rice 10kg|4|1|13|450.0
 3|Double deer rice 25kg|4|1|8|1200.0
 4|Eastea Tea powder 350g|9|10|51|52.0
-5|Eastern chicken Masala 350g|8|9|38|26.0
+5|Eastern chicken Masala 350g|8|9|34|26.0

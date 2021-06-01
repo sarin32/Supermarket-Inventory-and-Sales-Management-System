@@ -5,14 +5,13 @@ Mainwindow is created and other widgets are added in this file
 import sys
 from datetime import datetime
 
-from PyQt5.QtCore import QRect, QFile, QTextStream
-from PyQt5.QtGui import QIcon, QDoubleValidator
+from PyQt5.QtCore import QFile, QRect, QTextStream
+from PyQt5.QtGui import QDoubleValidator, QIcon
 from PyQt5.QtWidgets import *
 
 from cart import Cart
 from products import Products
 from sales import Sales
-
 from ui.products import Ui_products
 from ui.purchase import Ui_purchase
 from ui.sales import Ui_sales
@@ -27,9 +26,11 @@ class UIProducts(Ui_products):
         self.fieldPrize.setValidator(QDoubleValidator(0, 10000, 2))
         # initialize combobox
         self.fieldBrand.addItem('select')
-        self.fieldBrand.addItems(self.products.getBrandsData(b_id=False, name=True))
+        self.fieldBrand.addItems(
+            self.products.getBrandsData(b_id=False, name=True))
         self.fieldCategory.addItem('select')
-        self.fieldCategory.addItems(self.products.getCategoriesData(c_id=False, name=True))
+        self.fieldCategory.addItems(
+            self.products.getCategoriesData(c_id=False, name=True))
         # event updates
         self.buttonClear.clicked.connect(lambda: self.clear())
         self.buttonAddProduct.clicked.connect(lambda: self.addProduct())
@@ -37,10 +38,12 @@ class UIProducts(Ui_products):
         self.buttonAddCategory.clicked.connect(lambda: self.addCategory())
         self.buttonDeleteProduct.clicked.connect(lambda: self.deleteProduct())
         self.buttonDeleteBrand.clicked.connect(lambda: self.deleteBrand())
-        self.buttonDeleteCategory.clicked.connect(lambda: self.deleteCategory())
+        self.buttonDeleteCategory.clicked.connect(
+            lambda: self.deleteCategory())
         self.buttonUpdateProduct.clicked.connect(lambda: self.updateProduct())
         self.buttonUpdateBrand.clicked.connect(lambda: self.updateBrand())
-        self.buttonUpdateCategory.clicked.connect(lambda: self.updateCategory())
+        self.buttonUpdateCategory.clicked.connect(
+            lambda: self.updateCategory())
 
         # setup tables
         header = self.tableBrands.horizontalHeader()
@@ -70,7 +73,6 @@ class UIProducts(Ui_products):
     def setCategoryTableData(self):
         self.tableCategories.setRowCount(0)
         data = self.products.getCategoriesData(c_id=True, name=True)
-        for i, row in enumerate(data):
             self.tableCategories.insertRow(i)
             for j, item in enumerate(row):
                 newItem = QTableWidgetItem(item)
@@ -92,11 +94,13 @@ class UIProducts(Ui_products):
 
         self.fieldCategory.clear()
         self.fieldCategory.addItem('select')
-        self.fieldCategory.addItems(self.products.getCategoriesData(c_id=False, name=True))
+        self.fieldCategory.addItems(
+            self.products.getCategoriesData(c_id=False, name=True))
 
         self.fieldBrand.clear()
         self.fieldBrand.addItem('select')
-        self.fieldBrand.addItems(self.products.getBrandsData(b_id=False, name=True))
+        self.fieldBrand.addItems(
+            self.products.getBrandsData(b_id=False, name=True))
 
     def addProduct(self):
         name = self.fieldName.text()
@@ -131,7 +135,8 @@ class UIProducts(Ui_products):
         self.products.addProduct(name, brand, category, stock, prize)
         self.setProductsTableData()
         self.clear()
-        self.showMessage('Product added', name + ' added to products successfully')
+        self.showMessage('Product added',
+                         name + ' added to products successfully')
 
     def addBrand(self):
         brand = self.fieldNewBrand.text()
@@ -146,7 +151,8 @@ class UIProducts(Ui_products):
         self.fieldNewBrand.clear()
         self.setBrandTableData()
         self.clear()
-        self.showMessage('Brand added', brand + ' added to brands successfully')
+        self.showMessage('Brand added',
+                         brand + ' added to brands successfully')
 
     def addCategory(self):
         category = self.fieldNewCategory.text()
@@ -161,7 +167,8 @@ class UIProducts(Ui_products):
         self.fieldNewCategory.clear()
         self.setCategoryTableData()
         self.clear()
-        self.showMessage('Category added', category + ' added to categories successfully')
+        self.showMessage('Category added',
+                         category + ' added to categories successfully')
 
     def deleteProduct(self):
         if not self.tableProducts.selectedItems():
@@ -169,7 +176,9 @@ class UIProducts(Ui_products):
         else:
             p_id = self.tableProducts.selectedItems()[0].text()
             p_name = self.tableProducts.selectedItems()[1].text()
-            x = self.askQuestion('Deletion Warning', 'Do you really want to delete the product ' + p_name + '?')
+            x = self.askQuestion(
+                'Deletion Warning',
+                'Do you really want to delete the product ' + p_name + '?')
             if x:
                 self.products.deleteProduct(p_id)
                 self.setProductsTableData()
@@ -180,15 +189,18 @@ class UIProducts(Ui_products):
         else:
             b_id = self.tableBrands.selectedItems()[0].text()
             b_name = self.tableBrands.selectedItems()[1].text()
-            x = self.askQuestion('Deletion Warning', 'Do you really want to delete the brand ' + b_name + '?')
+            x = self.askQuestion(
+                'Deletion Warning',
+                'Do you really want to delete the brand ' + b_name + '?')
             if x:
                 if self.products.isDeletableBrand(b_id):
                     self.products.deleteBrand(b_id)
                     self.setBrandTableData()
                 else:
-                    self.showMessage('Deletion Error',
-                                     'Some products exists with this brand!. You can only update the brand name until '
-                                     'the products exist.')
+                    self.showMessage(
+                        'Deletion Error',
+                        'Some products exists with this brand!. You can only update the brand name until '
+                        'the products exist.')
 
     def deleteCategory(self):
         if not self.tableCategories.selectedItems():
@@ -196,22 +208,26 @@ class UIProducts(Ui_products):
         else:
             c_id = self.tableCategories.selectedItems()[0].text()
             c_name = self.tableCategories.selectedItems()[1].text()
-            x = self.askQuestion('Deletion Warning', 'Do you really want to delete the category ' + c_name + '?')
+            x = self.askQuestion(
+                'Deletion Warning',
+                'Do you really want to delete the category ' + c_name + '?')
             if x:
                 if self.products.isDeletableCategory(c_id):
                     self.products.deleteCategory(c_id)
                     self.setCategoryTableData()
                 else:
-                    self.showMessage('Deletion Error',
-                                     'Some products exists with this category!. You can only update the category name '
-                                     'until the products exist.')
+                    self.showMessage(
+                        'Deletion Error',
+                        'Some products exists with this category!. You can only update the category name '
+                        'until the products exist.')
 
     def updateProduct(self):
         if not self.tableProducts.selectedItems():
             self.showMessage('Error', 'Please select a product')
         else:
             p_id = self.tableProducts.selectedItems()[0].text()
-            name = self.showDialog('Update Product Name', 'Enter modified product name')
+            name = self.showDialog('Update Product Name',
+                                   'Enter modified product name')
             if name:
                 self.products.updateProduct(p_id, name)
                 self.setProductsTableData()
@@ -221,7 +237,8 @@ class UIProducts(Ui_products):
             self.showMessage('Error', 'Please select a brand')
         else:
             b_id = self.tableBrands.selectedItems()[0].text()
-            name = self.showDialog('Update Brand Name', 'Enter modified brand name')
+            name = self.showDialog('Update Brand Name',
+                                   'Enter modified brand name')
             if name:
                 self.products.updateBrand(b_id, name)
                 self.setBrandTableData()
@@ -231,7 +248,8 @@ class UIProducts(Ui_products):
             self.showMessage('Error', 'Please select a category')
         else:
             p_id = self.tableCategories.selectedItems()[0].text()
-            name = self.showDialog('Update category Name', 'Enter modified category name')
+            name = self.showDialog('Update category Name',
+                                   'Enter modified category name')
             if name:
                 self.products.updateCategory(p_id, name)
                 self.setCategoryTableData()
@@ -241,7 +259,8 @@ class UIProducts(Ui_products):
         msg.about(self.widget, title, message)
 
     def askQuestion(self, title, message):
-        buttonReply = QMessageBox.question(self.widget, title, message, QMessageBox.Yes | QMessageBox.No,
+        buttonReply = QMessageBox.question(self.widget, title, message,
+                                           QMessageBox.Yes | QMessageBox.No,
                                            QMessageBox.No)
         if buttonReply == QMessageBox.Yes:
             return True
@@ -262,7 +281,8 @@ class UIPurchase(Ui_purchase):
         self.fieldBrand.addItem('select')
         self.fieldBrand.addItems(self.crt.getBrandsData(b_id=False, name=True))
         self.fieldCategory.addItem('select')
-        self.fieldCategory.addItems(self.crt.getCategoriesData(c_id=False, name=True))
+        self.fieldCategory.addItems(
+            self.crt.getCategoriesData(c_id=False, name=True))
         self.fieldName.addItem('select')
         self.fieldName.addItems(self.crt.getProductsData(name=True))
         # event updates
@@ -298,7 +318,8 @@ class UIPurchase(Ui_purchase):
 
         self.fieldCategory.clear()
         self.fieldCategory.addItem('select')
-        self.fieldCategory.addItems(self.crt.getCategoriesData(c_id=False, name=True))
+        self.fieldCategory.addItems(
+            self.crt.getCategoriesData(c_id=False, name=True))
 
         self.fieldName.clear()
         self.fieldName.addItem('select')
@@ -318,7 +339,8 @@ class UIPurchase(Ui_purchase):
             self.showMessage('Input Error', 'Product already Exist in cart!')
             return
         if int(self.crt.getProductDetails(productCode)[4]) < int(units):
-            self.showMessage('Input Error', units + ' units of product is not available!')
+            self.showMessage('Input Error',
+                             units + ' units of product is not available!')
             return
         units = int(units)
         productCode = int(productCode)
@@ -338,7 +360,10 @@ class UIPurchase(Ui_purchase):
             brand = self.fieldBrand.currentText()
         if self.fieldCategory.currentIndex() != 0:
             category = self.fieldCategory.currentText()
-        self.fieldName.addItems(self.crt.getProductsData(name=True, filterBrand=brand, filterCategory=category))
+        self.fieldName.addItems(
+            self.crt.getProductsData(name=True,
+                                     filterBrand=brand,
+                                     filterCategory=category))
 
     def productCodeChange(self):
         """method to update all other fields when fieldCode is changed by user"""
@@ -353,11 +378,15 @@ class UIPurchase(Ui_purchase):
                 self.fieldCategory.setCurrentText(category)
                 self.fieldName.clear()
                 self.fieldName.addItem('select')
-                self.fieldName.addItems(self.crt.getProductsData(name=True, filterBrand=brand, filterCategory=category))
+                self.fieldName.addItems(
+                    self.crt.getProductsData(name=True,
+                                             filterBrand=brand,
+                                             filterCategory=category))
                 self.fieldName.setCurrentText(name)
             else:
                 self.fieldCode.clear()
-                self.showMessage('Input Error', 'No product found with product code ' + code)
+                self.showMessage('Input Error',
+                                 'No product found with product code ' + code)
 
     def productNameChange(self):
         """method to update all other fields when fieldName is changed by user"""
@@ -374,7 +403,10 @@ class UIPurchase(Ui_purchase):
         self.fieldCode.setText(code)
         self.fieldName.clear()
         self.fieldName.addItem('select')
-        self.fieldName.addItems(self.crt.getProductsData(name=True, filterBrand=brand, filterCategory=category))
+        self.fieldName.addItems(
+            self.crt.getProductsData(name=True,
+                                     filterBrand=brand,
+                                     filterCategory=category))
         self.fieldName.setCurrentText(name)
 
     def showMessage(self, title, message):
@@ -417,7 +449,8 @@ class UIPurchase(Ui_purchase):
             self.clearCart()
 
     def askQuestion(self, title, message):
-        buttonReply = QMessageBox.question(self.widget, title, message, QMessageBox.Yes | QMessageBox.No,
+        buttonReply = QMessageBox.question(self.widget, title, message,
+                                           QMessageBox.Yes | QMessageBox.No,
                                            QMessageBox.No)
         if buttonReply == QMessageBox.Yes:
             return True
@@ -432,9 +465,11 @@ class UIStock(Ui_stock):
 
         # initialize combobox
         self.fieldBrand.addItem('select')
-        self.fieldBrand.addItems(self.products.getBrandsData(b_id=False, name=True))
+        self.fieldBrand.addItems(
+            self.products.getBrandsData(b_id=False, name=True))
         self.fieldCategory.addItem('select')
-        self.fieldCategory.addItems(self.products.getCategoriesData(c_id=False, name=True))
+        self.fieldCategory.addItems(
+            self.products.getCategoriesData(c_id=False, name=True))
 
         # event updates
         self.buttonClear.clicked.connect(lambda: self.clear())
@@ -455,11 +490,13 @@ class UIStock(Ui_stock):
     def clear(self):
         self.fieldBrand.clear()
         self.fieldBrand.addItem('select')
-        self.fieldBrand.addItems(self.products.getBrandsData(b_id=False, name=True))
+        self.fieldBrand.addItems(
+            self.products.getBrandsData(b_id=False, name=True))
 
         self.fieldCategory.clear()
         self.fieldCategory.addItem('select')
-        self.fieldCategory.addItems(self.products.getCategoriesData(c_id=False, name=True))
+        self.fieldCategory.addItems(
+            self.products.getCategoriesData(c_id=False, name=True))
 
         self.fieldType.setCurrentIndex(0)
 
@@ -477,7 +514,9 @@ class UIStock(Ui_stock):
         if x == 2:
             filterType = self.products.OUTSTOCK
         self.tableStock.setRowCount(0)
-        data = self.products.getProductsData(True, True, True, True, True, True, filterBrand, filterCategory, filterType)
+        data = self.products.getProductsData(True, True, True, True, True,
+                                             True, filterBrand, filterCategory,
+                                             filterType)
         for i, row in enumerate(data):
             self.tableStock.insertRow(i)
             for j, item in enumerate(row):
@@ -490,7 +529,9 @@ class UIStock(Ui_stock):
         else:
             p_id = self.tableStock.selectedItems()[0].text()
             try:
-                stock = int(self.showDialog('Update Stock', 'Enter number of new stock units'))
+                stock = int(
+                    self.showDialog('Update Stock',
+                                    'Enter number of new stock units'))
             except ValueError:
                 self.showMessage('Input Error', 'invalid number of units')
                 return
@@ -504,7 +545,9 @@ class UIStock(Ui_stock):
         else:
             p_id = self.tableStock.selectedItems()[0].text()
             try:
-                prize = float(self.showDialog('Update Prize', 'Enter new prize in rupees'))
+                prize = float(
+                    self.showDialog('Update Prize',
+                                    'Enter new prize in rupees'))
             except ValueError:
                 self.showMessage('Input Error', 'invalid prize')
                 return
