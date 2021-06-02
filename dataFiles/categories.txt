@@ -6,5 +6,13 @@
 6|tooth paste
 7|hand wash
 8|face cream
-9|chicken masala
+9|masala
 10|Tea Powder
+11|Face wash
+12|Salt
+13|Tea powder
+14| floor cleaner
+15|Toilet cleaner
+16|Matchbox
+17|sweets
+18|meat masala
