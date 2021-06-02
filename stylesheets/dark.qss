@@ -1,0 +1,181 @@
+/*
+blue-  rgb(116, 181, 224)
+light blue - rgba(116, 181, 224, 150)
+dark blue - rgb(59, 59, 90)
+dark blue dimmed - rgba(59, 59, 90,150)
+white - rgb(0, 0, 0)
+grey - rgb(51, 51, 51)
+dark grey - rgb(221, 221, 222)
+*/
+
+/*=======================QWidget=======================*/
+QWidget[type="main"]{
+    background-color: rgb(51, 51, 51);
+}
+
+/*=======================menubar=========================*/
+QMenuBar{
+    border-bottom: 1px solid rgb(51, 51, 51);
+    background-color: rgb(0, 0, 0);
+    color: rgb(221, 221, 222);
+}
+QMenuBar::item{
+    background-color: rgb(0, 0, 0);
+    color: rgb(221, 221, 222);
+}
+QMenuBar::item::selected{
+    background-color: rgb(59, 59, 90);
+    color: rgb(0, 0, 0);
+}
+QMenu{
+    background-color: rgb(0, 0, 0);
+    color: rgb(221, 221, 222);
+}
+QMenu::item::selected{
+    background-color: rgb(59, 59, 90);
+    color: rgb(0, 0, 0);
+}
+
+/*=======================Containers=========================*/
+QFrame[type = "mainframe"]{
+    background-color: rgb(0, 0, 0);
+}
+QGroupBox {
+    background-color: rgb(0, 0, 0);
+    border:1px solid rgb(51, 51, 51);
+    border-radius: 5px;
+    margin-top: 12px;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    font: 8pt "MS Sans Serif";
+}
+
+/*=======================Label=========================*/
+QLabel{
+    font: 15px  "Centular" ;
+    color: rgb(221, 221, 222);
+}
+QLabel[type="bold"]{
+    font-weight: bold;
+}
+QLabel[type="heading"]{
+    color: rgb(221, 221, 222);
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/*=======================Button=========================*/
+QPushButton{
+    font: 15px  "Centular";
+    background-color: rgb(116, 181, 224);
+}
+QPushButton:hover{
+    background-color: rgb(59, 59, 90);
+    color: rgb(0, 0, 0);
+}
+QPushButton:pressed{
+    background-color: rgba(59, 59, 90,150);
+    color: rgb(0, 0, 0);
+}
+
+
+/*=======================inputs=========================*/
+QComboBox,QSpinBox,QLineEdit{
+	background-color: rgb(0, 0, 0);
+	border: 1px solid rgb(51, 51, 51);
+	border-radius: 2px;
+}
+
+/*=======================messages=========================*/
+QMessageBox,QInputDialog{
+	background-color: rgb(0, 0, 0);
+}
+
+/*=======================table=========================*/
+QTableWidget{
+	gridline-color: rgb(51, 51, 51);
+	background-color: rgba(116, 181, 224, 150);
+	border: 1px solid rgb(51, 51, 51);
+	font: 13px  "Centular";
+}
+QHeaderView {
+	background-color: transparent;
+}
+QHeaderView::section {
+	background-color: rgb(116, 181, 224);
+	font: bold 13px  "Centular" ;
+	border-bottom: 1px solid rgb(51, 51, 51);
+    border-right: 1px solid rgb(51, 51, 51);
+}
+QHeaderView::section:horizontal{
+    border-top: 1px solid rgb(51, 51, 51);
+}
+QHeaderView::section:vertical{
+    border-left: 1px solid rgb(51, 51, 51);
+}
+QTableWidget::item::selected{
+    color: rgb(0, 0, 0);
+    background-color:rgb(59, 59, 90);
+}
+
+/*=======================scrollbar=========================*/
+QScrollBar:vertical {
+	border: none;
+    background: transparent;
+    width: 14px;
+    margin: 15px 0 15px 0;
+	border-radius: 0px;
+ }
+/*  HANDLE BAR VERTICAL */
+QScrollBar::handle:vertical {
+	background-color: rgb(116, 181, 224);
+	min-height: 30px;
+	border-radius: 7px;
+}
+QScrollBar::handle:vertical:hover{
+	background-color: rgb(59, 59, 90);
+}
+QScrollBar::handle:vertical:pressed {
+	background-color: rgba(59, 59, 90,150);
+}
+/* BTN TOP - SCROLLBAR */
+QScrollBar::sub-line:vertical {
+	border: none;
+	background-color: rgb(116, 181, 224);
+	height: 15px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	subcontrol-position: top;
+	subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical:hover {
+	background-color: rgb(59, 59, 90);
+}
+QScrollBar::sub-line:vertical:pressed {
+	background-color: rgba(59, 59, 90,150);
+}
+
+/* BTN BOTTOM - SCROLLBAR */
+QScrollBar::add-line:vertical {
+	border: none;
+	background-color: rgb(116, 181, 224);
+	height: 15px;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	subcontrol-position: bottom;
+	subcontrol-origin: margin;
+}
+QScrollBar::add-line:vertical:hover {
+	background-color: rgb(59, 59, 90);
+}
+QScrollBar::add-line:vertical:pressed {
+    background-color: rgba(59, 59, 90,150);
+}
+/* RESET ARROW */
+QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
+	background: none;
+}
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+	background: none;
+}

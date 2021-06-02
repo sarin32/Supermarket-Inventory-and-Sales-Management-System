@@ -587,11 +587,11 @@ class UISuperMarket(QMainWindow):
         self.setCentralWidget(self.centralwidget)
         self.setContentsMargins(0, 20, 0, 0)
 
-        file = QFile('stylesheets/light.qss')
+        file = QFile('stylesheets/dark.qss')
         if not file.open(QFile.ReadOnly | QFile.Text):
             raise Exception("FileNotFound")
-        qss = QTextStream(file)
-        self.setStyleSheet(qss.readAll())
+        dark = QTextStream(file)
+        self.setStyleSheet(dark.readAll())
 
         # setup contents of stacked widget
         self.purchaseWidget = QWidget()
@@ -627,6 +627,13 @@ class UISuperMarket(QMainWindow):
         products = menubar.addAction('Products')
         stock = menubar.addAction('Stock')
         sales = menubar.addAction('Sales')
+
+        settings = menubar.addMenu('Settings')
+        theme = settings.addMenu('Theme')
+        light = theme.addAction('light')
+        dark = theme.addAction('dark')
+        # light.triggered.connect(lambda : self.setStyleSheet(self.light.readAll()))
+        # dark.triggered.connect(lambda : self.setStyleSheet(self.dark.readAll()))
 
         purchase.triggered.connect(lambda: self.setWidget(self.purchaseWidget))
         products.triggered.connect(lambda: self.setWidget(self.productsWidget))
