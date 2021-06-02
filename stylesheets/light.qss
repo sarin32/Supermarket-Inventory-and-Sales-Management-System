@@ -25,6 +25,7 @@ QPushButton{
     background-color:#78c5e3;
 }
 QPushButton:hover{
+background-color:rgb(111, 177, 101);
     color: #fff;
 }
 /*=======================================================*/
@@ -80,8 +81,8 @@ QHeaderView::section:vertical{
     border-left: 1px solid #74b5e0;
 }
 QTableWidget::item::selected{
-    Color:#000;
-    Background: #666;
+    Color:#fff;
+    background-color:rgb(111, 177, 101);
 }
 /*=======================================================*/
 
