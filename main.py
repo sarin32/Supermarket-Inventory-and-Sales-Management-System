@@ -6,7 +6,7 @@ import sys
 from datetime import datetime
 # import pyqt classes
 from PyQt5.QtCore import QRect, QFile, QTextStream
-from PyQt5.QtGui import QIcon, QDoubleValidator, QColor
+from PyQt5.QtGui import QIcon, QDoubleValidator
 from PyQt5.QtWidgets import *
 # imprt backend
 from cart import Cart
@@ -542,7 +542,6 @@ class UISales(Ui_sales):
         header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
         header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
         header.setSectionResizeMode(3, QHeaderView.ResizeToContents)
-        self.setupSalesTableData()
 
         # setup year field
         start = 2018
@@ -612,7 +611,7 @@ class UISuperMarket(QMainWindow):
         self.centralwidget.addWidget(self.salesWidget)
 
         # set the widget that should be shown at first
-        self.setWidget(self.productsWidget)
+        self.setWidget(self.purchaseWidget)
         self.setupMenuBar()
         self.show()
 
@@ -623,7 +622,7 @@ class UISuperMarket(QMainWindow):
     def setupMenuBar(self):
         """method to setup the menubar"""
         menubar = QMenuBar(self)
-        menubar.setGeometry(QRect(0, 0, 5000, 22))
+        menubar.setGeometry(QRect(0, 0, 5000, 21))
         purchase = menubar.addAction('Purchase')
         products = menubar.addAction('Products')
         stock = menubar.addAction('Stock')
