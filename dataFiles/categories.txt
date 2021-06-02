@@ -16,3 +16,5 @@
 16|Matchbox
 17|sweets
 18|meat masala
+19|candy
+20|oil
