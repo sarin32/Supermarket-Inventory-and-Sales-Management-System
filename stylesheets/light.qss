@@ -22,7 +22,7 @@ QLabel[type="heading"]{
 /*=======================QPushButton=========================*/
 QPushButton{
     font: 15px  "Centular";
-    background-color:#339898;
+    background-color:#78c5e3;
 }
 QPushButton:hover{
     color: #fff;
@@ -32,12 +32,10 @@ QPushButton:hover{
 /*=======================Containers=========================*/
 QFrame[type = "mainframe"]{
     background-color:#ffffff;
-    border: 1px solid #edf2f7;
-	border-radius:6px;
 }
 QGroupBox {
     background-color:#ffffff;
-    border: 1px solid #edf2f7;
+    border:1px solid #ddd;
     border-radius: 5px;
     margin-top:12px;
 }
@@ -62,7 +60,7 @@ QMessageBox,QInputDialog{
 /*======================= tables=========================*/
 QTableWidget{
 	gridline-color: #666;
-	background-color: #fff;
+	background-color: rgba(116, 181, 224, 150);
 	border:1px solid #666;
 	font: 13px  "Centular";
 }
@@ -70,16 +68,16 @@ QHeaderView {
 	background-color: transparent;
 }
 QHeaderView::section {
-	background-color: #339898;
+	background-color: #74b5e0;
 	font: bold 13px  "Centular" ;
 	border-bottom: 1px solid #666;
     border-right: 1px solid #666;
 }
 QHeaderView::section:horizontal{
-    border-top: 1px solid #666;
+    border-top: 1px solid #74b5e0;
 }
 QHeaderView::section:vertical{
-    border-left: 1px solid #666;
+    border-left: 1px solid #74b5e0;
 }
 QTableWidget::item::selected{
     Color:#000;
@@ -89,6 +87,7 @@ QTableWidget::item::selected{
 
 /*======================= menubar=========================*/
 QMenuBar{
+border-bottom:1px solid #ddd;
     background-color: #fff;
     color: #333;
 }

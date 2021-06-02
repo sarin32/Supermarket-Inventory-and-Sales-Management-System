@@ -4,15 +4,15 @@ Mainwindow is created and other widgets are added in this file
 """
 import sys
 from datetime import datetime
-
+# import pyqt classes
 from PyQt5.QtCore import QRect, QFile, QTextStream
-from PyQt5.QtGui import QIcon, QDoubleValidator
+from PyQt5.QtGui import QIcon, QDoubleValidator, QColor
 from PyQt5.QtWidgets import *
-
+# imprt backend
 from cart import Cart
 from products import Products
 from sales import Sales
-
+# import ui
 from ui.products import Ui_products
 from ui.purchase import Ui_purchase
 from ui.sales import Ui_sales
@@ -25,6 +25,7 @@ class UIProducts(Ui_products):
         self.products = Products()
         self.setupUi(widget)
         self.fieldPrize.setValidator(QDoubleValidator(0, 10000, 2))
+
         # initialize combobox
         self.fieldBrand.addItem('select')
         self.fieldBrand.addItems(self.products.getBrandsData(b_id=False, name=True))
@@ -477,7 +478,8 @@ class UIStock(Ui_stock):
         if x == 2:
             filterType = self.products.OUTSTOCK
         self.tableStock.setRowCount(0)
-        data = self.products.getProductsData(True, True, True, True, True, True, filterBrand, filterCategory, filterType)
+        data = self.products.getProductsData(True, True, True, True, True, True, filterBrand, filterCategory,
+                                             filterType)
         for i, row in enumerate(data):
             self.tableStock.insertRow(i)
             for j, item in enumerate(row):
@@ -586,7 +588,7 @@ class UISuperMarket(QMainWindow):
         self.setCentralWidget(self.centralwidget)
         self.setContentsMargins(0, 20, 0, 0)
 
-        file = QFile('stylesheets/main.qss')
+        file = QFile('stylesheets/light.qss')
         if not file.open(QFile.ReadOnly | QFile.Text):
             raise Exception("FileNotFound")
         qss = QTextStream(file)
@@ -610,7 +612,7 @@ class UISuperMarket(QMainWindow):
         self.centralwidget.addWidget(self.salesWidget)
 
         # set the widget that should be shown at first
-        self.setWidget(self.purchaseWidget)
+        self.setWidget(self.productsWidget)
         self.setupMenuBar()
         self.show()
 
@@ -621,7 +623,7 @@ class UISuperMarket(QMainWindow):
     def setupMenuBar(self):
         """method to setup the menubar"""
         menubar = QMenuBar(self)
-        menubar.setGeometry(QRect(0, 0, 5000, 20))
+        menubar.setGeometry(QRect(0, 0, 5000, 22))
         purchase = menubar.addAction('Purchase')
         products = menubar.addAction('Products')
         stock = menubar.addAction('Stock')
