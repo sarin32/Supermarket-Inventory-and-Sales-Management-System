@@ -1,114 +1,181 @@
-/*======================= QWidget=======================*/
+/*
+blue-  rgb(116, 181, 224)
+light blue - rgba(116, 181, 224, 150)
+dark blue - rgb(59, 59, 90)
+dark blue dimmed - rgba(59, 59, 90,150)
+white - rgb(255, 255, 255)
+grey - rgb(221, 221, 221)
+dark grey - rgb(51, 51, 51)
+*/
+
+/*=======================QWidget=======================*/
 QWidget[type="main"]{
-    background-color:#ddd;
+    background-color: rgb(221, 221, 221);
 }
-/*=======================================================*/
 
-/*======================= QLabel=========================*/
-QLabel{
-    font: 15px  "Centular" ;
-    color:#333;
+/*=======================menubar=========================*/
+QMenuBar{
+    border-bottom: 1px solid rgb(221, 221, 221);
+    background-color: rgb(255, 255, 255);
+    color: rgb(51, 51, 51);
 }
-QLabel[type="bold"]{
-    font-weight:bold;
+QMenuBar::item{
+    background-color: rgb(255, 255, 255);
+    color: rgb(51, 51, 51);
 }
-QLabel[type="heading"]{
-    color:#222;
-    font-weight:bold;
-    font-size:16px;
+QMenuBar::item::selected{
+    background-color: rgb(59, 59, 90);
+    color: rgb(255, 255, 255);
 }
-/*=======================================================*/
-
-/*=======================QPushButton=========================*/
-QPushButton{
-    font: 15px  "Centular";
-    background-color:#78c5e3;
+QMenu{
+    background-color: rgb(255, 255, 255);
+    color: rgb(51, 51, 51);
 }
-QPushButton:hover{
-background-color:rgb(111, 177, 101);
-    color: #fff;
+QMenu::item::selected{
+    background-color: rgb(59, 59, 90);
+    color: rgb(255, 255, 255);
 }
-/*=======================================================*/
 
 /*=======================Containers=========================*/
 QFrame[type = "mainframe"]{
-    background-color:#ffffff;
+    background-color: rgb(255, 255, 255);
 }
 QGroupBox {
-    background-color:#ffffff;
-    border:1px solid #ddd;
+    background-color: rgb(255, 255, 255);
+    border:1px solid rgb(221, 221, 221);
     border-radius: 5px;
-    margin-top:12px;
+    margin-top: 12px;
 }
 QGroupBox::title {
     subcontrol-origin: margin;
     font: 8pt "MS Sans Serif";
- }
-/*=======================================================*/
+}
 
-/*======================= inputs=========================*/
+/*=======================Label=========================*/
+QLabel{
+    font: 15px  "Centular" ;
+    color: rgb(51, 51, 51);
+}
+QLabel[type="bold"]{
+    font-weight: bold;
+}
+QLabel[type="heading"]{
+    color: rgb(51, 51, 51);
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/*=======================Button=========================*/
+QPushButton{
+    font: 15px  "Centular";
+    background-color: rgb(116, 181, 224);
+}
+QPushButton:hover{
+    background-color: rgb(59, 59, 90);
+    color: rgb(255, 255, 255);
+}
+QPushButton:pressed{
+    background-color: rgba(59, 59, 90,150);
+    color: rgb(255, 255, 255);
+}
+
+
+/*=======================inputs=========================*/
 QComboBox,QSpinBox,QLineEdit{
-	background-color:#eee;
-	border: 1px solid #ddd;
-	color:#000;
-	border-radius:2px;
+	background-color: rgb(255, 255, 255);
+	border: 1px solid rgb(221, 221, 221);
+	border-radius: 2px;
 }
-QMessageBox,QInputDialog{
-	background-color: rgb(51, 152, 152);
-}
-/*=======================================================*/
 
-/*======================= tables=========================*/
+/*=======================messages=========================*/
+QMessageBox,QInputDialog{
+	background-color: rgb(255, 255, 255);
+}
+
+/*=======================table=========================*/
 QTableWidget{
-	gridline-color: #666;
+	gridline-color: rgb(221, 221, 221);
 	background-color: rgba(116, 181, 224, 150);
-	border:1px solid #666;
+	border: 1px solid rgb(221, 221, 221);
 	font: 13px  "Centular";
 }
 QHeaderView {
 	background-color: transparent;
 }
 QHeaderView::section {
-	background-color: #74b5e0;
+	background-color: rgb(116, 181, 224);
 	font: bold 13px  "Centular" ;
-	border-bottom: 1px solid #666;
-    border-right: 1px solid #666;
+	border-bottom: 1px solid rgb(221, 221, 221);
+    border-right: 1px solid rgb(221, 221, 221);
 }
 QHeaderView::section:horizontal{
-    border-top: 1px solid #74b5e0;
+    border-top: 1px solid rgb(221, 221, 221);
 }
 QHeaderView::section:vertical{
-    border-left: 1px solid #74b5e0;
+    border-left: 1px solid rgb(221, 221, 221);
 }
 QTableWidget::item::selected{
-    Color:#fff;
-    background-color:rgb(111, 177, 101);
+    color: rgb(255, 255, 255);
+    background-color:rgb(59, 59, 90);
 }
-/*=======================================================*/
 
-/*======================= menubar=========================*/
-QMenuBar{
-border-bottom:1px solid #ddd;
-    background-color: #fff;
-    color: #333;
+/*=======================scrollbar=========================*/
+QScrollBar:vertical {
+	border: none;
+    background: transparent;
+    width: 14px;
+    margin: 15px 0 15px 0;
+	border-radius: 0px;
+ }
+/*  HANDLE BAR VERTICAL */
+QScrollBar::handle:vertical {
+	background-color: rgb(116, 181, 224);
+	min-height: 30px;
+	border-radius: 7px;
 }
-QMenuBar::item{
-    background-color: #fff;
-    color: #333;
+QScrollBar::handle:vertical:hover{
+	background-color: rgb(59, 59, 90);
 }
-QMenuBar::item::selected{
-    background-color: #339898;
-    color: #fff;
+QScrollBar::handle:vertical:pressed {
+	background-color: rgba(59, 59, 90,150);
 }
-QMenu{
-    background-color: #3399cc;
-    color: #fff;
+/* BTN TOP - SCROLLBAR */
+QScrollBar::sub-line:vertical {
+	border: none;
+	background-color: rgb(116, 181, 224);
+	height: 15px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	subcontrol-position: top;
+	subcontrol-origin: margin;
 }
-QMenu::item::selected{
-    background-color: #339898;
-    color: #fff;
+QScrollBar::sub-line:vertical:hover {
+	background-color: rgb(59, 59, 90);
 }
-/*=======================================================*/
-QMessageBox{
-background-color:#fff;
+QScrollBar::sub-line:vertical:pressed {
+	background-color: rgba(59, 59, 90,150);
+}
+
+/* BTN BOTTOM - SCROLLBAR */
+QScrollBar::add-line:vertical {
+	border: none;
+	background-color: rgb(116, 181, 224);
+	height: 15px;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	subcontrol-position: bottom;
+	subcontrol-origin: margin;
+}
+QScrollBar::add-line:vertical:hover {
+	background-color: rgb(59, 59, 90);
+}
+QScrollBar::add-line:vertical:pressed {
+    background-color: rgba(59, 59, 90,150);
+}
+/* RESET ARROW */
+QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
+	background: none;
+}
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+	background: none;
 }

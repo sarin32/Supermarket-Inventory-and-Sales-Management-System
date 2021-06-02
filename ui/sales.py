@@ -15,118 +15,10 @@ class Ui_sales(object):
     def setupUi(self, sales):
         sales.setObjectName("sales")
         sales.resize(847, 565)
-        sales.setStyleSheet("/*======================= QWidget=======================*/\n"
-"QWidget[type=\"main\"]{\n"
-"    background-color:rgb(0, 124, 124);\n"
-"}\n"
-"/*=======================================================*/\n"
-"\n"
-"/*======================= QLabel=========================*/\n"
-"QLabel{\n"
-"    font: 15px  \"Centular\";\n"
-"}\n"
-"QLabel[type=\"bold\"]{\n"
-"    font-weight:bold;\n"
-"}\n"
-"QLabel[type=\"heading\"]{\n"
-"    font-weight:bold;\n"
-"    font-size:16px;\n"
-"}\n"
-"/*=======================================================*/\n"
-"\n"
-"/*======================= QPushButton=========================*/\n"
-"QPushButton{\n"
-"    font: 15px  \"Centular\";\n"
-"    background-color:rgb(0, 124, 124);\n"
-"}\n"
-"/*=======================================================*/\n"
-"\n"
-"/*======================= QFrame=========================*/\n"
-"QFrame[type = \"mainframe\"]{\n"
-"    background-color:rgb(51, 152, 152);\n"
-"    border-radius:6px;\n"
-"}\n"
-"/*=======================================================*/\n"
-"\n"
-"/*======================= QGroupBox=========================*/\n"
-"QGroupBox {\n"
-"    border: 1px solid #fff;\n"
-"    border-radius: 5px;\n"
-"    margin-top:12px;\n"
-"    font: bold 12px  \"Centular\";\n"
-" }\n"
-" QGroupBox::title {\n"
-"    subcontrol-origin: margin;\n"
-"    font: 8pt \"MS Sans Serif\";\n"
-" }\n"
-"/*=======================================================*/\n"
-"\n"
-"/*======================= inputs=========================*/\n"
-"QComboBox,QSpinBox,QLineEdit{\n"
-"    background-color:rgb(255, 255, 255);\n"
-"    color:#000;\n"
-"    border-radius:3px;\n"
-"}\n"
-"QMessageBox,QInputDialog{\n"
-"    background-color: rgb(51, 152, 152);\n"
-"}\n"
-"/*=======================================================*/\n"
-"\n"
-"/*======================= tables=========================*/\n"
-"QTableWidget{\n"
-"    gridline-color: #ffffff;\n"
-"    background-color: transparent;\n"
-"    border:1px solid rgb(255, 255, 255);\n"
-"    font: 13px  \"Centular\";\n"
-"}\n"
-"QHeaderView {\n"
-"    background-color: transparent;\n"
-"}\n"
-"QHeaderView::section {\n"
-"    background-color: rgb(0, 124, 124);\n"
-"    font: bold 13px  \"Centular\" ;\n"
-"    border-bottom: 1px solid #fff;\n"
-"    border-right: 1px solid #fff;\n"
-"}\n"
-"QHeaderView::section:horizontal{\n"
-"    border-top: 1px solid #fff;\n"
-"}\n"
-"QHeaderView::section:vertical{\n"
-"    border-left: 1px solid #fff;\n"
-"}\n"
-"QTableWidget::item::selected{\n"
-"    Color:#000;\n"
-"    Background: #fff;\n"
-"}\n"
-"/*=======================================================*/\n"
-"\n"
-"/*======================= menubar=========================*/\n"
-"QMenuBar{\n"
-"    background-color: #333399;\n"
-"    color: #999;\n"
-"}\n"
-"QMenuBar::item{\n"
-"    background-color: #333399;\n"
-"    color: #999;\n"
-"}\n"
-"QMenuBar::item::selected{\n"
-"    background-color: #3399cc;\n"
-"    color: #fff;\n"
-"}\n"
-"QMenu{\n"
-"    background-color: #3399cc;\n"
-"    color: #fff;\n"
-"}\n"
-"QMenu::item::selected{\n"
-"    background-color: #333399;\n"
-"    color: #999;\n"
-"}\n"
-"/*=======================================================*/\n"
-"\n"
-"")
+        sales.setStyleSheet("")
         self.verticalLayout = QtWidgets.QVBoxLayout(sales)
-        self.verticalLayout.setContentsMargins(4, 4, 4, 4)
-        self.verticalLayout.setSpacing(3)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setSpacing(2)
         self.verticalLayout.setObjectName("verticalLayout")
         self.mainframe_1 = QtWidgets.QFrame(sales)
         self.mainframe_1.setStyleSheet("")
@@ -163,7 +55,6 @@ class Ui_sales(object):
         self.label_4 = QtWidgets.QLabel(self.groupBox_2)
         font = QtGui.QFont()
         font.setFamily("Centular")
-        font.setPointSize(-1)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
@@ -195,11 +86,11 @@ class Ui_sales(object):
         self.buttonCheck.setMaximumSize(QtCore.QSize(100, 25))
         font = QtGui.QFont()
         font.setFamily("Centular")
-        font.setPointSize(-1)
         font.setBold(False)
         font.setItalic(False)
         font.setWeight(50)
         self.buttonCheck.setFont(font)
+        self.buttonCheck.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.buttonCheck.setObjectName("buttonCheck")
         self.verticalLayout_4.addWidget(self.buttonCheck)
         self.gridLayout.addWidget(self.groupBox_2, 0, 1, 1, 1)
@@ -269,6 +160,7 @@ class Ui_sales(object):
         self.calendar.setObjectName("calendar")
         self.verticalLayout_2.addWidget(self.calendar)
         self.buttonLoad = QtWidgets.QPushButton(self.frame)
+        self.buttonLoad.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.buttonLoad.setObjectName("buttonLoad")
         self.verticalLayout_2.addWidget(self.buttonLoad, 0, QtCore.Qt.AlignRight)
         self.gridLayout.addWidget(self.frame, 0, 0, 1, 1)
