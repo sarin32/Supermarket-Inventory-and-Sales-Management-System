@@ -6,50 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>693</width>
-    <height>503</height>
-   </rect>
-  </property>
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>669</width>
+    <width>685</width>
     <height>375</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
-  </property>
-  <property name="styleSheet">
-   <string notr="true">QWidget#purchase{
-	background-color:rgb(0, 124, 124);
-}
-QLabel{
-	font: 15px  &quot;Centular&quot;;
-}
-QPushButton{
-	font: 15px  &quot;Centular&quot;;
-	background-color:rgb(0, 124, 124);
-}
-
-QLabel#h_1 ,QLabel#h_2, QLabel#h_3{
-	font: bold 16px  &quot;Centular&quot;;
-}
-
-QFrame#mainframe_1, QFrame#mainframe_2,  QFrame#mainframe_3{
-	background-color:rgb(51, 152, 152);
-	border-radius:6px;
-}
-
-QComboBox,QSpinBox,QLineEdit{
-	background-color:rgb(255, 255, 255);
-	color:#000;
-	border-radius:3px;
-}
-QMessageBox{
-	background-color: rgb(51, 152, 152);
-}</string>
   </property>
   <layout class="QGridLayout">
    <property name="leftMargin">
@@ -162,6 +124,9 @@ QMessageBox{
         </property>
         <property name="styleSheet">
          <string notr="true"/>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToMinimumContentsLength</enum>
         </property>
        </widget>
       </item>

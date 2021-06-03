@@ -1,15 +1,15 @@
 1|closeup everfresh+ 350g|3|6|0|50.0
 2|double deer rice 10kg|4|1|13|450.0
-3|Double deer rice 25kg|4|1|8|1200.0
+3|Double deer rice 25kg|4|1|7|1200.0
 4|Eastea Tea powder 350g|9|10|51|52.0
-5|Eastern chicken Masala 350g|8|9|34|26.0
+5|Eastern chicken Masala 350g|8|9|33|26.0
 6|Nirma shudh salt 1kg|19|12|15|15.0
 7|Kannan Devan Tea Powder 250g|20|13|20|78.4
-8|Lizol Disinfectant Surface Cleaner 500ml|21|14|19|93.0
+8|Lizol Disinfectant Surface Cleaner 500ml|21|14|18|93.0
 9|Harpic Power Plus 500ml|22|15|13|86.0
 10|Sensodyne Fresh Mint 40g|23|6|24|70.0
 11|Camel Safety Matches 10box|24|16|10|10.0
 12|Nestle Milkybar 25g|1|17|30|10.0
 13|Cutee The Beauty Soap |5|2|38|20.0
 14|Eastern Meat Masala 100g|8|9|39|35.0
-15|Sunflower Oil 500ml|25|20|29|100.0
+15|Sunflower Oil 500ml|25|20|27|100.0
