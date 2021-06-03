@@ -37,6 +37,9 @@ QMenu::item::selected{
 }
 
 /*=======================Containers=========================*/
+QFrame{
+    border: none;
+}
 QFrame[type = "mainframe"]{
     background-color: rgb(255, 255, 255);
 }
@@ -49,6 +52,7 @@ QGroupBox {
 QGroupBox::title {
     subcontrol-origin: margin;
     font: 8pt "MS Sans Serif";
+    color: rgb(51, 51, 51)
 }
 
 /*=======================Label=========================*/
@@ -67,6 +71,7 @@ QLabel[type="heading"]{
 
 /*=======================Button=========================*/
 QPushButton{
+    color: rgb(51, 51, 51);
     font: 15px  "Centular";
     background-color: rgb(116, 181, 224);
 }
@@ -79,40 +84,68 @@ QPushButton:pressed{
     color: rgb(255, 255, 255);
 }
 
-
 /*=======================inputs=========================*/
 QComboBox,QSpinBox,QLineEdit{
 	background-color: rgb(255, 255, 255);
 	border: 1px solid rgb(221, 221, 221);
 	border-radius: 2px;
+	color: rgb(51, 51, 51);
+	combobox-popup: 0;
 }
-
+QComboBox QAbstractItemView{
+	border: none;
+	background-color:rgba(116, 181, 224, 150);
+    selection-background-color: rgb(59, 59, 90);
+}
+QComboBox::down-arrow {
+    image: url(res/images/down-arrow.png);
+    padding:1px;
+}
+QSpinBox::down-arrow {
+    image: url(res/images/down-arrow.png);
+}
+QSpinBox::up-arrow {
+    image: url(res/images/up-arrow.png);
+}
+QCalendarWidget QMenu {
+  	width: 150px;
+  	left: 20px;
+  	color: white;
+  	font-size: 18px;
+  	background-color: rgb(100, 100, 100);
+  }
 /*=======================messages=========================*/
 QMessageBox,QInputDialog{
 	background-color: rgb(255, 255, 255);
+	color: rgb(51, 51, 51);
 }
 
 /*=======================table=========================*/
 QTableWidget{
-	gridline-color: rgb(221, 221, 221);
+	gridline-color: rgb(255, 255, 255);
 	background-color: rgba(116, 181, 224, 150);
-	border: 1px solid rgb(221, 221, 221);
+	/*border: 1px solid rgb(221, 221, 221);*/
+	border:none;
 	font: 13px  "Centular";
+	color: rgb(51, 51, 51);
 }
 QHeaderView {
 	background-color: transparent;
+	min-height:30px;
 }
 QHeaderView::section {
 	background-color: rgb(116, 181, 224);
 	font: bold 13px  "Centular" ;
-	border-bottom: 1px solid rgb(221, 221, 221);
-    border-right: 1px solid rgb(221, 221, 221);
+	border-bottom: 1px solid rgb(255, 255, 255);
+    border-right: 1px solid rgb(255, 255, 255);
+    min-width:100px;
+    color: rgb(51, 51, 51);
 }
 QHeaderView::section:horizontal{
-    border-top: 1px solid rgb(221, 221, 221);
+    border-top: 1px solid rgb(255, 255, 255);
 }
 QHeaderView::section:vertical{
-    border-left: 1px solid rgb(221, 221, 221);
+    border-left: 1px solid rgb(255, 255, 255);
 }
 QTableWidget::item::selected{
     color: rgb(255, 255, 255);
@@ -132,6 +165,7 @@ QScrollBar::handle:vertical {
 	background-color: rgb(116, 181, 224);
 	min-height: 30px;
 	border-radius: 7px;
+	border: 4px solid transparent;
 }
 QScrollBar::handle:vertical:hover{
 	background-color: rgb(59, 59, 90);
@@ -142,10 +176,9 @@ QScrollBar::handle:vertical:pressed {
 /* BTN TOP - SCROLLBAR */
 QScrollBar::sub-line:vertical {
 	border: none;
-	background-color: rgb(116, 181, 224);
 	height: 15px;
-	border-top-left-radius: 7px;
-	border-top-right-radius: 7px;
+	padding:2px;
+	image: url(res/images/up-arrow.png);
 	subcontrol-position: top;
 	subcontrol-origin: margin;
 }
@@ -159,12 +192,11 @@ QScrollBar::sub-line:vertical:pressed {
 /* BTN BOTTOM - SCROLLBAR */
 QScrollBar::add-line:vertical {
 	border: none;
-	background-color: rgb(116, 181, 224);
 	height: 15px;
-	border-bottom-left-radius: 7px;
-	border-bottom-right-radius: 7px;
+    padding:2px;
 	subcontrol-position: bottom;
 	subcontrol-origin: margin;
+	image: url(res/images/down-arrow.png);
 }
 QScrollBar::add-line:vertical:hover {
 	background-color: rgb(59, 59, 90);

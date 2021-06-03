@@ -2,6 +2,7 @@
 This is the runner file of the application
 Mainwindow is created and other widgets are added in this file
 """
+import os
 import sys
 from datetime import datetime
 # import pyqt classes
@@ -585,13 +586,12 @@ class UISuperMarket(QMainWindow):
         self.setWindowIcon(QIcon('res/images/icon.png'))
         self.centralwidget = QStackedWidget(self)
         self.setCentralWidget(self.centralwidget)
-        self.setContentsMargins(0, 20, 0, 0)
+        self.setContentsMargins(0, 21, 0, 0)
+        self.dark = 'dark'
+        self.light = 'light'
 
-        file = QFile('stylesheets/dark.qss')
-        if not file.open(QFile.ReadOnly | QFile.Text):
-            raise Exception("FileNotFound")
-        dark = QTextStream(file)
-        self.setStyleSheet(dark.readAll())
+        # default
+        self.applyStyle(self.light)
 
         # setup contents of stacked widget
         self.purchaseWidget = QWidget()
@@ -619,6 +619,16 @@ class UISuperMarket(QMainWindow):
         """method to set the active widget in the stacked widget"""
         self.centralwidget.setCurrentWidget(widget)
 
+    def applyStyle(self, theme):
+        self.style().unpolish(self)
+        file = QFile(os.path.join('stylesheets', theme + '.qss'))
+        if not file.open(QFile.ReadOnly | QFile.Text):
+            raise Exception("FileNotFound")
+        style = QTextStream(file)
+        self.setStyleSheet(style.readAll())
+        self.style().polish(self)
+        self.update()
+
     def setupMenuBar(self):
         """method to setup the menubar"""
         menubar = QMenuBar(self)
@@ -632,8 +642,8 @@ class UISuperMarket(QMainWindow):
         theme = settings.addMenu('Theme')
         light = theme.addAction('light')
         dark = theme.addAction('dark')
-        # light.triggered.connect(lambda : self.setStyleSheet(self.light.readAll()))
-        # dark.triggered.connect(lambda : self.setStyleSheet(self.dark.readAll()))
+        light.triggered.connect(lambda: self.applyStyle(self.light))
+        dark.triggered.connect(lambda: self.applyStyle(self.dark))
 
         purchase.triggered.connect(lambda: self.setWidget(self.purchaseWidget))
         products.triggered.connect(lambda: self.setWidget(self.productsWidget))
@@ -644,6 +654,7 @@ class UISuperMarket(QMainWindow):
 # runner
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    app.setStyle('Fusion')
     ui = UISuperMarket()
     sys.exit(app.exec_())
 
