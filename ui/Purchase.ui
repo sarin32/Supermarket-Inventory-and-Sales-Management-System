@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="type" stdset="0">
+   <string>main</string>
+  </property>
   <layout class="QGridLayout">
    <property name="leftMargin">
     <number>0</number>
@@ -46,76 +49,22 @@
      <property name="styleSheet">
       <string notr="true"/>
      </property>
+     <property name="type" stdset="0">
+      <string>mainframe</string>
+     </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="6" column="4">
-       <widget class="QLabel" name="labelUnits">
+      <item row="6" column="2">
+       <widget class="QLabel" name="labelCategory">
         <property name="styleSheet">
          <string notr="true"/>
         </property>
         <property name="text">
-         <string>Units</string>
+         <string>Category</string>
         </property>
        </widget>
       </item>
-      <item row="17" column="4">
-       <widget class="QSpinBox" name="fieldUnits">
-        <property name="minimumSize">
-         <size>
-          <width>100</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>100</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="buttonSymbols">
-         <enum>QAbstractSpinBox::UpDownArrows</enum>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="3">
-       <widget class="QLabel" name="labelBrand">
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="text">
-         <string>Brand</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0" colspan="5">
-       <widget class="QLabel" name="h_1">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="text">
-         <string>Select Product</string>
-        </property>
-       </widget>
-      </item>
-      <item row="17" column="1">
-       <widget class="QComboBox" name="fieldName">
+      <item row="17" column="2">
+       <widget class="QComboBox" name="fieldCategory">
         <property name="minimumSize">
          <size>
           <width>125</width>
@@ -124,9 +73,6 @@
         </property>
         <property name="styleSheet">
          <string notr="true"/>
-        </property>
-        <property name="sizeAdjustPolicy">
-         <enum>QComboBox::AdjustToMinimumContentsLength</enum>
         </property>
        </widget>
       </item>
@@ -195,26 +141,13 @@
         </layout>
        </widget>
       </item>
-      <item row="17" column="2">
-       <widget class="QComboBox" name="fieldCategory">
-        <property name="minimumSize">
-         <size>
-          <width>125</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="2">
-       <widget class="QLabel" name="labelCategory">
+      <item row="6" column="4">
+       <widget class="QLabel" name="labelUnits">
         <property name="styleSheet">
          <string notr="true"/>
         </property>
         <property name="text">
-         <string>Category</string>
+         <string>Units</string>
         </property>
        </widget>
       </item>
@@ -231,29 +164,16 @@
         </property>
        </widget>
       </item>
-      <item row="6" column="1">
-       <widget class="QLabel" name="labelName">
-        <property name="maximumSize">
+      <item row="17" column="1">
+       <widget class="QComboBox" name="fieldName">
+        <property name="minimumSize">
          <size>
-          <width>16777215</width>
+          <width>125</width>
           <height>25</height>
          </size>
         </property>
         <property name="styleSheet">
          <string notr="true"/>
-        </property>
-        <property name="text">
-         <string>Product Name</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0">
-       <widget class="QLabel" name="labelCode">
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-        <property name="text">
-         <string>Product Code</string>
         </property>
        </widget>
       </item>
@@ -273,6 +193,92 @@
         </property>
        </widget>
       </item>
+      <item row="0" column="0" colspan="5">
+       <widget class="QLabel" name="h_1">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>Select Product</string>
+        </property>
+        <property name="type" stdset="0">
+         <string>heading</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="labelCode">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>Product Code</string>
+        </property>
+       </widget>
+      </item>
+      <item row="17" column="4">
+       <widget class="QSpinBox" name="fieldUnits">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="buttonSymbols">
+         <enum>QAbstractSpinBox::UpDownArrows</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QLabel" name="labelName">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>Product Name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="3">
+       <widget class="QLabel" name="labelBrand">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>Brand</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -283,6 +289,9 @@
      </property>
      <property name="styleSheet">
       <string notr="true"/>
+     </property>
+     <property name="type" stdset="0">
+      <string>mainframe</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
       <item row="3" column="0" alignment="Qt::AlignLeft">
@@ -422,90 +431,57 @@
         <property name="enabled">
          <bool>true</bool>
         </property>
+        <property name="maximumSize">
+         <size>
+          <width>1000</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="sizeAdjustPolicy">
-         <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+         <enum>QAbstractScrollArea::AdjustToContents</enum>
         </property>
-        <property name="gridStyle">
-         <enum>Qt::DashLine</enum>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
         </property>
-        <property name="sortingEnabled">
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <attribute name="verticalHeaderVisible">
          <bool>false</bool>
-        </property>
+        </attribute>
         <column>
          <property name="text">
           <string>Product Code</string>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
          </property>
         </column>
         <column>
          <property name="text">
           <string>Product Name</string>
          </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
         </column>
         <column>
          <property name="text">
           <string>Brand</string>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
          </property>
         </column>
         <column>
          <property name="text">
           <string>category</string>
          </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
         </column>
         <column>
          <property name="text">
           <string>Units</string>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
          </property>
         </column>
         <column>
          <property name="text">
           <string>Cost/Unit</string>
          </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
         </column>
         <column>
          <property name="text">
           <string>Cost</string>
-         </property>
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
          </property>
         </column>
        </widget>
@@ -529,6 +505,9 @@
         </property>
         <property name="text">
          <string>Cart</string>
+        </property>
+        <property name="type" stdset="0">
+         <string>heading</string>
         </property>
        </widget>
       </item>

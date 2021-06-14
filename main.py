@@ -6,9 +6,9 @@ import os
 import sys
 from datetime import datetime
 # import pyqt classes
-from PyQt5.QtCore import QRect, QFile, QTextStream
-from PyQt5.QtGui import QIcon, QDoubleValidator
-from PyQt5.QtWidgets import *
+from PySide6.QtCore import QRect, QFile, QTextStream
+from PySide6.QtGui import QIcon, QDoubleValidator
+from PySide6.QtWidgets import *
 # imprt backend
 from cart import Cart
 from products import Products
@@ -20,11 +20,12 @@ from ui.sales import Ui_sales
 from ui.stock import Ui_stock
 
 
-class UIProducts(Ui_products):
-    def __init__(self, widget):
-        self.widget = widget
+class UIProducts(QWidget, Ui_products):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.setupUi(self)
+
         self.products = Products()
-        self.setupUi(widget)
         self.fieldPrize.setValidator(QDoubleValidator(0, 10000, 2))
 
         # initialize combobox
@@ -108,22 +109,22 @@ class UIProducts(Ui_products):
         prize = self.fieldPrize.text()
         # some validations for the inputs
         if name == '' or len(name) <= 5:
-            self.showMessage('Input Error', 'Please enter valid name')
+            showMessage(self, 'Input Error', 'Please enter valid name')
             return
         if name in self.products.getProductsData(name=True):
-            self.showMessage('Input Error', 'Product already exists!')
+            showMessage(self, 'Input Error', 'Product already exists!')
             return
         if brand == 'select':
-            self.showMessage('Input Error', 'Please select a brand')
+            showMessage(self, 'Input Error', 'Please select a brand')
             return
         if category == 'select':
-            self.showMessage('Input Error', 'Please select a category')
+            showMessage(self, 'Input Error', 'Please select a category')
             return
         if prize == '' or prize == 0:
-            self.showMessage('Input Error', 'Please enter valid prize')
+            showMessage(self, 'Input Error', 'Please enter valid prize')
             return
         if stock == '':
-            self.showMessage('Input Error', 'Please enter valid stock')
+            showMessage(self, 'Input Error', 'Please enter valid stock')
             return
 
         stock = int(stock)
@@ -133,133 +134,118 @@ class UIProducts(Ui_products):
         self.products.addProduct(name, brand, category, stock, prize)
         self.setProductsTableData()
         self.clear()
-        self.showMessage('Product added', name + ' added to products successfully')
+        showMessage(self, 'Product added', name + ' added to products successfully')
 
     def addBrand(self):
         brand = self.fieldNewBrand.text()
         # some validations for the input
         if brand == '':
-            self.showMessage('Input Error', 'Please enter valid brand name')
+            showMessage(self, 'Input Error', 'Please enter valid brand name')
             return
         if brand in self.products.getBrandsData(b_id=False, name=True):
-            self.showMessage('Input Error', 'Brand already exists!')
+            showMessage(self, 'Input Error', 'Brand already exists!')
             return
         self.products.addBrand(brand)
         self.fieldNewBrand.clear()
         self.setBrandTableData()
         self.clear()
-        self.showMessage('Brand added', brand + ' added to brands successfully')
+        showMessage(self, 'Brand added', brand + ' added to brands successfully')
 
     def addCategory(self):
         category = self.fieldNewCategory.text()
         # some validations for the input
         if category == '':
-            self.showMessage('Input Error', 'Please enter valid category name')
+            showMessage(self, 'Input Error', 'Please enter valid category name')
             return
         if category in self.products.getCategoriesData(c_id=False, name=True):
-            self.showMessage('Input Error', 'Category already exists!')
+            showMessage(self, 'Input Error', 'Category already exists!')
             return
         self.products.addCategory(category)
         self.fieldNewCategory.clear()
         self.setCategoryTableData()
         self.clear()
-        self.showMessage('Category added', category + ' added to categories successfully')
+        showMessage(self, 'Category added', category + ' added to categories successfully')
 
     def deleteProduct(self):
         if not self.tableProducts.selectedItems():
-            self.showMessage('Error', 'Please select a product')
+            showMessage(self, 'Error', 'Please select a product')
         else:
             p_id = self.tableProducts.selectedItems()[0].text()
             p_name = self.tableProducts.selectedItems()[1].text()
-            x = self.askQuestion('Deletion Warning', 'Do you really want to delete the product ' + p_name + '?')
+            x = askQuestion(self, 'Deletion Warning', 'Do you really want to delete the product ' + p_name + '?')
             if x:
                 self.products.deleteProduct(p_id)
                 self.setProductsTableData()
 
     def deleteBrand(self):
         if not self.tableBrands.selectedItems():
-            self.showMessage('Error', 'Please select a brand')
+            showMessage(self, 'Error', 'Please select a brand')
         else:
             b_id = self.tableBrands.selectedItems()[0].text()
             b_name = self.tableBrands.selectedItems()[1].text()
-            x = self.askQuestion('Deletion Warning', 'Do you really want to delete the brand ' + b_name + '?')
+            x = askQuestion(self, 'Deletion Warning', 'Do you really want to delete the brand ' + b_name + '?')
             if x:
                 if self.products.isDeletableBrand(b_id):
                     self.products.deleteBrand(b_id)
                     self.setBrandTableData()
                 else:
-                    self.showMessage('Deletion Error',
-                                     'Some products exists with this brand!. You can only update the brand name until '
-                                     'the products exist.')
+                    showMessage(self, 'Deletion Error',
+                                'Some products exists with this brand!. You can only update the brand name until '
+                                'the products exist.')
 
     def deleteCategory(self):
         if not self.tableCategories.selectedItems():
-            self.showMessage('Error', 'Please select a category')
+            showMessage(self, 'Error', 'Please select a category')
         else:
             c_id = self.tableCategories.selectedItems()[0].text()
             c_name = self.tableCategories.selectedItems()[1].text()
-            x = self.askQuestion('Deletion Warning', 'Do you really want to delete the category ' + c_name + '?')
+            x = askQuestion(self, 'Deletion Warning', 'Do you really want to delete the category ' + c_name + '?')
             if x:
                 if self.products.isDeletableCategory(c_id):
                     self.products.deleteCategory(c_id)
                     self.setCategoryTableData()
                 else:
-                    self.showMessage('Deletion Error',
-                                     'Some products exists with this category!. You can only update the category name '
-                                     'until the products exist.')
+                    showMessage(self, 'Deletion Error',
+                                'Some products exists with this category!. You can only update the category name '
+                                'until the products exist.')
 
     def updateProduct(self):
         if not self.tableProducts.selectedItems():
-            self.showMessage('Error', 'Please select a product')
+            showMessage(self, 'Error', 'Please select a product')
         else:
             p_id = self.tableProducts.selectedItems()[0].text()
-            name = self.showDialog('Update Product Name', 'Enter modified product name')
+            name = showDialog(self, 'Update Product Name', 'Enter modified product name')
             if name:
                 self.products.updateProduct(p_id, name)
                 self.setProductsTableData()
 
     def updateBrand(self):
         if not self.tableBrands.selectedItems():
-            self.showMessage('Error', 'Please select a brand')
+            showMessage(self, 'Error', 'Please select a brand')
         else:
             b_id = self.tableBrands.selectedItems()[0].text()
-            name = self.showDialog('Update Brand Name', 'Enter modified brand name')
+            name = showDialog(self, 'Update Brand Name', 'Enter modified brand name')
             if name:
                 self.products.updateBrand(b_id, name)
                 self.setBrandTableData()
 
     def updateCategory(self):
         if not self.tableCategories.selectedItems():
-            self.showMessage('Error', 'Please select a category')
+            showMessage(self, 'Error', 'Please select a category')
         else:
             p_id = self.tableCategories.selectedItems()[0].text()
-            name = self.showDialog('Update category Name', 'Enter modified category name')
+            name = showDialog(self, 'Update category Name', 'Enter modified category name')
             if name:
                 self.products.updateCategory(p_id, name)
                 self.setCategoryTableData()
 
-    def showMessage(self, title, message):
-        msg = QMessageBox()
-        msg.about(self.widget, title, message)
 
-    def askQuestion(self, title, message):
-        buttonReply = QMessageBox.question(self.widget, title, message, QMessageBox.Yes | QMessageBox.No,
-                                           QMessageBox.No)
-        if buttonReply == QMessageBox.Yes:
-            return True
-        return False
+class UIPurchase(QWidget, Ui_purchase):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.setupUi(self)
 
-    def showDialog(self, title, message):
-        text, ok = QInputDialog.getText(self.widget, title, message)
-        if ok:
-            return text
-
-
-class UIPurchase(Ui_purchase):
-    def __init__(self, widget):
-        self.widget = widget
         self.crt = Cart()
-        self.setupUi(widget)
         # initialize combobox
         self.fieldBrand.addItem('select')
         self.fieldBrand.addItems(self.crt.getBrandsData(b_id=False, name=True))
@@ -311,16 +297,16 @@ class UIPurchase(Ui_purchase):
         units = self.fieldUnits.text()
         productCode = self.fieldCode.text()
         if productCode == '' or productCode == '0':
-            self.showMessage('Input Error', 'Please select a product')
+            showMessage(self, 'Input Error', 'Please select a product')
             return
         if units == '0':
-            self.showMessage('Input Error', 'Please set the units required')
+            showMessage(self, 'Input Error', 'Please set the units required')
             return
         if self.crt.isExistingProduct(int(productCode)):
-            self.showMessage('Input Error', 'Product already Exist in cart!')
+            showMessage(self, 'Input Error', 'Product already Exist in cart!')
             return
         if int(self.crt.getProductDetails(productCode)[4]) < int(units):
-            self.showMessage('Input Error', units + ' units of product is not available!')
+            showMessage(self, 'Input Error', units + ' units of product is not available!')
             return
         units = int(units)
         productCode = int(productCode)
@@ -359,7 +345,7 @@ class UIPurchase(Ui_purchase):
                 self.fieldName.setCurrentText(name)
             else:
                 self.fieldCode.clear()
-                self.showMessage('Input Error', 'No product found with product code ' + code)
+                showMessage(self, 'Input Error', 'No product found with product code ' + code)
 
     def productNameChange(self):
         """method to update all other fields when fieldName is changed by user"""
@@ -378,11 +364,6 @@ class UIPurchase(Ui_purchase):
         self.fieldName.addItem('select')
         self.fieldName.addItems(self.crt.getProductsData(name=True, filterBrand=brand, filterCategory=category))
         self.fieldName.setCurrentText(name)
-
-    def showMessage(self, title, message):
-        """method to show any message to the user with a title and description"""
-        msg = QMessageBox()
-        msg.about(self.widget, title, message)
 
     def setupCartTable(self):
         data = self.crt.getCartTable()
@@ -403,7 +384,7 @@ class UIPurchase(Ui_purchase):
 
     def removeProduct(self):
         if not self.tableCart.selectedItems():
-            self.showMessage('Error', 'Please select an item from cart!')
+            showMessage(self, 'Error', 'Please select an item from cart!')
         else:
             p_id = int(self.tableCart.selectedItems()[0].text())
             self.crt.removeProduct(p_id)
@@ -411,26 +392,20 @@ class UIPurchase(Ui_purchase):
 
     def purchase(self):
         if self.tableCart.rowCount() == 0:
-            self.showMessage('Error', 'No item in cart')
+            showMessage(self, 'Error', 'No item in cart')
             return
-        x = self.askQuestion('Purchase Warning', 'Confirm Purchase?')
+        x = askQuestion(self, 'Purchase Warning', 'Confirm Purchase?')
         if x:
             self.crt.makePurchase()
             self.clearCart()
 
-    def askQuestion(self, title, message):
-        buttonReply = QMessageBox.question(self.widget, title, message, QMessageBox.Yes | QMessageBox.No,
-                                           QMessageBox.No)
-        if buttonReply == QMessageBox.Yes:
-            return True
-        return False
 
+class UIStock(QWidget, Ui_stock):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.setupUi(self)
 
-class UIStock(Ui_stock):
-    def __init__(self, widget):
-        self.widget = widget
         self.products = Products()
-        self.setupUi(widget)
 
         # initialize combobox
         self.fieldBrand.addItem('select')
@@ -489,13 +464,13 @@ class UIStock(Ui_stock):
 
     def updateStock(self):
         if not self.tableStock.selectedItems():
-            self.showMessage('Error', 'Please select a product')
+            showMessage(self, 'Error', 'Please select a product')
         else:
             p_id = self.tableStock.selectedItems()[0].text()
             try:
-                stock = int(self.showDialog('Update Stock', 'Enter number of new stock units'))
+                stock = int(showDialog(self, 'Update Stock', 'Enter number of new stock units'))
             except ValueError:
-                self.showMessage('Input Error', 'invalid number of units')
+                showMessage(self, 'Input Error', 'invalid number of units')
                 return
             if stock:
                 self.products.updateStock(p_id, stock)
@@ -503,13 +478,13 @@ class UIStock(Ui_stock):
 
     def updatePrize(self):
         if not self.tableStock.selectedItems():
-            self.showMessage('Error', 'Please select a product')
+            showMessage(self, 'Error', 'Please select a product')
         else:
             p_id = self.tableStock.selectedItems()[0].text()
             try:
-                prize = float(self.showDialog('Update Prize', 'Enter new prize in rupees'))
+                prize = float(showDialog(self, 'Update Prize', 'Enter new prize in rupees'))
             except ValueError:
-                self.showMessage('Input Error', 'invalid prize')
+                showMessage(self, 'Input Error', 'invalid prize')
                 return
             except TypeError:
                 return
@@ -517,22 +492,13 @@ class UIStock(Ui_stock):
                 self.products.updatePrize(p_id, prize)
                 self.loadStock()
 
-    def showMessage(self, title, message):
-        msg = QMessageBox()
-        msg.about(self.widget, title, message)
 
-    def showDialog(self, title, message):
-        text, ok = QInputDialog.getText(self.widget, title, message)
-        if ok:
-            return text
-        return None
+class UISales(QWidget, Ui_sales):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.setupUi(self)
 
-
-class UISales(Ui_sales):
-    def __init__(self, widget):
-        self.widget = widget
         self.sale = Sales()
-        self.setupUi(widget)
 
         self.buttonCheck.clicked.connect(lambda: self.check())
         self.buttonLoad.clicked.connect(lambda: self.setupSalesTableData())
@@ -556,19 +522,14 @@ class UISales(Ui_sales):
         amount = self.sale.getMonthlySaleAmount(month, year)
         self.labelMonthlyAmount.setText(str(float(amount)))
 
-    def showMessage(self, title, message):
-        """method to show any message to the user with a title and description"""
-        msg = QMessageBox()
-        msg.about(self.widget, title, message)
-
     def setupSalesTableData(self):
         self.tableSales.setRowCount(0)
         date = self.calendar.selectedDate()
-        pydate = str(date.toPyDate())
+        pydate = str(date.toPython())
         data = self.sale.getSalesDetails(pydate)
         total = self.sale.getTotalSaleAmount()
         if not data:
-            self.showMessage('Information', 'No sales at specified date')
+            showMessage(self, 'Information', 'No sales at specified date')
         for i, row in enumerate(data):
             self.tableSales.insertRow(i)
             for j, item in enumerate(row):
@@ -586,7 +547,7 @@ class UISuperMarket(QMainWindow):
         self.setWindowIcon(QIcon('res/images/icon.png'))
         self.centralwidget = QStackedWidget(self)
         self.setCentralWidget(self.centralwidget)
-        self.setContentsMargins(0, 22, 0, 0)
+        self.setContentsMargins(0, 23, 0, 0)
         self.dark = 'dark'
         self.light = 'light'
 
@@ -594,20 +555,13 @@ class UISuperMarket(QMainWindow):
         self.applyStyle(self.light)
 
         # setup contents of stacked widget
-        self.purchaseWidget = QWidget()
-        UIPurchase(self.purchaseWidget)
+        self.purchaseWidget = UIPurchase()
+        self.productsWidget = UIProducts()
+        self.stockWidget = UIStock()
+        self.salesWidget = UISales()
         self.centralwidget.addWidget(self.purchaseWidget)
-
-        self.productsWidget = QWidget()
-        UIProducts(self.productsWidget)
         self.centralwidget.addWidget(self.productsWidget)
-
-        self.stockWidget = QWidget()
-        UIStock(self.stockWidget)
         self.centralwidget.addWidget(self.stockWidget)
-
-        self.salesWidget = QWidget()
-        UISales(self.salesWidget)
         self.centralwidget.addWidget(self.salesWidget)
 
         # set the widget that should be shown at first
@@ -632,7 +586,7 @@ class UISuperMarket(QMainWindow):
     def setupMenuBar(self):
         """method to setup the menubar"""
         menubar = QMenuBar(self)
-        menubar.setGeometry(QRect(0, 0, 5000, 22))
+        menubar.setGeometry(QRect(0, 0, 5000, 23))
         purchase = menubar.addAction('Purchase')
         products = menubar.addAction('Products')
         stock = menubar.addAction('Stock')
@@ -651,11 +605,30 @@ class UISuperMarket(QMainWindow):
         sales.triggered.connect(lambda: self.setWidget(self.salesWidget))
 
 
+def showMessage(widget, title, message):
+    """method to show any message to the user with a title and description"""
+    msg = QMessageBox()
+    msg.about(widget, title, message)
+
+
+def showDialog(widget, title, message):
+    text, ok = QInputDialog.getText(widget, title, message, QLineEdit.Normal)
+    if ok:
+        return text
+    return None
+
+
+def askQuestion(widget, title, message):
+    buttonReply = QMessageBox.question(widget, title, message, QMessageBox.Yes or QMessageBox.No, QMessageBox.No)
+    if buttonReply == QMessageBox.Yes:
+        return True
+    return False
+
+
 # runner
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     app.setStyle('Fusion')
-    ui = UISuperMarket()
-    sys.exit(app.exec_())
-
-    # setup stylesheet
+    window = UISuperMarket()
+    window.show()
+    app.exec()
