@@ -5,9 +5,9 @@ Mainwindow is created and other widgets are added in this file
 import os
 import sys
 from datetime import datetime
-# import pyqt classes
+# import
 from PySide6.QtCore import QRect, QFile, QTextStream
-from PySide6.QtGui import QIcon, QDoubleValidator
+from PySide6.QtGui import QIcon, QDoubleValidator, Qt
 from PySide6.QtWidgets import *
 # imprt backend
 from cart import Cart
@@ -24,6 +24,7 @@ class UIProducts(QWidget, Ui_products):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
+        self.setAttribute(Qt.WA_StyledBackground,True)
 
         self.products = Products()
         self.fieldPrize.setValidator(QDoubleValidator(0, 10000, 2))
@@ -244,6 +245,7 @@ class UIPurchase(QWidget, Ui_purchase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
+        self.setAttribute(Qt.WA_StyledBackground,True)
 
         self.crt = Cart()
         # initialize combobox
@@ -404,6 +406,7 @@ class UIStock(QWidget, Ui_stock):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
+        self.setAttribute(Qt.WA_StyledBackground,True)
 
         self.products = Products()
 
@@ -497,6 +500,7 @@ class UISales(QWidget, Ui_sales):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
+        self.setAttribute(Qt.WA_StyledBackground,True)
 
         self.sale = Sales()
 
