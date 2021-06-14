@@ -9,13 +9,13 @@ dark grey - rgb(51, 51, 51)
 */
 
 /*=======================QWidget=======================*/
-QWidget[type="main"]{
+QWidget[type= "main" ]{
     background-color: rgb(221, 221, 221);
 }
 
 /*=======================menubar=========================*/
 QMenuBar{
-padding:1px;
+    padding:1px;
     border-bottom: 1px solid rgb(221, 221, 221);
     background-color: rgb(255, 255, 255);
     color: rgb(51, 51, 51);
@@ -114,7 +114,7 @@ QCalendarWidget QMenu {
   	color: white;
   	font-size: 18px;
   	background-color: rgb(100, 100, 100);
-  }
+}
 /*=======================messages=========================*/
 QMessageBox,QInputDialog{
 	background-color: rgb(255, 255, 255);
