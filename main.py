@@ -403,7 +403,7 @@ class UIPurchase(Ui_purchase):
 
     def removeProduct(self):
         if not self.tableCart.selectedItems():
-            self.showMessage('Error', 'Please select a brand')
+            self.showMessage('Error', 'Please select an item from cart!')
         else:
             p_id = int(self.tableCart.selectedItems()[0].text())
             self.crt.removeProduct(p_id)
@@ -586,7 +586,7 @@ class UISuperMarket(QMainWindow):
         self.setWindowIcon(QIcon('res/images/icon.png'))
         self.centralwidget = QStackedWidget(self)
         self.setCentralWidget(self.centralwidget)
-        self.setContentsMargins(0, 21, 0, 0)
+        self.setContentsMargins(0, 22, 0, 0)
         self.dark = 'dark'
         self.light = 'light'
 
@@ -632,7 +632,7 @@ class UISuperMarket(QMainWindow):
     def setupMenuBar(self):
         """method to setup the menubar"""
         menubar = QMenuBar(self)
-        menubar.setGeometry(QRect(0, 0, 5000, 21))
+        menubar.setGeometry(QRect(0, 0, 5000, 22))
         purchase = menubar.addAction('Purchase')
         products = menubar.addAction('Products')
         stock = menubar.addAction('Stock')

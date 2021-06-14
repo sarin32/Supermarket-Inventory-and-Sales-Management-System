@@ -15,6 +15,7 @@ QWidget[type="main"]{
 
 /*=======================menubar=========================*/
 QMenuBar{
+    padding:1px;
     border-bottom: 1px solid rgb(100, 100, 100);
     background-color: rgb(50, 50, 50);
     color: rgb(255, 255, 255);
