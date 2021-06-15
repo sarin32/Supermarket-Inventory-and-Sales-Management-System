@@ -551,6 +551,7 @@ class UISuperMarket(QMainWindow):
         self.setWindowIcon(QIcon('res/images/icon.png'))
         self.centralwidget = QStackedWidget(self)
         self.setCentralWidget(self.centralwidget)
+        self.showMaximized()
         self.setContentsMargins(0, 23, 0, 0)
         # set exact path to theme files
         self.dark = 'stylesheets/dark.qss'
