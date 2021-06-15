@@ -11,5 +11,5 @@
 11|Camel Safety Matches 10box|24|16|10|10.0
 12|Nestle Milkybar 25g|1|17|30|10.0
 13|Cutee The Beauty Soap |5|2|38|20.0
-14|Eastern Meat Masala 100g|8|9|38|35.0
+14|Eastern Meat Masala 100g|8|9|36|35.0
 15|Sunflower Oil 500ml|25|20|27|100.0
