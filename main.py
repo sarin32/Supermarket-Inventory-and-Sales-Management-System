@@ -5,7 +5,7 @@ Mainwindow is created and other widgets are added in this file
 import json
 import sys
 from datetime import datetime
-# import
+# import 
 from PySide6.QtCore import QRect, QFile, QTextStream
 from PySide6.QtGui import QIcon, QDoubleValidator, Qt
 from PySide6.QtWidgets import *
@@ -551,7 +551,6 @@ class UISuperMarket(QMainWindow):
         self.setWindowIcon(QIcon('res/images/icon.png'))
         self.centralwidget = QStackedWidget(self)
         self.setCentralWidget(self.centralwidget)
-        self.showMaximized()
         self.setContentsMargins(0, 23, 0, 0)
         # set exact path to theme files
         self.dark = 'stylesheets/dark.qss'
@@ -646,5 +645,6 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     app.setStyle('Fusion')
     window = UISuperMarket()
+    window.showMaximized()
     window.show()
     app.exec()
