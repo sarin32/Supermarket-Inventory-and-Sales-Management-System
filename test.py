@@ -1,4 +1,2 @@
-from SuperMarket.superMarket import Inventory
-
-inv = Inventory()
-inv.deleteProduct('2')
+import PySide6.QtWidgets
+print(PySide6.QtWidgets.QStyleFactory.keys())
