@@ -543,10 +543,9 @@ class UISales(QWidget, Ui_sales):
 
 
 class UISuperMarket(QMainWindow):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         # setup the mainwindow
-        self.resize(800, 600)
         self.setWindowTitle('MASS Supermarket')
         self.setWindowIcon(QIcon('res/images/icon.png'))
         self.centralwidget = QStackedWidget(self)
