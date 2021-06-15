@@ -2,7 +2,7 @@
 This is the runner file of the application
 Mainwindow is created and other widgets are added in this file
 """
-import os
+import json
 import sys
 from datetime import datetime
 # import
@@ -24,7 +24,7 @@ class UIProducts(QWidget, Ui_products):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
-        self.setAttribute(Qt.WA_StyledBackground,True)
+        self.setAttribute(Qt.WA_StyledBackground, True)
 
         self.products = Products()
         self.fieldPrize.setValidator(QDoubleValidator(0, 10000, 2))
@@ -245,7 +245,7 @@ class UIPurchase(QWidget, Ui_purchase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
-        self.setAttribute(Qt.WA_StyledBackground,True)
+        self.setAttribute(Qt.WA_StyledBackground, True)
 
         self.crt = Cart()
         # initialize combobox
@@ -406,7 +406,7 @@ class UIStock(QWidget, Ui_stock):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
-        self.setAttribute(Qt.WA_StyledBackground,True)
+        self.setAttribute(Qt.WA_StyledBackground, True)
 
         self.products = Products()
 
@@ -500,7 +500,7 @@ class UISales(QWidget, Ui_sales):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
-        self.setAttribute(Qt.WA_StyledBackground,True)
+        self.setAttribute(Qt.WA_StyledBackground, True)
 
         self.sale = Sales()
 
@@ -552,11 +552,15 @@ class UISuperMarket(QMainWindow):
         self.centralwidget = QStackedWidget(self)
         self.setCentralWidget(self.centralwidget)
         self.setContentsMargins(0, 23, 0, 0)
-        self.dark = 'dark'
-        self.light = 'light'
+        # set exact path to theme files
+        self.dark = 'stylesheets/dark.qss'
+        self.light = 'stylesheets/light.qss'
 
-        # default
-        self.applyStyle(self.light)
+        # set current style
+        with open('settings.json', 'r') as f:
+            settings = json.load(f)
+            theme = settings['theme']
+            self.applyStyle(theme)
 
         # setup contents of stacked widget
         self.purchaseWidget = UIPurchase()
@@ -578,8 +582,12 @@ class UISuperMarket(QMainWindow):
         self.centralwidget.setCurrentWidget(widget)
 
     def applyStyle(self, theme):
+        settings = {'theme': theme}
+        with open('settings.json', 'w') as f:
+            json.dump(settings, f)
+
         self.style().unpolish(self)
-        file = QFile(os.path.join('stylesheets', theme + '.qss'))
+        file = QFile(theme)
         if not file.open(QFile.ReadOnly | QFile.Text):
             raise Exception("FileNotFound")
         style = QTextStream(file)
@@ -609,12 +617,14 @@ class UISuperMarket(QMainWindow):
         sales.triggered.connect(lambda: self.setWidget(self.salesWidget))
 
 
+# shows message in the screne with a ok button
 def showMessage(widget, title, message):
     """method to show any message to the user with a title and description"""
     msg = QMessageBox()
     msg.about(widget, title, message)
 
 
+# shows message with a QLineEdit to enter a text
 def showDialog(widget, title, message):
     text, ok = QInputDialog.getText(widget, title, message, QLineEdit.Normal)
     if ok:
@@ -622,6 +632,7 @@ def showDialog(widget, title, message):
     return None
 
 
+# shows a yes or no question
 def askQuestion(widget, title, message):
     buttonReply = QMessageBox.question(widget, title, message, QMessageBox.Yes or QMessageBox.No, QMessageBox.No)
     if buttonReply == QMessageBox.Yes:
