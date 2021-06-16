@@ -1,5 +1,5 @@
-from products import Products
-from sales import Sales
+from SuperMarket.products import Products
+from SuperMarket.sales import Sales
 
 
 class Cart(Products, Sales):

@@ -1,7 +1,7 @@
 import csv
 
-from brands import Brands
-from categories import Categories
+from SuperMarket.brands import Brands
+from SuperMarket.categories import Categories
 
 
 # noinspection PyMethodMayBeStatic

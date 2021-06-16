@@ -50,7 +50,6 @@ class Ui_products(object):
 
         self.gridLayout_6.addWidget(self.buttonAddBrand, 2, 0, 1, 1, Qt.AlignRight)
 
-
         self.gridLayout_5.addWidget(self.groupBox_2, 0, 1, 1, 1, Qt.AlignTop)
 
         self.tableBrands = QTableWidget(self.frame_4)
@@ -86,9 +85,7 @@ class Ui_products(object):
 
         self.horizontalLayout.addWidget(self.buttonUpdateBrand)
 
-
         self.gridLayout_5.addWidget(self.frame_5, 1, 0, 1, 1)
-
 
         self.gridLayout.addWidget(self.frame_4, 1, 0, 1, 1)
 
@@ -119,7 +116,6 @@ class Ui_products(object):
         self.buttonAddCategory.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.gridLayout_8.addWidget(self.buttonAddCategory, 2, 0, 1, 1, Qt.AlignRight)
-
 
         self.gridLayout_7.addWidget(self.groupBox_3, 0, 1, 1, 1, Qt.AlignTop)
 
@@ -156,9 +152,7 @@ class Ui_products(object):
 
         self.horizontalLayout_2.addWidget(self.buttonUpdateCategory)
 
-
         self.gridLayout_7.addWidget(self.frame_7, 1, 0, 1, 1)
-
 
         self.gridLayout.addWidget(self.frame_6, 1, 1, 1, 1)
 
@@ -185,7 +179,6 @@ class Ui_products(object):
         self.buttonUpdateProduct.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.horizontalLayout_4.addWidget(self.buttonUpdateProduct)
-
 
         self.gridLayout_2.addWidget(self.frame_3, 3, 0, 1, 1, Qt.AlignRight)
 
@@ -275,9 +268,7 @@ class Ui_products(object):
 
         self.gridLayout_4.addWidget(self.buttonClear, 1, 0, 1, 1)
 
-
         self.gridLayout_3.addWidget(self.frame_2, 0, 2, 6, 1)
-
 
         self.gridLayout_2.addWidget(self.groupBox, 2, 4, 1, 1)
 
@@ -297,13 +288,12 @@ class Ui_products(object):
 
         self.gridLayout_2.addWidget(self.tableProducts, 2, 0, 1, 1)
 
-
         self.gridLayout.addWidget(self.frame, 0, 0, 1, 2)
-
 
         self.retranslateUi(products)
 
         QMetaObject.connectSlotsByName(products)
+
     # setupUi
 
     def retranslateUi(self, products):
@@ -345,4 +335,3 @@ class Ui_products(object):
         ___qtablewidgetitem5 = self.tableProducts.horizontalHeaderItem(1)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("products", u"Product Name", None));
     # retranslateUi
-
