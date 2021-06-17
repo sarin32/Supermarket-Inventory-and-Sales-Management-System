@@ -12,6 +12,8 @@
 
 `main.py` -  The main file or the runner file .
 
+`settings.json` -  json file to store the settings.
+
 `datafiles/` - Contains the text files which stores data.
 
 `docs/` - Contains the document files of the project.
@@ -21,7 +23,9 @@
 `stylesheets/` - contains the qss stylesheets used for making out the themes
 
 `ui/` - contains the ui files of  each widget with it's corresponding python file 
+
 `widgets/` - contains files which are used to develop the front-end. Contains the widgets of the application including the main widget.
+
 `SuperMarket` - This package is the back-end package of the project. It has the objects to retrieve and handle data in the data files.
 
 ## Components
