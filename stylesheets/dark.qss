@@ -97,6 +97,7 @@ QComboBox QAbstractItemView{
 	border: none;
 	background-color:rgba(60, 60, 90,150);
     selection-background-color: rgb(116, 181, 224);
+    color: rgb(200, 200, 200);
 }
 QComboBox::down-arrow {
     image: url(res/images/down-arrow.png);
@@ -108,13 +109,6 @@ QSpinBox::down-arrow {
 QSpinBox::up-arrow {
     image: url(res/images/up-arrow.png);
 }
-QCalendarWidget QMenu {
-  	width: 150px;
-  	left: 20px;
-  	color: white;
-  	font-size: 18px;
-  	background-color: rgb(100, 100, 100);
-  }
 /************************messages**************************/
 QMessageBox,QInputDialog{
 	background-color: rgb(50, 50, 50);
