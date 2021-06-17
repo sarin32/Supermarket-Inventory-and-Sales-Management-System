@@ -1,6 +1,8 @@
 # SUPERMARKET INVENTORY AND SALES MANAGEMENT SYSTEM
 
 ## Getting Started
+![dark](Screneshots/Screenshot%20(6).png)
+![light](Screneshots/Screenshot%20(7).png)
 
 ### Requirements
 * Python
