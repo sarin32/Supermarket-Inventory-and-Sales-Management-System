@@ -44,7 +44,7 @@
 - Qt designer
 
 ## Notes
-### Installing PyQt5 library
+### Installing PySide6 library
 `pip intall PySide6`
 
 ### Installing qt-designer
