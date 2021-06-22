@@ -1,11 +1,11 @@
 /*
-blue-  rgb(70, 70, 110)
-light blue - rgba(60, 60, 90,150)
-dark blue - rgb(116, 181, 224)
-dark blue dimmed - rgba(116, 181, 224, 150)
-white - rgb(50, 50, 50)
+blue-  rgb(116, 181, 224)
+light blue - rgba(116, 181, 224, 150) 
+dark blue - rgb(70, 70, 110)
+dark blue dimmed - rgba(60, 60, 90,150)
+white - rgb(255, 255, 255)
 grey - rgb(100, 100, 100)
-dark grey - rgb(255, 255, 255)
+dark grey - rgb(50, 50, 50)
 */
 
 /************************QWidget************************/
