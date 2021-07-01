@@ -55,7 +55,7 @@ class Ui_addUser(object):
         self.label.setText(QCoreApplication.translate("addUser", u"User Name", None))
         self.label_2.setText(QCoreApplication.translate("addUser", u"Password", None))
         self.label_3.setText(QCoreApplication.translate("addUser", u"Confirm Password", None))
-        self.buttonAddUser.setText(QCoreApplication.translate("addUser", u"Add Uuser", None))
+        self.buttonAddUser.setText(QCoreApplication.translate("addUser", u"Add User", None))
         self.buttonCancel.setText(QCoreApplication.translate("addUser", u"Cancel", None))
     # retranslateUi
 
