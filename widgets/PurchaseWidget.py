@@ -3,10 +3,10 @@ from PySide6.QtWidgets import QWidget, QHeaderView, QTableWidgetItem
 
 from SuperMarket import Cart
 from ui.purchase import Ui_purchase
-from widgets.Message import showMessage, askQuestion
+from widgets.UIFunctions import showMessage, askQuestion
 
 
-class UIPurchase(QWidget, Ui_purchase):
+class PurchaseWidget(QWidget, Ui_purchase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)

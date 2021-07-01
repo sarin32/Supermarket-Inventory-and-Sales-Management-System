@@ -1,1 +1,1 @@
-from widgets.MainWidget import UISuperMarket
+from widgets.LoginWidget import LoginWidget

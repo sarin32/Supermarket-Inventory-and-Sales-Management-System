@@ -1,0 +1,68 @@
+QWidget#logIn{
+	background-color: rgb(50,50,50);
+}
+
+QFrame#logo{
+	background-image: url(res/images/trolley.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+QFrame#frameSignIn{
+	background-color: rgb(50, 50, 50);
+}
+
+
+QPushButton#buttonLogo{
+	background-color: rgba(0, 0, 0,200);
+	background-image:url(res/images/icon-round-80px.png);
+	border-radius:40px;
+}
+QPushButton#buttonLogo:hover{
+	background-color: rgba(255, 255, 255,200);
+}
+QPushButton#buttonLogo:pressed{
+	background-color: rgba(200, 200, 200,200);
+}
+
+
+
+QPushButton#buttonSignIn{
+    color: rgb(255, 255, 255);
+    font: 16px  "Centular";
+    background-color: rgb(70, 70, 110);
+}
+QPushButton#buttonSignIn:hover{
+    background-color: rgb(116, 181, 224);
+    color: rgb(50, 50, 50);
+}
+QPushButton#buttonSignIn:pressed{
+    background-color: rgba(116, 181, 224, 150);
+    color: rgb(50, 50, 50);
+}
+
+
+QLabel#name{
+	color: rgb(255, 255, 255);
+	font: 28pt "Rockwell Condensed";
+}
+
+QLabel#labelSignIn{
+	color: rgb(200, 200, 200);
+	font: 25px  "Centular";
+}
+QLabel{
+	color: rgb(200, 200, 200);
+	font: 15px  "Centular";
+}
+QLineEdit{
+	border:none;
+	border-radius:3px;
+}
+
+
+
+QMessageBox{
+	background-color: rgb(50, 50, 50);
+	color: rgb(255, 255, 255);
+    font: 15px  "Centular";
+}

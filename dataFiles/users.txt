@@ -1,0 +1,2 @@
+superAdmin|1234567890|admin
+test_user|12345678|user

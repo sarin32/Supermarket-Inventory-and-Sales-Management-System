@@ -2,11 +2,11 @@ from PySide6.QtGui import Qt
 from PySide6.QtWidgets import QWidget, QHeaderView, QTableWidgetItem
 
 from SuperMarket import Products
-from widgets.Message import showMessage, showDialog
+from widgets.UIFunctions import showMessage, showDialog
 from ui.stock import Ui_stock
 
 
-class UIStock(QWidget, Ui_stock):
+class StockWidget(QWidget, Ui_stock):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)

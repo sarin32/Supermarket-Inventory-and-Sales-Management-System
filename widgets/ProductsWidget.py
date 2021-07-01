@@ -1,12 +1,14 @@
+import re
+
 from PySide6.QtGui import Qt, QDoubleValidator
 from PySide6.QtWidgets import QWidget, QHeaderView, QTableWidgetItem
 
 from SuperMarket import Products
-from widgets.Message import showDialog, showMessage, askQuestion
+from widgets.UIFunctions import showMessage, showDialog, askQuestion
 from ui.products import Ui_products
 
 
-class UIProducts(QWidget, Ui_products):
+class ProductsWidget(QWidget, Ui_products):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
@@ -94,8 +96,10 @@ class UIProducts(QWidget, Ui_products):
         category = self.fieldCategory.currentText()
         stock = self.fieldStock.text()
         prize = self.fieldPrize.text()
+
+        name_regex = re.compile(r'[A-Za-z0-9_\s\-.]{5,30}')
         # some validations for the inputs
-        if name == '' or len(name) <= 5:
+        if not name_regex.fullmatch(name):
             showMessage(self, 'Input Error', 'Please enter valid name')
             return
         if name in self.products.getProductsData(name=True):
@@ -107,10 +111,10 @@ class UIProducts(QWidget, Ui_products):
         if category == 'select':
             showMessage(self, 'Input Error', 'Please select a category')
             return
-        if prize == '' or prize == 0:
+        if prize == '' or prize == 0 or not prize.isdigit():
             showMessage(self, 'Input Error', 'Please enter valid prize')
             return
-        if stock == '':
+        if stock == '' or not stock.isdigit():
             showMessage(self, 'Input Error', 'Please enter valid stock')
             return
 
@@ -126,7 +130,9 @@ class UIProducts(QWidget, Ui_products):
     def addBrand(self):
         brand = self.fieldNewBrand.text()
         # some validations for the input
-        if brand == '':
+        name_regex = re.compile(r'[A-Za-z0-9_\s\-.]{1,20}')
+
+        if not name_regex.fullmatch(brand):
             showMessage(self, 'Input Error', 'Please enter valid brand name')
             return
         if brand in self.products.getBrandsData(b_id=False, name=True):
@@ -140,8 +146,9 @@ class UIProducts(QWidget, Ui_products):
 
     def addCategory(self):
         category = self.fieldNewCategory.text()
-        # some validations for the input
-        if category == '':
+        name_regex = re.compile(r'[A-Za-z0-9_\s\-.]{1,20}')
+
+        if not name_regex.fullmatch(category):
             showMessage(self, 'Input Error', 'Please enter valid category name')
             return
         if category in self.products.getCategoriesData(c_id=False, name=True):
@@ -204,6 +211,11 @@ class UIProducts(QWidget, Ui_products):
         else:
             p_id = self.tableProducts.selectedItems()[0].text()
             name = showDialog(self, 'Update Product Name', 'Enter modified product name')
+            name_regex = re.compile(r'[A-Za-z0-9_\s\-.]{5,30}')
+            # some validations for the inputs
+            if name_regex.fullmatch(name):
+                showMessage(self, 'Input Error', 'Please enter valid name')
+                return
             if name:
                 self.products.updateProduct(p_id, name)
                 self.setProductsTableData()
@@ -214,6 +226,11 @@ class UIProducts(QWidget, Ui_products):
         else:
             b_id = self.tableBrands.selectedItems()[0].text()
             name = showDialog(self, 'Update Brand Name', 'Enter modified brand name')
+            name_regex = re.compile(r'[A-Za-z0-9_\s\-.]{1,20}')
+
+            if not name_regex.fullmatch(name):
+                showMessage(self, 'Input Error', 'Please enter valid brand name')
+                return
             if name:
                 self.products.updateBrand(b_id, name)
                 self.setBrandTableData()
@@ -224,6 +241,11 @@ class UIProducts(QWidget, Ui_products):
         else:
             p_id = self.tableCategories.selectedItems()[0].text()
             name = showDialog(self, 'Update category Name', 'Enter modified category name')
+            name_regex = re.compile(r'[A-Za-z0-9_\-.]{1,20}')
+
+            if not name_regex.fullmatch(name):
+                showMessage(self, 'Input Error', 'Please enter valid brand name')
+                return
             if name:
                 self.products.updateCategory(p_id, name)
                 self.setCategoryTableData()
