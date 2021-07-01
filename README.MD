@@ -59,11 +59,11 @@
 `pip install pyqt5-tools`
 
 ### To login to the application
-*As admin
+- As admin
     username:   superAdmin
     password:   1234567890
   
-*As employee
+- As employee
     username:   test_user
     password:   12345678
   
