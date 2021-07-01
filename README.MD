@@ -60,11 +60,15 @@
 
 ### To login to the application
 - As admin
+
     username:   superAdmin
+
     password:   1234567890
   
 - As employee
+
     username:   test_user
+
     password:   12345678
   
 ### Generating the .ui files
