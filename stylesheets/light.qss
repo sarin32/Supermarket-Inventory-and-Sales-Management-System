@@ -24,7 +24,7 @@ QMenuBar::item{
     background-color: rgb(255, 255, 255);
     color: rgb(51, 51, 51);
 }
-QMenuBar::item::selected{
+QMenuBar::item:selected{
     background-color: rgb(59, 59, 90);
     color: rgb(255, 255, 255);
 }
@@ -32,7 +32,7 @@ QMenu{
     background-color: rgb(255, 255, 255);
     color: rgb(51, 51, 51);
 }
-QMenu::item::selected{
+QMenu::item:selected{
     background-color: rgb(59, 59, 90);
     color: rgb(255, 255, 255);
 }
@@ -53,12 +53,12 @@ QGroupBox {
 QGroupBox::title {
     subcontrol-origin: margin;
     font: 8pt "MS Sans Serif";
-    color: rgb(51, 51, 51)
+    color: rgb(51, 51, 51);
 }
 
 /*=======================Label=========================*/
 QLabel{
-    font: 15px  "Centular" ;
+    font: 15px  "Centular";
     color: rgb(51, 51, 51);
 }
 QLabel[type="bold"]{
@@ -116,7 +116,7 @@ QCalendarWidget QMenu {
   	background-color: rgb(100, 100, 100);
 }
 /*=======================messages=========================*/
-QMessageBox,QInputDialog{
+QMessageBox,QInputDialog,QDialog{
 	background-color: rgb(255, 255, 255);
 	color: rgb(51, 51, 51);
 }
@@ -148,7 +148,7 @@ QHeaderView::section:horizontal{
 QHeaderView::section:vertical{
     border-left: 1px solid rgb(255, 255, 255);
 }
-QTableWidget::item::selected{
+QTableWidget::item:selected{
     color: rgb(255, 255, 255);
     background-color:rgb(59, 59, 90);
 }

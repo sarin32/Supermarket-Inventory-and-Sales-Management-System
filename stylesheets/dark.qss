@@ -110,7 +110,7 @@ QSpinBox::up-arrow {
     image: url(res/images/up-arrow.png);
 }
 /************************messages**************************/
-QMessageBox,QInputDialog{
+QMessageBox,QInputDialog,QDialog{
 	background-color: rgb(50, 50, 50);
 	color: rgb(255, 255, 255);
 }

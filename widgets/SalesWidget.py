@@ -5,10 +5,10 @@ from PySide6.QtWidgets import QWidget, QHeaderView, QTableWidgetItem
 
 from SuperMarket import Sales
 from ui.sales import Ui_sales
-from widgets.Message import showMessage
+from widgets.UIFunctions import showMessage
 
 
-class UISales(QWidget, Ui_sales):
+class SalesWidget(QWidget, Ui_sales):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setupUi(self)
