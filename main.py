@@ -1,6 +1,6 @@
 """
 This is the runner file of the application
-Mainwindow is created and other widgets are added in this file
+It creates the login widget
 """
 import sys
 from PySide6.QtWidgets import QApplication
