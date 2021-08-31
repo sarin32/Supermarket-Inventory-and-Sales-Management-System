@@ -213,7 +213,7 @@ class ProductsWidget(QWidget, Ui_products):
             name = showDialog(self, 'Update Product Name', 'Enter modified product name')
             name_regex = re.compile(r'[A-Za-z0-9_\s\-.]{5,30}')
             # some validations for the inputs
-            if name_regex.fullmatch(name):
+            if not name_regex.fullmatch(name):
                 showMessage(self, 'Input Error', 'Please enter valid name')
                 return
             if name:
