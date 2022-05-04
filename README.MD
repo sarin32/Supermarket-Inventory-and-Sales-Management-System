@@ -51,7 +51,7 @@
     Cores: 2
 - Qt designer
 
-## Notes
+##Notes
 ### Installing PySide6 library
 `pip intall PySide6`
 
@@ -86,5 +86,5 @@ If you want to contribute to this project, please refer to the [Contributing Gui
 
 ## License
 
-This project has been assigned the [MIT License](LICENSE), so go ahead and feel free to use any and/or all parts of this system and to build on it. Although I would still insist that if you do end up improving this, do accidentally contribute, it would be an honour.
+This project has been assigned the [MIT License](LICENSE), So go ahead and feel free to use any and/or all parts of this system and to build on it. Although I would still insist that if you do end up improving this, do accidentally contribute, it would be an honour.
 
