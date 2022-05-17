@@ -51,7 +51,7 @@
     Cores: 2
 - Qt designer
 
-##Notes
+## Notes
 ### Installing PySide6 library
 `pip intall PySide6`
 
