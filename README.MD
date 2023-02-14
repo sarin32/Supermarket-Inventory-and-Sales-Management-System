@@ -53,7 +53,7 @@
 
 ## Notes
 ### Installing PySide6 library
-`pip intall PySide6`
+`pip install PySide6`
 
 ### Installing qt-designer
 `pip install pyqt5-tools`
